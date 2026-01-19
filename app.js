@@ -1,0 +1,377 @@
+// Main application logic
+let currentView = 'grid';
+let currentCategory = 'All';
+let searchQuery = '';
+let filteredData = [...EQUIPMENT_DATA];
+let cart = [];
+
+// Get all unique categories
+const categories = ['All', ...new Set(EQUIPMENT_DATA.map(item => item.category))];
+
+// Initialize the app
+function init() {
+    renderCategories();
+    renderEquipment();
+    setupEventListeners();
+    updateCartCount();
+}
+
+// Render category sidebar
+function renderCategories() {
+    const categoryList = document.getElementById('categories');
+    categoryList.innerHTML = categories.map(category => 
+        `<li class="category-item ${category === currentCategory ? 'active' : ''}" data-category="${category}">
+            ${category}
+        </li>`
+    ).join('');
+}
+
+// Filter equipment based on search and category
+function filterEquipment() {
+    filteredData = EQUIPMENT_DATA.filter(item => {
+        const matchesSearch = searchQuery === '' || 
+            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.id.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        const matchesCategory = currentCategory === 'All' || item.category === currentCategory;
+        
+        return matchesSearch && matchesCategory;
+    });
+    
+    renderEquipment();
+}
+
+// Render equipment in current view
+function renderEquipment() {
+    const container = document.getElementById('equipment-container');
+    const resultsCount = document.getElementById('results-count');
+    
+    // Update results count
+    resultsCount.textContent = `${filteredData.length} items ${currentCategory !== 'All' ? 'in ' + currentCategory : ''}`;
+    
+    if (currentView === 'grid') {
+        container.className = 'grid-view';
+        container.innerHTML = filteredData.map(item => `
+            <div class="grid-card">
+                <div class="card-image">
+                    <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                </div>
+                <div class="card-content">
+                    <div class="card-id">${item.id}</div>
+                    <div class="card-name">${item.name}</div>
+                    <div class="card-description">${item.description}</div>
+                    <div class="card-footer">
+                        <div class="card-qty">×${item.amount} available</div>
+                        <div class="card-price">€${item.price.toFixed(2)}/day</div>
+                    </div>
+                    <button class="card-add-btn" onclick="addToCart('${item.id}')">Add to Cart</button>
+                </div>
+            </div>
+        `).join('');
+    } else {
+        container.className = 'list-view';
+        container.innerHTML = `
+            <div class="list-header">
+                <span>Image</span>
+                <span>ID</span>
+                <span>Item</span>
+                <span>Description</span>
+                <span>Qty</span>
+                <span>€/Day</span>
+            </div>
+            ${filteredData.map(item => `
+                <div class="list-row">
+                    <div class="list-image">
+                        <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                    </div>
+                    <span class="list-id">${item.id}</span>
+                    <div class="list-info">
+                        <span class="list-name">${item.name}</span>
+                    </div>
+                    <span class="list-description">${item.description}</span>
+                    <span class="list-qty">×${item.amount}</span>
+                    <span class="list-price">€${item.price.toFixed(2)}</span>
+                </div>
+            `).join('')}
+        `;
+    }
+}
+
+// Cart Management
+function addToCart(itemId) {
+    const item = EQUIPMENT_DATA.find(eq => eq.id === itemId);
+    const existingItem = cart.find(cartItem => cartItem.id === itemId);
+    
+    if (existingItem) {
+        if (existingItem.quantity < item.amount) {
+            existingItem.quantity++;
+        } else {
+            alert(`Maximum available quantity for ${item.name} is ${item.amount}`);
+            return;
+        }
+    } else {
+        cart.push({
+            ...item,
+            quantity: 1,
+            days: 1
+        });
+    }
+    
+    updateCartCount();
+    renderCart();
+}
+
+function removeFromCart(itemId) {
+    cart = cart.filter(item => item.id !== itemId);
+    updateCartCount();
+    renderCart();
+}
+
+function updateCartItem(itemId, field, value) {
+    const item = cart.find(cartItem => cartItem.id === itemId);
+    const equipment = EQUIPMENT_DATA.find(eq => eq.id === itemId);
+    
+    if (item) {
+        if (field === 'quantity') {
+            const qty = Math.max(1, Math.min(parseInt(value) || 1, equipment.amount));
+            item.quantity = qty;
+        } else if (field === 'days') {
+            item.days = Math.max(1, parseInt(value) || 1);
+        }
+        renderCart();
+    }
+}
+
+function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const countElement = document.getElementById('cart-count');
+    countElement.textContent = count;
+    countElement.classList.toggle('hidden', count === 0);
+}
+
+function calculateTotal() {
+    return cart.reduce((sum, item) => sum + (item.price * item.quantity * item.days), 0);
+}
+
+function renderCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartSubtotal = document.getElementById('cart-subtotal');
+    const cartTotal = document.getElementById('cart-total');
+    
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+        cartSubtotal.textContent = '€0.00';
+        cartTotal.textContent = '€0.00';
+        return;
+    }
+    
+    cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-image">
+                <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+            </div>
+            <div class="cart-item-details">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-id">${item.id}</div>
+                <div class="cart-item-controls">
+                    <div class="quantity-control">
+                        <label>Qty:</label>
+                        <input type="number" value="${item.quantity}" min="1" max="${item.amount}" 
+                               onchange="updateCartItem('${item.id}', 'quantity', this.value)">
+                    </div>
+                    <div class="days-control">
+                        <label>Days:</label>
+                        <input type="number" value="${item.days}" min="1" 
+                               onchange="updateCartItem('${item.id}', 'days', this.value)">
+                    </div>
+                    <div class="cart-item-price">€${(item.price * item.quantity * item.days).toFixed(2)}</div>
+                </div>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">&times;</button>
+        </div>
+    `).join('');
+    
+    const total = calculateTotal();
+    cartSubtotal.textContent = `€${total.toFixed(2)}`;
+    cartTotal.textContent = `€${total.toFixed(2)}`;
+}
+
+function openCartModal() {
+    renderCart();
+    document.getElementById('cart-modal').classList.add('active');
+}
+
+function closeCartModal() {
+    document.getElementById('cart-modal').classList.remove('active');
+}
+
+function openBookingModal() {
+    closeCartModal();
+    renderBookingSummary();
+    document.getElementById('booking-modal').classList.add('active');
+    
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('rental-start').min = today;
+    document.getElementById('rental-end').min = today;
+}
+
+function closeBookingModal() {
+    document.getElementById('booking-modal').classList.remove('active');
+}
+
+function renderBookingSummary() {
+    const summary = document.getElementById('booking-summary');
+    
+    if (cart.length === 0) {
+        summary.innerHTML = '<div class="cart-empty">No items in cart</div>';
+        return;
+    }
+    
+    const itemsHTML = cart.map(item => `
+        <div class="booking-item">
+            <span>${item.name} (×${item.quantity} for ${item.days} day${item.days > 1 ? 's' : ''})</span>
+            <span>€${(item.price * item.quantity * item.days).toFixed(2)}</span>
+        </div>
+    `).join('');
+    
+    const total = calculateTotal();
+    
+    summary.innerHTML = `
+        ${itemsHTML}
+        <div class="booking-total">
+            <span>Total (excl. VAT):</span>
+            <span>€${total.toFixed(2)}</span>
+        </div>
+    `;
+}
+
+function handleReservationSubmit(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const data = {
+        customer: {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            company: formData.get('company'),
+            message: formData.get('message')
+        },
+        rental: {
+            startDate: formData.get('start-date'),
+            endDate: formData.get('end-date')
+        },
+        items: cart.map(item => ({
+            id: item.id,
+            name: item.name,
+            quantity: item.quantity,
+            days: item.days,
+            price: item.price,
+            total: item.price * item.quantity * item.days
+        })),
+        total: calculateTotal()
+    };
+    
+    // Here you would typically send this to a server
+    console.log('Reservation Data:', data);
+    
+    // Show success message
+    const modalBody = document.querySelector('#booking-modal .modal-body');
+    modalBody.innerHTML = `
+        <div class="success-message">
+            <h3 style="margin-bottom: 10px;">Reservation Request Submitted!</h3>
+            <p>Thank you for your reservation request. We will contact you at <strong>${data.customer.email}</strong> shortly to confirm availability and arrange details.</p>
+            <p style="margin-top: 15px;"><strong>Reservation Number:</strong> ${Date.now()}</p>
+        </div>
+        <button class="btn-primary" onclick="closeBookingModal(); cart = []; updateCartCount(); location.reload();">Close</button>
+    `;
+    
+    // In a real application, you might send an email or API request here
+    // For example:
+    // fetch('/api/reservations', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(data)
+    // });
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    // View toggle buttons
+    document.getElementById('grid-btn').addEventListener('click', () => {
+        currentView = 'grid';
+        document.getElementById('grid-btn').classList.add('active');
+        document.getElementById('list-btn').classList.remove('active');
+        renderEquipment();
+    });
+    
+    document.getElementById('list-btn').addEventListener('click', () => {
+        currentView = 'list';
+        document.getElementById('list-btn').classList.add('active');
+        document.getElementById('grid-btn').classList.remove('active');
+        renderEquipment();
+    });
+    
+    // Search input
+    document.getElementById('search').addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        filterEquipment();
+    });
+    
+    // Category selection
+    document.getElementById('categories').addEventListener('click', (e) => {
+        if (e.target.classList.contains('category-item')) {
+            currentCategory = e.target.dataset.category;
+            renderCategories();
+            filterEquipment();
+        }
+    });
+    
+    // Cart button
+    document.getElementById('cart-btn').addEventListener('click', openCartModal);
+    
+    // Close cart modal
+    document.getElementById('close-cart').addEventListener('click', closeCartModal);
+    
+    // Proceed to booking
+    document.getElementById('proceed-to-booking').addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Your cart is empty. Please add items before proceeding.');
+            return;
+        }
+        openBookingModal();
+    });
+    
+    // Close booking modal
+    document.getElementById('close-booking').addEventListener('click', closeBookingModal);
+    
+    // Reservation form submit
+    document.getElementById('reservation-form').addEventListener('submit', handleReservationSubmit);
+    
+    // Close modals when clicking outside
+    document.getElementById('cart-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'cart-modal') {
+            closeCartModal();
+        }
+    });
+    
+    document.getElementById('booking-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'booking-modal') {
+            closeBookingModal();
+        }
+    });
+}
+
+// Start the app when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+
+// Make functions global for onclick handlers
+window.addToCart = addToCart;
+window.removeFromCart = removeFromCart;
+window.updateCartItem = updateCartItem;
