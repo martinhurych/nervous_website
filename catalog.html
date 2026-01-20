@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nervous Music Tastemaker - Equipment Rental</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">NERVOUS MUSIC TASTEMAKER</div>
+        <nav class="nav">
+            <a href="#" class="nav-link">Equipment</a>
+            <a href="#" class="nav-link">Services</a>
+            <a href="#" class="nav-link">Contact</a>
+            <button class="cart-btn" id="cart-btn">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+            <div class="view-toggle">
+                <button class="view-btn active" id="grid-btn">Grid</button>
+                <button class="view-btn" id="list-btn">List</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <input type="text" class="search-box" id="search" placeholder="Search equipment...">
+            <div class="category-title">Categories</div>
+            <ul class="category-list" id="categories"></ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="results-count" id="results-count"></div>
+            <div class="equipment-container" id="equipment-container"></div>
+            <footer class="footer">
+                <span>© 2025 Nervous Music Tastemaker</span>
+                <span>Den Haag, Netherlands • Prices excl. VAT</span>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Cart</h2>
+                <button class="modal-close" id="close-cart">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items"></div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">€0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total (excl. VAT):</span>
+                        <span id="cart-total">€0.00</span>
+                    </div>
+                </div>
+                <button class="btn-primary" id="proceed-to-booking">Proceed to Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reservation Form Modal -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Reserve Equipment</h2>
+                <button class="modal-close" id="close-booking">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="reservation-form">
+                    <div class="form-group">
+                        <label for="customer-name">Full Name *</label>
+                        <input type="text" id="customer-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email *</label>
+                        <input type="email" id="customer-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-phone">Phone</label>
+                        <input type="tel" id="customer-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-company">Company/Organization</label>
+                        <input type="text" id="customer-company" name="company">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="rental-start">Start Date *</label>
+                            <input type="date" id="rental-start" name="start-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rental-end">End Date *</label>
+                            <input type="date" id="rental-end" name="end-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-message">Additional Notes</label>
+                        <textarea id="customer-message" name="message" rows="4"></textarea>
+                    </div>
+                    <div class="form-summary">
+                        <h3>Rental Summary</h3>
+                        <div id="booking-summary"></div>
+                    </div>
+                    <button type="submit" class="btn-primary">Submit Reservation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="equipment-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
