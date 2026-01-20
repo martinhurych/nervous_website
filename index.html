@@ -3,19 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nervous Music Tastemaker - Den Haag</title>
+    <title>nervousmusictastemaker - Den Haag</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="landing-style.css">
 </head>
 <body>
-    <div class="hero">
-        <div class="hero-content">
-            <h1 class="logo">NERVOUS MUSIC TASTEMAKER</h1>
-            <p class="tagline">Professional Audio Equipment Rental</p>
-            <p class="location">Den Haag, Netherlands</p>
-            <a href="catalog.html" class="btn-enter">View Equipment Catalog</a>
+    <!-- Fullscreen Slideshow -->
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <img src="_selected photos/IMG_9122.JPG" alt="Event setup">
         </div>
-        <div class="scroll-indicator">Scroll to explore</div>
+        <div class="slide fade">
+            <img src="_selected photos/IMG_2044.JPG" alt="Live event">
+        </div>
+        <div class="slide fade">
+            <img src="_selected photos/IMG_1597.JPG" alt="Sound equipment">
+        </div>
+        <div class="slide fade">
+            <img src="_selected photos/IMG_2088.JPG" alt="Audio setup">
+        </div>
+        <div class="slide fade">
+            <img src="_selected photos/IMG_1975.JPG" alt="Equipment">
+        </div>
+        <div class="slide fade">
+            <img src="_selected photos/IMG_9280.JPG" alt="Audio production">
+        </div>
+        <div class="slide fade">
+            <img src="_selected photos/IMG_2003.JPG" alt="Professional gear">
+        </div>
+        <div class="slide fade">
+            <img src="_selected photos/IMG_2062.JPG" alt="Event production">
+        </div>
+        
+        <div class="slideshow-overlay">
+            <div class="hero-content">
+                <h1 class="logo">nervousmusictastemaker</h1>
+                <p class="tagline">Professional Audio Equipment Rental</p>
+                <p class="location">Den Haag, Netherlands</p>
+                <a href="catalog.html" class="btn-enter">View Equipment Catalog</a>
+            </div>
+        </div>
     </div>
 
     <div class="gallery">
@@ -32,6 +59,14 @@
             <div class="gallery-item"><img src="_selected photos/IMG_1610.JPG" alt="Event setup"></div>
             <div class="gallery-item"><img src="_selected photos/IMG_2114.JPG" alt="Equipment rental"></div>
             <div class="gallery-item"><img src="_selected photos/IMG_2090.JPG" alt="Sound gear"></div>
+            <div class="gallery-item"><img src="_selected photos/IMG_1990.JPG" alt="Live sound"></div>
+            <div class="gallery-item"><img src="_selected photos/IMG_2115.JPG" alt="Event gear"></div>
+            <div class="gallery-item"><img src="_selected photos/IMG_0749.JPG" alt="Production setup"></div>
+            <div class="gallery-item"><img src="_selected photos/IMG_6410.jpeg" alt="Audio equipment"></div>
+            <div class="gallery-item"><img src="_selected photos/01 kc.jpeg" alt="Concert setup"></div>
+            <div class="gallery-item"><img src="_selected photos/01.jpeg" alt="Sound production"></div>
+            <div class="gallery-item"><img src="_selected photos/03.jpeg" alt="Event production"></div>
+            <div class="gallery-item"><img src="_selected photos/1.jpg" alt="Professional audio"></div>
         </div>
     </div>
 
@@ -61,8 +96,24 @@
     </div>
 
     <footer class="landing-footer">
-        <p>© 2026 Nervous Music Tastemaker • Den Haag, Netherlands</p>
+        <p>© 2026 nervousmusictastemaker • Den Haag, Netherlands</p>
         <p>Professional equipment rental for events, studios, and productions</p>
     </footer>
+    
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 4000); // Change image every 4 seconds
+        }
+    </script>
 </body>
 </html>
