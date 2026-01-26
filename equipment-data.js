@@ -187,8 +187,4 @@ const EQUIPMENT_DATA = [
     { id: 'AC-04', name: 'Fog Fury 3000', amount: 1, description: 'Fog Fury 3000', price: 5, category: 'Accessories' },
     { id: 'AC-05', name: 'Sennheiser HD-25', amount: 1, description: 'Sennheiser HD-25 Professional headphones', price: 5, category: 'Accessories' },
     { id: 'AC-06', name: 'Behringer CT100', amount: 2, description: 'Behringer CT100 Cable tester for XLR and jack cables', price: 2, category: 'Accessories' },
-
-    { id: 'AC-06', name: 'K&M 23550 Stereo Bar', amount: 2, description: 'Microphone stereo bar for XY recording', price: 3, category: 'Accessories' },
-    { id: 'AC-07', name: 'DAP ACA-MIC5', amount: 1, description: 'Microphone clamp holder set (5 pcs)', price: 2, category: 'Accessories' },
-    { id: 'AC-08', name: 'Rycote Super Shield Kit', amount: 1, description: 'Windshield kit for shotgun microphones', price: 8, category: 'Accessories' },
 ];
