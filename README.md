@@ -1,6 +1,6 @@
-# Nervous Music Tastemaker - Equipment Rental Website
+# nervousmusictastemaker - Equipment Rental Website
 
-Professional equipment rental catalogue website for Nervous Music Tastemaker, Den Haag (NL).
+Professional equipment rental catalogue website for nervousmusictastemaker, Den Haag (NL).
 
 ## Features
 
@@ -77,10 +77,9 @@ To add or modify equipment:
 
 **Nervous Music Tastemaker**
 - Email: nervousmusictastemaker@gmail.com
-- Phone: +420 737 812 793
 - Instagram: [@nervousmusictastemaker](https://www.instagram.com/nervousmusictastemaker/)
 - Location: Den Haag, Netherlands
 
 ## License
 
-© 2025 Nervous Music Tastemaker. All rights reserved.
+© 2025 nervousmusictastemaker. All rights reserved.
