@@ -98,6 +98,11 @@ const EQUIPMENT_DATA = [
             { length: '6m', amount: 5, price: 0.30 }
         ]
     },
+    { id: 'CA-10', name: '3.5mm Stereo jack + 2x RCA (male)', amount: 2, description: '3.5mm stereo to 2x RCA male / 3m', price: 0.30, category: 'Cables' },
+    { id: 'CA-11', name: 'Cordial EY 0.3 FMM', amount: 8, description: 'XLR female to 2x XLR male / Y-splitter', price: 0.40, category: 'Cables' },
+    { id: 'CA-12', name: 'Cordial EY 0.3 MFF', amount: 6, description: 'XLR male to 2x XLR female / Y-splitter', price: 0.40, category: 'Cables' },
+    { id: 'CA-13', name: 'pro snake BXJ 102-1', amount: 4, description: 'Balanced jack to XLR adapter', price: 0.20, category: 'Cables' },
+    { id: 'CA-14', name: 'CAT6E Cable 70m', amount: 1, description: 'Network cable on reel / 70m', price: 5.00, category: 'Cables' },
     
     // Power Distribution
     { id: 'PD-01', name: '3-Way Power Split', amount: 10, description: '3-Outlet power strip', price: 0.20, category: 'Power Distribution' },
@@ -136,5 +141,11 @@ const EQUIPMENT_DATA = [
     { id: 'AC-SP-01', name: 'Genelec GLM Set', amount: 1, description: 'Calibration System and DSP Control', price: 5, category: 'Accessories' },
     { id: 'AC-MX-01', name: 'Allen & Heath QU 16 Carry Bag', amount: 1, description: 'Carry Bag for Allen & Heath QU 16', price: 5, category: 'Accessories' },
     { id: 'AC-01', name: 'Manfrotto MCLAMP', amount: 1, description: 'Smartphone Holder mini tripod', price: 0.50, category: 'Accessories' },
+    { id: 'AC-02', name: 'Millenium 6-Micstand Bag', amount: 2, description: 'Bag for 6 microphone stands', price: 2, category: 'Accessories' },
+    { id: 'AC-03', name: 'Millenium AV110 Cable Drum', amount: 1, description: 'Cable drum with handle', price: 3, category: 'Accessories' },
+    { id: 'AC-04', name: 'Behringer CT100', amount: 2, description: 'Cable tester for XLR and jack cables', price: 2, category: 'Accessories' },
     { id: 'AC-05', name: 'Sennheiser HD-25', amount: 1, description: 'Professional headphones', price: 5, category: 'Accessories' },
+    { id: 'AC-06', name: 'K&M 23550 Stereo Bar', amount: 2, description: 'Microphone stereo bar for XY recording', price: 3, category: 'Accessories' },
+    { id: 'AC-07', name: 'DAP ACA-MIC5', amount: 1, description: 'Microphone clamp holder set (5 pcs)', price: 2, category: 'Accessories' },
+    { id: 'AC-08', name: 'Rycote Super Shield Kit', amount: 1, description: 'Windshield kit for shotgun microphones', price: 8, category: 'Accessories' },
 ];
