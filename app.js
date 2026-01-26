@@ -368,11 +368,11 @@ function renderBookingSummary() {
     
     const itemsHTML = cart.map(item => {
         let itemPrice;
-        if (item.days === 1) {
+        if (rentalDays === 1) {
             itemPrice = item.price * item.quantity;
         } else {
             const firstDay = item.price * item.quantity;
-            const additionalDays = (item.days - 1) * item.price * item.quantity * 0.5;
+            const additionalDays = (rentalDays - 1) * item.price * item.quantity * 0.5;
             itemPrice = firstDay + additionalDays;
         }
         return `
