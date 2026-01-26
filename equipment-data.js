@@ -171,7 +171,7 @@ const EQUIPMENT_DATA = [
     
     // Accessories - Microphone Section
     { id: 'AC-MI-01', name: 'DAP ACA-MIC5 Pro', amount: 2, description: 'DAP ACA-MIC5 Pro', price: 3, category: 'Accessories' },
-    { id: 'AC-MI-02', name: 'K&M 23550 Microphone Stereo Bar', amount: 1, description: 'K&M 23550 Microphone Stereo Bar', price: 2, category: 'Accessories' },
+    { id: 'AC-MI-02', name: 'K&M 23550 Microphone Stereo Bar', amount: 3, description: 'K&M 23550 Microphone Stereo Bar', price: 0.50, category: 'Accessories' },
     { id: 'AC-MI-03', name: 'Usi Windbubble', amount: 2, description: 'Usi Windbubble', price: 2, category: 'Accessories' },
     { id: 'AC-MI-04', name: 'Rycote Super Shield Kit Medium', amount: 1, description: 'Rycote Super Shield Kit Medium Set', price: 5, category: 'Accessories' },
     { id: 'AC-MI-05', name: 'Millenium 6-Mic-stand Bag', amount: 2, description: 'Millenium 6-Mic-stand Bag', price: 2, category: 'Accessories' },
