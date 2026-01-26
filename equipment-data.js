@@ -169,7 +169,6 @@ const EQUIPMENT_DATA = [
     { id: 'AC-MX-04', name: 'Decksaver Allen & Heath QU16', amount: 1, description: 'Decksaver Allen & Heath QU16', price: 3, category: 'Accessories' },
     { id: 'AC-MX-05', name: 'Allen & Heath LEDLamp X', amount: 2, description: 'Allen & Heath LEDLamp X', price: 1, category: 'Accessories' },
     { id: 'AC-MX-06', name: 'Thon Rack 3U Eco II Compact 23', amount: 1, description: 'Thon Rack 3U Eco II Compact 23', price: 4, category: 'Accessories' },
-    { id: 'AC-MX-07', name: 'Allen & Heath Rackmount for QU 16', amount: 1, description: 'Allen & Heath Rackmount for QU 16', price: 2, category: 'Accessories' },
     
     // Accessories - Microphone Section
     { id: 'AC-MI-01', name: 'DAP ACA-MIC5 Pro', amount: 2, description: 'DAP ACA-MIC5 Pro', price: 3, category: 'Accessories' },
