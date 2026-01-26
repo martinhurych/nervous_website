@@ -346,7 +346,7 @@ function openBookingModal() {
         }
         if (!endDateInput.value || new Date(endDateInput.value) <= new Date(startDateInput.value)) {
             const endDate = new Date(startDateInput.value);
-            endDate.setDate(endDate.getDate() + maxDays - 1);
+            endDate.setDate(endDate.getDate() + maxDays);
             endDateInput.value = endDate.toISOString().split('T')[0];
         }
     }
