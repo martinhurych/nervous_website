@@ -481,7 +481,12 @@ function openItemModal(itemId) {
     document.getElementById('item-modal-id').textContent = item.id;
     document.getElementById('item-modal-title').textContent = item.name;
     document.getElementById('item-modal-name').textContent = item.name;
-    document.getElementById('item-modal-description').textContent = item.detailedDescription || item.description;
+    
+    // Show both short and detailed description if available
+    const descriptionText = item.detailedDescription 
+        ? item.description + '\n\n' + item.detailedDescription 
+        : item.description;
+    document.getElementById('item-modal-description').textContent = descriptionText;
     
     const image = document.getElementById('item-modal-image');
     image.src = `images/${item.id}.jpg`;
