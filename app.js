@@ -375,12 +375,11 @@ function renderBookingSummary() {
     const startDate = document.getElementById('rental-start').value;
     const endDate = document.getElementById('rental-end').value;
     let rentalDays = 1;
-    
     if (startDate && endDate) {
         const start = new Date(startDate);
         const end = new Date(endDate);
-        const diffTime = Math.abs(end - start);
-        rentalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // Include both start and end days
+        const diffTime = end - start;
+        rentalDays = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
     }
     
     const itemsHTML = cart.map(item => {
