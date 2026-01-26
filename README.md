@@ -1,6 +1,6 @@
 # nervousmusictastemaker - Equipment Rental Website
 
-Professional equipment rental catalogue website for Nervous Music Tastemaker, Den Haag (NL).
+Professional equipment rental catalogue website for nervousmusictastemaker, Den Haag (NL).
 
 ## Features
 
