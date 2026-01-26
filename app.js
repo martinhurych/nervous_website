@@ -379,6 +379,9 @@ function renderBookingSummary() {
     
     summary.innerHTML = `
         ${itemsHTML}
+        <div class="booking-discount" style="font-size:13px; color:#666; margin-bottom:8px;">
+            ${rentalDays > 1 ? 'Multi-day discount: 50% off from 2nd day is automatically applied.' : ''}
+        </div>
         <div class="booking-total">
             <span>Total (excl. VAT):</span>
             <span>€${subtotal.toFixed(2)}</span>
