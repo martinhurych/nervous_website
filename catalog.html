@@ -115,6 +115,39 @@
         </div>
     </div>
 
+    <!-- Item Detail Modal -->
+    <div class="modal" id="item-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="item-modal-title"></h2>
+                <button class="modal-close" id="close-item">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="item-detail-content">
+                    <div class="item-detail-image">
+                        <img id="item-modal-image" src="" alt="">
+                    </div>
+                    <div class="item-detail-info">
+                        <div class="item-modal-id" id="item-modal-id"></div>
+                        <h3 id="item-modal-name"></h3>
+                        <p class="item-modal-description" id="item-modal-description"></p>
+                        <div class="item-modal-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Available:</span>
+                                <span id="item-modal-qty"></span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Price:</span>
+                                <span id="item-modal-price"></span>
+                            </div>
+                        </div>
+                        <button class="btn-primary btn-large" id="item-modal-add-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="equipment-data.js"></script>
     <script src="app.js"></script>
 </body>

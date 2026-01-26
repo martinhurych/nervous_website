@@ -53,7 +53,7 @@ function renderEquipment() {
     if (currentView === 'grid') {
         container.className = 'grid-view';
         container.innerHTML = filteredData.map(item => `
-            <div class="grid-card">
+            <div class="grid-card" onclick="openItemModal('${item.id}')">
                 <div class="card-image">
                     <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                 </div>
@@ -65,7 +65,7 @@ function renderEquipment() {
                         <div class="card-qty">×${item.amount} available</div>
                         <div class="card-price">€${item.price.toFixed(2)}/day</div>
                     </div>
-                    <button class="card-add-btn" onclick="addToCart('${item.id}')">Add to Cart</button>
+                    <button class="card-add-btn" onclick="event.stopPropagation(); addToCart('${item.id}')">Add to Cart</button>
                 </div>
             </div>
         `).join('');
@@ -81,7 +81,7 @@ function renderEquipment() {
                 <span>€/Day</span>
             </div>
             ${filteredData.map(item => `
-                <div class="list-row">
+                <div class="list-row" onclick="openItemModal('${item.id}')">
                     <div class="list-image">
                         <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                     </div>
@@ -362,6 +362,45 @@ function setupEventListeners() {
             closeBookingModal();
         }
     });
+    
+    // Item detail modal
+    document.getElementById('close-item').addEventListener('click', closeItemModal);
+    
+    document.getElementById('item-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'item-modal') {
+            closeItemModal();
+        }
+    });
+}
+
+// Item Detail Modal Functions
+function openItemModal(itemId) {
+    const item = EQUIPMENT_DATA.find(eq => eq.id === itemId);
+    if (!item) return;
+    
+    document.getElementById('item-modal-id').textContent = item.id;
+    document.getElementById('item-modal-title').textContent = item.name;
+    document.getElementById('item-modal-name').textContent = item.name;
+    document.getElementById('item-modal-description').textContent = item.description;
+    document.getElementById('item-modal-qty').textContent = `×${item.amount} available`;
+    document.getElementById('item-modal-price').textContent = `€${item.price.toFixed(2)}/day`;
+    
+    const image = document.getElementById('item-modal-image');
+    image.src = `images/${item.id}.jpg`;
+    image.alt = item.name;
+    image.onerror = function() { this.style.display = 'none'; };
+    
+    const addBtn = document.getElementById('item-modal-add-btn');
+    addBtn.onclick = function() {
+        addToCart(itemId);
+        closeItemModal();
+    };
+    
+    document.getElementById('item-modal').classList.add('active');
+}
+
+function closeItemModal() {
+    document.getElementById('item-modal').classList.remove('active');
 }
 
 // Start the app when DOM is loaded
@@ -375,3 +414,4 @@ if (document.readyState === 'loading') {
 window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
 window.updateCartItem = updateCartItem;
+window.openItemModal = openItemModal;

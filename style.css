@@ -701,3 +701,98 @@ body {
         gap: 10px;
     }
 }
+
+/* Item Detail Modal */
+.modal-large {
+    max-width: 900px;
+}
+
+.item-detail-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.item-detail-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.item-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.item-detail-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-modal-id {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.item-detail-info h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.item-modal-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 30px;
+    flex: 1;
+}
+
+.item-modal-specs {
+    background: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+}
+
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 15px;
+}
+
+.spec-row:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.spec-label {
+    font-weight: 600;
+    color: #666;
+}
+
+.btn-large {
+    padding: 18px 40px;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .item-detail-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .item-detail-image {
+        aspect-ratio: 4/3;
+    }
+}
