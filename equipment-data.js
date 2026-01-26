@@ -67,13 +67,13 @@ const EQUIPMENT_DATA = [
     { id: 'DI-03', name: 'Palmer PAN 04', amount: 1, description: 'Passive Stereo DI-Box', price: 5, category: 'DI Boxes' },
     { id: 'DI-04', name: 'Radial Engineering Pro 48', amount: 1, description: 'Active DI Box', price: 5, category: 'DI Boxes' },
     
-    // Cables (showing a subset)
+    // Cables
     { 
         id: 'CA-01', 
         name: 'XLR + XLR', 
         amount: 15,
         price: 0.30,
-        description: 'Microphone Cable / 3-pin', 
+        description: 'XLR + XLR', 
         category: 'Cables',
         variants: [
             { length: '3m', amount: 15, price: 0.30 },
@@ -82,16 +82,16 @@ const EQUIPMENT_DATA = [
             { length: '20m', amount: 5, price: 0.80 }
         ]
     },
-    { id: 'CA-05', name: 'XLR (male) + 6.3mm stereo jack', amount: 13, description: 'Balanced male jack to male XLR / 6m', price: 0.50, category: 'Cables' },
-    { id: 'CA-06', name: 'XLR (female) + 6.3mm stereo jack', amount: 16, description: 'Balanced male jack to female XLR / 3m', price: 0.40, category: 'Cables' },
-    { id: 'CA-07', name: 'XLR (male) + 6.3mm stereo jack / 0.9m', amount: 11, description: 'XLR male to 6.3mm stereo jack / 0.9m', price: 0.20, category: 'Cables' },
-    { id: 'CA-08', name: 'XLR (female) + 6.3mm stereo jack / 0.9m', amount: 9, description: 'XLR female to 6.3mm stereo jack / 0.9m', price: 0.20, category: 'Cables' },
+    { id: 'CA-05', name: 'XLR (male) + 6.3mm stereo jack', amount: 13, description: 'XLR (male) + 6.3mm stereo jack', price: 0.50, category: 'Cables' },
+    { id: 'CA-06', name: 'XLR (female) + 6.3mm stereo jack', amount: 16, description: 'XLR (female) + 6.3mm stereo jack', price: 0.40, category: 'Cables' },
+    { id: 'CA-07', name: 'XLR (male) + 6.3mm stereo jack', amount: 11, description: 'XLR (male) + 6.3mm stereo jack', price: 0.20, category: 'Cables' },
+    { id: 'CA-08', name: 'XLR (female) + 6.3mm stereo jack', amount: 9, description: 'XLR (female) + 6.3mm stereo jack', price: 0.20, category: 'Cables' },
     { 
         id: 'CA-09', 
         name: '6.3 mm jack + 6.3 mm jack', 
         amount: 3,
         price: 0.20,
-        description: 'Both sides: 6.3 mm mono jack', 
+        description: '6.3 mm jack + 6.3 mm jack', 
         category: 'Cables',
         variants: [
             { length: '3m', amount: 3, price: 0.20 },
