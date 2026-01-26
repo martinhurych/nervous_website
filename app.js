@@ -56,13 +56,18 @@ function renderEquipment() {
             // Check if item has variants
             if (item.variants && item.variants.length > 0) {
                 const defaultVariant = item.variants[0];
+                // Generate variant IDs (CA-01, CA-02, CA-03, CA-04)
+                const baseId = item.id.split('-')[0];
+                const baseNum = parseInt(item.id.split('-')[1]);
+                const variantIds = item.variants.map((v, idx) => `${baseId}-${String(baseNum + idx).padStart(2, '0')}`).join(', ');
+                
                 return `
                     <div class="grid-card" onclick="openItemModal('${item.id}')">
                         <div class="card-image">
                             <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                         </div>
                         <div class="card-content">
-                            <div class="card-id">${item.id}</div>
+                            <div class="card-id">${variantIds}</div>
                             <div class="card-name">${item.name}</div>
                             <div class="card-description">${item.description}</div>
                             <div class="variant-selector" onclick="event.stopPropagation()">
