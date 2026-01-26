@@ -75,7 +75,7 @@ To add or modify equipment:
 
 ## Contact
 
-**Nervous Music Tastemaker**
+**nervousmusictastemaker**
 - Email: nervousmusictastemaker@gmail.com
 - Instagram: [@nervousmusictastemaker](https://www.instagram.com/nervousmusictastemaker/)
 - Location: Den Haag, Netherlands
