@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - nervousmusictastemaker</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing-style.css">
+    <style>
+        .services-page {
+            min-height: 100vh;
+            background: #0a0a0a;
+            padding-top: 80px;
+        }
+        
+        .page-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+        
+        .page-header .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .page-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .page-nav a {
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        
+        .page-nav a:hover,
+        .page-nav a.active {
+            color: #fff;
+        }
+        
+        .services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+        
+        .services-content h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .services-intro {
+            text-align: center;
+            font-size: 18px;
+            color: #999;
+            margin-bottom: 80px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body class="services-page">
+    <header class="page-header">
+        <a href="index.html" class="logo">nervousmusictastemaker</a>
+        <nav class="page-nav">
+            <a href="catalog.html">Equipment</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="services-content">
+        <h1>Live Sound Engineering & Professional Audio Services</h1>
+        <p class="services-intro">From intimate venues to large-scale productions, I provide comprehensive audio solutions tailored to your specific needs.</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>Live Event Sound Engineering</h3>
+                <p>Professional sound reinforcement for concerts, festivals, corporate events, and private parties. From intimate venues to large-scale productions, I ensure crystal-clear audio that brings your event to life.</p>
+            </div>
+            <div class="feature">
+                <h3>Technical Production Management</h3>
+                <p>Complete audio setup and management including PA systems, monitoring, mixing, and technical troubleshooting. I handle all technical aspects so you can focus on your event.</p>
+            </div>
+            <div class="feature">
+                <h3>Recording & Live Streaming</h3>
+                <p>High-quality audio recording and mixing for live performances, podcasts, conferences, and streaming events. Capture every moment with professional sound quality.</p>
+            </div>
+            <div class="feature">
+                <h3>Equipment Rental with Operator</h3>
+                <p>Full sound system packages with experienced operation. Available for tours, festivals, theater productions, and special events throughout the Netherlands and beyond.</p>
+            </div>
+            <div class="feature">
+                <h3>Sound System Design & Consultation</h3>
+                <p>Tailored audio solutions for your specific venue or event needs. Technical planning, equipment selection, and on-site optimization to achieve the best possible sound.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="contact.html" class="btn-catalog">Get in Touch</a>
+        </div>
+    </div>
+
+    <footer class="landing-footer">
+        <p>© 2026 nervousmusictastemaker • Den Haag, Netherlands</p>
+        <p>Live sound engineering and professional equipment rental for events, studios, and productions</p>
+    </footer>
+</body>
+</html>
