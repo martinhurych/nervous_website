@@ -110,11 +110,12 @@ function renderEquipment() {
                 <span>Description</span>
                 <span>Qty</span>
                 <span>€/Day</span>
+                <span>Add</span>
             </div>
             ${filteredData.map(item => {
                 const displayQty = item.variants ? `${item.variants.map(v => v.length).join(', ')}` : `×${item.amount}`;
                 const displayPrice = item.variants ? `from €${Math.min(...item.variants.map(v => v.price)).toFixed(2)}` : `€${item.price.toFixed(2)}`;
-                
+                const qtyInputId = `qty-list-${item.id}`;
                 return `
                     <div class="list-row" onclick="openItemModal('${item.id}')">
                         <div class="list-image">
@@ -127,6 +128,10 @@ function renderEquipment() {
                         <span class="list-description">${item.description}</span>
                         <span class="list-qty">${displayQty}</span>
                         <span class="list-price">${displayPrice}</span>
+                        <span class="list-add" onclick="event.stopPropagation();">
+                            <input type="number" id="${qtyInputId}" value="1" min="1" max="${item.amount}" style="width:50px;">
+                            <button class="card-add-btn" onclick="event.stopPropagation(); addToCartFromList('${item.id}', '${qtyInputId}')">Add to Cart</button>
+                        </span>
                     </div>
                 `;
             }).join('')}
@@ -664,3 +669,25 @@ window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
 window.updateCartItem = updateCartItem;
 window.openItemModal = openItemModal;
+
+// Add to cart from list view with quantity
+function addToCartFromList(itemId, qtyInputId) {
+    const qty = Math.max(1, parseInt(document.getElementById(qtyInputId).value) || 1);
+    const item = EQUIPMENT_DATA.find(eq => eq.id === itemId);
+    if (!item) return;
+    let cartItem = cart.find(ci => ci.id === itemId);
+    if (cartItem) {
+        cartItem.quantity = Math.min(cartItem.quantity + qty, item.amount);
+    } else {
+        cart.push({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            amount: item.amount,
+            quantity: Math.min(qty, item.amount),
+            days: 1
+        });
+    }
+    updateCartCount();
+    renderCart();
+}
