@@ -77,7 +77,6 @@ To add or modify equipment:
 
 **Nervous Music Tastemaker**
 - Email: nervousmusictastemaker@gmail.com
-- Phone: +420 737 812 793
 - Instagram: [@nervousmusictastemaker](https://www.instagram.com/nervousmusictastemaker/)
 - Location: Den Haag, Netherlands
 
