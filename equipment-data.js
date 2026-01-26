@@ -113,10 +113,10 @@ const EQUIPMENT_DATA = [
     { id: 'CA-23', name: 'CAT6E - 75m', amount: 2, description: 'CAT6 Ethercon Cable on reel / 75m', price: 7.00, category: 'Cables' },
     
     // Power Distribution
-    { id: 'PD-01', name: 'Stairville Power Split 3-Way', amount: 10, description: 'Stairville Power Split 3-Way', price: 0.20, category: 'Power Distribution' },
-    { id: 'PD-02', name: 'Stairville 4-Way Power Strip', amount: 7, description: 'Stairville 4-Way Power Strip', price: 0.30, category: 'Power Distribution' },
-    { id: 'PD-03', name: 'Stairville 6-Way Power Split', amount: 8, description: 'Stairville 6-Way Power Split', price: 0.40, category: 'Power Distribution' },
-    { id: 'PD-04', name: 'Varytec Power Twist Power Cable 5m', amount: 10, description: 'Varytec Power Twist Power Cable 5m', price: 1.00, category: 'Power Distribution' },
+    { id: 'PD-01', name: '3-Way Power Split', amount: 10, description: '3-Outlet power strip', price: 0.20, category: 'Power Distribution' },
+    { id: 'PD-02', name: '4-Way Power Split', amount: 7, description: '4-Outlet power strip', price: 0.30, category: 'Power Distribution' },
+    { id: 'PD-03', name: '6-Way Power Split', amount: 8, description: '6-Outlet power strip', price: 0.40, category: 'Power Distribution' },
+    { id: 'PD-04', name: 'Varytec Power Twist Power Cable 5,0 m', amount: 10, description: 'Power Cable', price: 1.00, category: 'Power Distribution' },
     { 
         id: 'PD-05', 
         name: 'EU Power Cable', 
@@ -126,8 +126,8 @@ const EQUIPMENT_DATA = [
         category: 'Power Distribution',
         variants: [
             { length: '1.5m', amount: 14, price: 0.10 },
-            { length: '3m', amount: 10, price: 0.15 },
-            { length: '5m', amount: 8, price: 0.20 }
+            { length: '3m', amount: 4, price: 0.20 },
+            { length: '5m', amount: 5, price: 0.30 }
         ]
     },
     { 
@@ -135,15 +135,15 @@ const EQUIPMENT_DATA = [
         name: 'Extension Cable', 
         amount: 12,
         price: 0.30,
-        description: 'Extension cable', 
+        description: 'extension cable', 
         category: 'Power Distribution',
         variants: [
             { length: '5m', amount: 12, price: 0.30 },
-            { length: '10m', amount: 8, price: 0.50 },
-            { length: '20m', amount: 5, price: 0.80 }
+            { length: '10m', amount: 4, price: 0.50 },
+            { length: '20m', amount: 4, price: 0.70 }
         ]
     },
-    { id: 'PD-11', name: 'Millenium Cable Drum', amount: 1, description: 'Millenium Cable Drum IP44 25m', price: 3.00, category: 'Power Distribution' },
+    { id: 'PD-11', name: 'Varytec Cable Drum IP44 25m 3x 1,5 mm²', amount: 1, description: 'Cable Reel', price: 2.00, category: 'Power Distribution' },
     
     // Accessories - PA Section
     { id: 'AC-PA-01', name: 'Meyer Sound UPA Mounting Yoke', amount: 4, description: 'Adjustable Flying Frame for UPA', price: 4.00, category: 'Accessories' },
