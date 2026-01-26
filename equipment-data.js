@@ -159,7 +159,8 @@ const EQUIPMENT_DATA = [
     // Accessories - Studio/Speaker Section
     { id: 'AC-SP-01', name: 'Genelec GLM Set', amount: 1, description: 'Calibration System and DSP Control', price: 5.00, category: 'Accessories' },
     { id: 'AC-SP-02', name: 'Genelec Z8030-408', amount: 2, description: 'Tripod Adapter', price: 0.50, category: 'Accessories' },
-    { id: 'AC-SP-03', name: 'Fostex EB6301 Wall Mounting', amount: 10, description: 'Wall/Stand Mount for Fostex 6301B', price: 1.00, category: 'Accessories' },
+    { id: 'AC-SP-03', name: 'Genelec 8000-422W Wall Mount', amount: 2, description: 'Wall Mount for Genelec 8330A', price: 0.50, category: 'Accessories' },
+    { id: 'AC-SP-04', name: 'Fostex EB6301 Wall Mounting', amount: 10, description: 'Wall/Stand Mount for Fostex 6301B', price: 1.00, category: 'Accessories' },
     
     // Accessories - Mixer Section
     { id: 'AC-MX-01', name: 'Allen & Heath Carry Bag QU 16', amount: 1, description: 'Carry Bag for Allen & Heath QU 16', price: 5.00, category: 'Accessories' },
