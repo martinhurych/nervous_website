@@ -460,6 +460,29 @@ function handleReservationSubmit(e) {
     // Here you would typically send this to a server
     console.log('Reservation Data:', data);
     
+    // Send booking info to Formspree
+    const formDataToSend = new FormData();
+    formDataToSend.append('reservation_number', generateReservationNumber());
+    formDataToSend.append('name', data.customer.name);
+    formDataToSend.append('email', data.customer.email);
+    formDataToSend.append('phone', data.customer.phone);
+    formDataToSend.append('company', data.customer.company);
+    formDataToSend.append('message', data.customer.message);
+    formDataToSend.append('start_date', data.rental.startDate);
+    formDataToSend.append('end_date', data.rental.endDate);
+    formDataToSend.append('items', data.items.map(item => `${item.name} (x${item.quantity} for ${item.days} day${item.days > 1 ? 's' : ''})`).join(', '));
+    formDataToSend.append('total', data.total.toFixed(2));
+
+    fetch('https://formspree.io/f/xgokzwwj', {
+        method: 'POST',
+        body: formDataToSend,
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        // Optionally handle response
+    }).catch(error => {
+        // Optionally handle error
+    });
+    
     // Show success message
     const modalBody = document.querySelector('#booking-modal .modal-body');
     modalBody.innerHTML = `
