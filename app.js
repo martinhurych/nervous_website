@@ -329,14 +329,31 @@ function closeCartModal() {
 
 function openBookingModal() {
     closeCartModal();
+    // Set minimum date to today
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+    document.getElementById('rental-start').min = todayStr;
+    document.getElementById('rental-end').min = todayStr;
+
+    // If all items in cart have the same days, pre-fill the date range
+    if (cart.length > 0) {
+        const maxDays = Math.max(...cart.map(item => item.days));
+        const startDateInput = document.getElementById('rental-start');
+        const endDateInput = document.getElementById('rental-end');
+        // Only set if not already set
+        if (!startDateInput.value) {
+            startDateInput.value = todayStr;
+        }
+        if (!endDateInput.value || new Date(endDateInput.value) <= new Date(startDateInput.value)) {
+            const endDate = new Date(startDateInput.value);
+            endDate.setDate(endDate.getDate() + maxDays - 1);
+            endDateInput.value = endDate.toISOString().split('T')[0];
+        }
+    }
+
     renderBookingSummary();
     document.getElementById('booking-modal').classList.add('active');
-    
-    // Set minimum date to today
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('rental-start').min = today;
-    document.getElementById('rental-end').min = today;
-    
+
     // Add event listeners to update summary when dates change
     document.getElementById('rental-start').addEventListener('change', renderBookingSummary);
     document.getElementById('rental-end').addEventListener('change', renderBookingSummary);
