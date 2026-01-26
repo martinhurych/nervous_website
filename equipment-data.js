@@ -103,6 +103,10 @@ const EQUIPMENT_DATA = [
     { id: 'CA-12', name: 'Cordial EY 0.3 MFF', amount: 6, description: 'XLR male to 2x XLR female / Y-splitter', price: 0.40, category: 'Cables' },
     { id: 'CA-13', name: 'pro snake BXJ 102-1', amount: 4, description: 'Balanced jack to XLR adapter', price: 0.20, category: 'Cables' },
     { id: 'CA-14', name: 'CAT6E Cable 70m', amount: 1, description: 'Network cable on reel / 70m', price: 5.00, category: 'Cables' },
+    { id: 'CA-15', name: 'pro snake TPA 1003 FF', amount: 6, description: 'XLR patch cable / Female to Female / 0.3m', price: 0.20, category: 'Cables' },
+    { id: 'CA-16', name: 'pro snake TPA 1003 MM', amount: 6, description: 'XLR patch cable / Male to Male / 0.3m', price: 0.20, category: 'Cables' },
+    { id: 'CA-17', name: 'pro snake TPM 20', amount: 4, description: 'Microphone cable / XLR / 20m', price: 1.00, category: 'Cables' },
+    { id: 'CA-18', name: 'pro snake TPY 2030 KMM', amount: 3, description: 'Y-cable / XLR male to 2x XLR male / 0.3m', price: 0.50, category: 'Cables' },
     
     // Power Distribution
     { id: 'PD-01', name: '3-Way Power Split', amount: 10, description: '3-Outlet power strip', price: 0.20, category: 'Power Distribution' },
