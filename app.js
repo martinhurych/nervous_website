@@ -533,13 +533,6 @@ function updateModalVariant(itemId) {
 function closeItemModal() {
     document.getElementById('item-modal').classList.remove('active');
 }
-    
-    document.getElementById('item-modal').classList.add('active');
-}
-
-function closeItemModal() {
-    document.getElementById('item-modal').classList.remove('active');
-}
 
 // Start the app when DOM is loaded
 if (document.readyState === 'loading') {
