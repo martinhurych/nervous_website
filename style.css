@@ -100,7 +100,7 @@ body {
 }
 
 .cart-icon {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .cart-count {
@@ -199,8 +199,9 @@ body {
 
 .pricing-info {
     font-size: 13px;
-    margin-bottom: 20px;
     color: #666;
+    display: flex;
+    align-items: center;
 }
 
 .grid-view {
