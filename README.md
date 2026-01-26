@@ -82,4 +82,4 @@ To add or modify equipment:
 
 ## License
 
-© 2025 Nervous Music Tastemaker. All rights reserved.
+© 2025 nervousmusictastemaker. All rights reserved.
