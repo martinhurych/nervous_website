@@ -483,10 +483,12 @@ function openItemModal(itemId) {
     document.getElementById('item-modal-name').textContent = item.name;
     
     // Show both short and detailed description if available
-    const descriptionText = item.detailedDescription 
-        ? item.description + '\n\n' + item.detailedDescription 
-        : item.description;
-    document.getElementById('item-modal-description').textContent = descriptionText;
+    const descriptionEl = document.getElementById('item-modal-description');
+    if (item.detailedDescription) {
+        descriptionEl.innerHTML = `<strong>${item.description}</strong><br><br>${item.detailedDescription}`;
+    } else {
+        descriptionEl.textContent = item.description;
+    }
     
     const image = document.getElementById('item-modal-image');
     image.src = `images/${item.id}.jpg`;
