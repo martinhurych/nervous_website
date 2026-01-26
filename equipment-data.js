@@ -159,7 +159,6 @@ const EQUIPMENT_DATA = [
     // Accessories - Studio/Speaker Section
     { id: 'AC-SP-01', name: 'Genelec GLM Set', amount: 1, description: 'Calibration System and DSP Control', price: 5.00, category: 'Accessories' },
     { id: 'AC-SP-02', name: 'Genelec Z8030-408', amount: 2, description: 'Tripod Adapter', price: 0.50, category: 'Accessories' },
-    { id: 'AC-SP-03', name: 'Genelec 8000-422W Wall Mount', amount: 2, description: 'Wall Mount for Genelec 8330A', price: 0.50, category: 'Accessories' },
     { id: 'AC-SP-04', name: 'Fostex EB6301 Wall Mounting', amount: 10, description: 'Wall/Stand Mount for Fostex 6301B', price: 1.00, category: 'Accessories' },
     
     // Accessories - Mixer Section
@@ -169,7 +168,6 @@ const EQUIPMENT_DATA = [
     { id: 'AC-MX-04', name: 'Decksaver Allen & Heath QU16', amount: 1, description: 'Dust cover for Allen & Heath QU16', price: 3.00, category: 'Accessories' },
     { id: 'AC-MX-05', name: 'Allen & Heath LEDLamp X', amount: 1, description: 'Gooseneck Lamp', price: 2.00, category: 'Accessories' },
     { id: 'AC-MX-06', name: 'Thon Rack 3U Eco II Compact 23', amount: 1, description: '19" Economy Case', price: 3.00, category: 'Accessories' },
-    { id: 'AC-MX-07', name: 'Allen & Heath Rackmount for QU 16', amount: 1, description: 'Rackmount for QU 16', price: 1.00, category: 'Accessories' },
     
     // Accessories - Microphone Section
     { id: 'AC-MI-01', name: 'DAP ACA-MIC5 Pro', amount: 1, description: 'microphone flight case with space for 12 microphones and accessories', price: 1.00, category: 'Accessories' },
