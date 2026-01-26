@@ -276,31 +276,42 @@ function renderCart() {
         return;
     }
     
-    cartItems.innerHTML = cart.map(item => `
-        <div class="cart-item">
-            <div class="cart-item-image">
-                <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
-            </div>
-            <div class="cart-item-details">
-                <div class="cart-item-name">${item.name}</div>
-                <div class="cart-item-id">${item.id}</div>
-                <div class="cart-item-controls">
-                    <div class="quantity-control">
-                        <label>Qty:</label>
-                        <input type="number" value="${item.quantity}" min="1" max="${item.amount}" 
-                               onchange="updateCartItem('${item.id}', 'quantity', this.value)">
-                    </div>
-                    <div class="days-control">
-                        <label>Days:</label>
-                        <input type="number" value="${item.days}" min="1" 
-                               onchange="updateCartItem('${item.id}', 'days', this.value)">
-                    </div>
-                    <div class="cart-item-price">€${(item.price * item.quantity * item.days).toFixed(2)}</div>
+    cartItems.innerHTML = cart.map(item => {
+        let itemPrice;
+        if (item.days === 1) {
+            itemPrice = item.price * item.quantity;
+        } else {
+            const firstDay = item.price * item.quantity;
+            const additionalDays = (item.days - 1) * item.price * item.quantity * 0.5;
+            itemPrice = firstDay + additionalDays;
+        }
+        return `
+            <div class="cart-item">
+                <div class="cart-item-image">
+                    <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                 </div>
+                <div class="cart-item-details">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-id">${item.id}</div>
+                    <div class="cart-item-controls">
+                        <div class="quantity-control">
+                            <label>Qty:</label>
+                            <input type="number" value="${item.quantity}" min="1" max="${item.amount}" 
+                                   onchange="updateCartItem('${item.id}', 'quantity', this.value)">
+                        </div>
+                        <div class="days-control">
+                            <label>Days:</label>
+                            <input type="number" value="${item.days}" min="1" 
+                                   onchange="updateCartItem('${item.id}', 'days', this.value)">
+                        </div>
+                        <div class="cart-item-price">€${itemPrice.toFixed(2)}</div>
+                    </div>
+                    ${item.days > 1 ? '<div style="font-size:12px;color:#666;margin-top:4px;">Multi-day discount: 50% off from 2nd day is automatically applied.</div>' : ''}
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">&times;</button>
             </div>
-            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">&times;</button>
-        </div>
-    `).join('');
+        `;
+    }).join('');
     
     const total = calculateTotal();
     cartSubtotal.textContent = `€${total.toFixed(2)}`;
@@ -357,14 +368,13 @@ function renderBookingSummary() {
     
     const itemsHTML = cart.map(item => {
         let itemPrice;
-        if (rentalDays === 1) {
+        if (item.days === 1) {
             itemPrice = item.price * item.quantity;
         } else {
             const firstDay = item.price * item.quantity;
-            const additionalDays = (rentalDays - 1) * item.price * item.quantity * 0.5;
+            const additionalDays = (item.days - 1) * item.price * item.quantity * 0.5;
             itemPrice = firstDay + additionalDays;
         }
-        
         return `
             <div class="booking-item">
                 <span>${item.name} (×${item.quantity} for ${rentalDays} day${rentalDays > 1 ? 's' : ''})</span>
