@@ -98,15 +98,19 @@ const EQUIPMENT_DATA = [
             { length: '6m', amount: 5, price: 0.30 }
         ]
     },
-    { id: 'CA-10', name: '3.5mm Stereo jack + 2x RCA (male)', amount: 2, description: '3.5mm stereo to 2x RCA male / 3m', price: 0.30, category: 'Cables' },
-    { id: 'CA-11', name: 'Cordial EY 0.3 FMM', amount: 8, description: 'XLR female to 2x XLR male / Y-splitter', price: 0.40, category: 'Cables' },
-    { id: 'CA-12', name: 'Cordial EY 0.3 MFF', amount: 6, description: 'XLR male to 2x XLR female / Y-splitter', price: 0.40, category: 'Cables' },
-    { id: 'CA-13', name: 'pro snake BXJ 102-1', amount: 4, description: 'Balanced jack to XLR adapter', price: 0.20, category: 'Cables' },
-    { id: 'CA-14', name: 'CAT6E Cable 70m', amount: 1, description: 'Network cable on reel / 70m', price: 5.00, category: 'Cables' },
-    { id: 'CA-15', name: 'pro snake TPA 1003 FF', amount: 6, description: 'XLR patch cable / Female to Female / 0.3m', price: 0.20, category: 'Cables' },
-    { id: 'CA-16', name: 'pro snake TPA 1003 MM', amount: 6, description: 'XLR patch cable / Male to Male / 0.3m', price: 0.20, category: 'Cables' },
-    { id: 'CA-17', name: 'pro snake TPM 20', amount: 4, description: 'Microphone cable / XLR / 20m', price: 1.00, category: 'Cables' },
-    { id: 'CA-18', name: 'pro snake TPY 2030 KMM', amount: 3, description: 'Y-cable / XLR male to 2x XLR male / 0.3m', price: 0.50, category: 'Cables' },
+    { id: 'CA-11', name: 'Stereo jack 6.3 mm + Stereo jack socket 6.3 mm', amount: 2, description: 'Extension cable for headphones', price: 0.30, category: 'Cables' },
+    { id: 'CA-12', name: '3.5 mm Stereo jack + 2x 6.3 mm mono jacks', amount: 2, description: '3.5mm stereo to dual 6.3mm mono', price: 0.30, category: 'Cables' },
+    { id: 'CA-13', name: '3.5 mm Stereo jack + 2x XLR (male)', amount: 2, description: '3.5mm stereo to 2x XLR male', price: 0.50, category: 'Cables' },
+    { id: 'CA-14', name: '8 x XLR (male) + Stereo Jack Multicore', amount: 1, description: 'Multicore snake cable', price: 3.00, category: 'Cables' },
+    { id: 'CA-15', name: '3.5 mm Stereo jack + 2x RCA (male)', amount: 2, description: '3.5mm stereo to 2x RCA male / 3m', price: 0.30, category: 'Cables' },
+    { id: 'CA-16', name: '3.5 mm Stereo jack + 2x XLR', amount: 2, description: '3.5mm stereo to 2x XLR', price: 0.50, category: 'Cables' },
+    { id: 'CA-17', name: 'XLR F + XLR F - 0.3m', amount: 6, description: 'XLR Female to Female patch cable / 0.3m', price: 0.20, category: 'Cables' },
+    { id: 'CA-18', name: 'XLR M + XLR M - 0.3m', amount: 6, description: 'XLR Male to Male patch cable / 0.3m', price: 0.20, category: 'Cables' },
+    { id: 'CA-19', name: 'Y adapter MFF - 0.3m', amount: 6, description: 'XLR male to 2x XLR female / Y-splitter / 0.3m', price: 0.40, category: 'Cables' },
+    { id: 'CA-20', name: 'Y adapter FMM - 0.3m', amount: 8, description: 'XLR female to 2x XLR male / Y-splitter / 0.3m', price: 0.40, category: 'Cables' },
+    { id: 'CA-21', name: 'XLR Patch - 0.5m', amount: 4, description: 'XLR patch cable / 0.5m', price: 0.20, category: 'Cables' },
+    { id: 'CA-22', name: 'Multicore Cable - 15m', amount: 1, description: 'Stage box multicore / 15m', price: 3.00, category: 'Cables' },
+    { id: 'CA-23', name: 'CAT6E - 75m', amount: 1, description: 'Network cable on reel / 75m', price: 5.00, category: 'Cables' },
     
     // Power Distribution
     { id: 'PD-01', name: '3-Way Power Split', amount: 10, description: '3-Outlet power strip', price: 0.20, category: 'Power Distribution' },
