@@ -245,6 +245,34 @@ body {
     margin-bottom: 15px;
 }
 
+.variant-selector {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.variant-selector label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 8px;
+    color: #333;
+}
+
+.variant-selector select {
+    padding: 6px 10px;
+    border: 1px solid #000;
+    background: #fff;
+    font-size: 13px;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    min-width: 80px;
+}
+
+.variant-selector select:hover {
+    background: #f9f9f9;
+}
+
 .card-footer {
     display: flex;
     justify-content: space-between;
@@ -763,6 +791,35 @@ body {
     padding: 20px;
     margin-bottom: 30px;
     border: 1px solid #e0e0e0;
+}
+
+.variant-selector-modal {
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.variant-selector-modal label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-right: 10px;
+    color: #333;
+}
+
+.variant-selector-modal select {
+    padding: 8px 12px;
+    border: 1px solid #000;
+    background: #fff;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+.variant-selector-modal select:hover {
+    background: #f9f9f9;
 }
 
 .spec-row {

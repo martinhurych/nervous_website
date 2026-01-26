@@ -68,20 +68,60 @@ const EQUIPMENT_DATA = [
     { id: 'DI-04', name: 'Radial Engineering Pro 48', amount: 1, description: 'Active DI Box', price: 5, category: 'DI Boxes' },
     
     // Cables (showing a subset)
-    { id: 'CA-01', name: 'XLR + XLR / 3m', amount: 15, description: 'Microphone Cable / 3-pin / 3m', price: 0.30, category: 'Cables' },
+    { 
+        id: 'CA-01', 
+        name: 'XLR + XLR', 
+        description: 'Microphone Cable / 3-pin', 
+        category: 'Cables',
+        variants: [
+            { length: '3m', amount: 15, price: 0.30 },
+            { length: '6m', amount: 10, price: 0.40 },
+            { length: '10m', amount: 8, price: 0.50 },
+            { length: '20m', amount: 5, price: 0.80 }
+        ]
+    },
     { id: 'CA-05', name: 'XLR (male) + 6.3mm stereo jack', amount: 13, description: 'Balanced male jack to male XLR / 6m', price: 0.50, category: 'Cables' },
     { id: 'CA-06', name: 'XLR (female) + 6.3mm stereo jack', amount: 16, description: 'Balanced male jack to female XLR / 3m', price: 0.40, category: 'Cables' },
     { id: 'CA-07', name: 'XLR (male) + 6.3mm stereo jack / 0.9m', amount: 11, description: 'XLR male to 6.3mm stereo jack / 0.9m', price: 0.20, category: 'Cables' },
     { id: 'CA-08', name: 'XLR (female) + 6.3mm stereo jack / 0.9m', amount: 9, description: 'XLR female to 6.3mm stereo jack / 0.9m', price: 0.20, category: 'Cables' },
-    { id: 'CA-09', name: '6.3 mm jack + 6.3 mm jack / 3m', amount: 3, description: 'Both sides: 6.3 mm mono jack / 3m', price: 0.20, category: 'Cables' },
+    { 
+        id: 'CA-09', 
+        name: '6.3 mm jack + 6.3 mm jack', 
+        description: 'Both sides: 6.3 mm mono jack', 
+        category: 'Cables',
+        variants: [
+            { length: '3m', amount: 3, price: 0.20 },
+            { length: '6m', amount: 5, price: 0.30 }
+        ]
+    },
     
     // Power Distribution
     { id: 'PD-01', name: '3-Way Power Split', amount: 10, description: '3-Outlet power strip', price: 0.20, category: 'Power Distribution' },
     { id: 'PD-02', name: '4-Way Power Split', amount: 7, description: '4-Outlet power strip', price: 0.30, category: 'Power Distribution' },
     { id: 'PD-03', name: '6-Way Power Split', amount: 8, description: '6-Outlet power strip', price: 0.40, category: 'Power Distribution' },
     { id: 'PD-04', name: 'Varytec Power Twist Power Cable 5m', amount: 10, description: 'Power Cable', price: 1.00, category: 'Power Distribution' },
-    { id: 'PD-05', name: 'EU Power Cable / 1.5m', amount: 14, description: 'EU Power cable', price: 0.10, category: 'Power Distribution' },
-    { id: 'PD-08', name: 'Extension cable / 5m', amount: 12, description: 'Extension cable / 5m', price: 0.30, category: 'Power Distribution' },
+    { 
+        id: 'PD-05', 
+        name: 'EU Power Cable', 
+        description: 'EU Power cable', 
+        category: 'Power Distribution',
+        variants: [
+            { length: '1.5m', amount: 14, price: 0.10 },
+            { length: '3m', amount: 10, price: 0.15 },
+            { length: '5m', amount: 8, price: 0.20 }
+        ]
+    },
+    { 
+        id: 'PD-08', 
+        name: 'Extension Cable', 
+        description: 'Extension cable', 
+        category: 'Power Distribution',
+        variants: [
+            { length: '5m', amount: 12, price: 0.30 },
+            { length: '10m', amount: 8, price: 0.50 },
+            { length: '20m', amount: 5, price: 0.80 }
+        ]
+    },
     
     // Accessories (showing a subset)
     { id: 'AC-PA-01', name: 'Meyer Sound UPA Mounting Yoke', amount: 4, description: 'Adjustable Flying Frame for UPA', price: 4, category: 'Accessories' },

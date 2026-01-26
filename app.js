@@ -52,23 +52,53 @@ function renderEquipment() {
     
     if (currentView === 'grid') {
         container.className = 'grid-view';
-        container.innerHTML = filteredData.map(item => `
-            <div class="grid-card" onclick="openItemModal('${item.id}')">
-                <div class="card-image">
-                    <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
-                </div>
-                <div class="card-content">
-                    <div class="card-id">${item.id}</div>
-                    <div class="card-name">${item.name}</div>
-                    <div class="card-description">${item.description}</div>
-                    <div class="card-footer">
-                        <div class="card-qty">×${item.amount} available</div>
-                        <div class="card-price">€${item.price.toFixed(2)}/day</div>
+        container.innerHTML = filteredData.map(item => {
+            // Check if item has variants
+            if (item.variants && item.variants.length > 0) {
+                const defaultVariant = item.variants[0];
+                return `
+                    <div class="grid-card" onclick="openItemModal('${item.id}')">
+                        <div class="card-image">
+                            <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-id">${item.id}</div>
+                            <div class="card-name">${item.name}</div>
+                            <div class="card-description">${item.description}</div>
+                            <div class="variant-selector" onclick="event.stopPropagation()">
+                                <label>Length:</label>
+                                <select id="variant-${item.id}" onchange="updateVariantInfo('${item.id}')">
+                                    ${item.variants.map(v => `<option value="${v.length}">${v.length}</option>`).join('')}
+                                </select>
+                            </div>
+                            <div class="card-footer" id="footer-${item.id}">
+                                <div class="card-qty">×${defaultVariant.amount} available</div>
+                                <div class="card-price">€${defaultVariant.price.toFixed(2)}/day</div>
+                            </div>
+                            <button class="card-add-btn" onclick="event.stopPropagation(); addToCartWithVariant('${item.id}')">Add to Cart</button>
+                        </div>
                     </div>
-                    <button class="card-add-btn" onclick="event.stopPropagation(); addToCart('${item.id}')">Add to Cart</button>
-                </div>
-            </div>
-        `).join('');
+                `;
+            } else {
+                return `
+                    <div class="grid-card" onclick="openItemModal('${item.id}')">
+                        <div class="card-image">
+                            <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-id">${item.id}</div>
+                            <div class="card-name">${item.name}</div>
+                            <div class="card-description">${item.description}</div>
+                            <div class="card-footer">
+                                <div class="card-qty">×${item.amount} available</div>
+                                <div class="card-price">€${item.price.toFixed(2)}/day</div>
+                            </div>
+                            <button class="card-add-btn" onclick="event.stopPropagation(); addToCart('${item.id}')">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }).join('');
     } else {
         container.className = 'list-view';
         container.innerHTML = `
@@ -80,22 +110,87 @@ function renderEquipment() {
                 <span>Qty</span>
                 <span>€/Day</span>
             </div>
-            ${filteredData.map(item => `
-                <div class="list-row" onclick="openItemModal('${item.id}')">
-                    <div class="list-image">
-                        <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+            ${filteredData.map(item => {
+                const displayQty = item.variants ? `${item.variants.map(v => v.length).join(', ')}` : `×${item.amount}`;
+                const displayPrice = item.variants ? `from €${Math.min(...item.variants.map(v => v.price)).toFixed(2)}` : `€${item.price.toFixed(2)}`;
+                
+                return `
+                    <div class="list-row" onclick="openItemModal('${item.id}')">
+                        <div class="list-image">
+                            <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                        </div>
+                        <span class="list-id">${item.id}</span>
+                        <div class="list-info">
+                            <span class="list-name">${item.name}</span>
+                        </div>
+                        <span class="list-description">${item.description}</span>
+                        <span class="list-qty">${displayQty}</span>
+                        <span class="list-price">${displayPrice}</span>
                     </div>
-                    <span class="list-id">${item.id}</span>
-                    <div class="list-info">
-                        <span class="list-name">${item.name}</span>
-                    </div>
-                    <span class="list-description">${item.description}</span>
-                    <span class="list-qty">×${item.amount}</span>
-                    <span class="list-price">€${item.price.toFixed(2)}</span>
-                </div>
-            `).join('')}
+                `;
+            }).join('')}
         `;
     }
+}
+
+// Update variant info when selection changes
+function updateVariantInfo(itemId) {
+    const select = document.getElementById(`variant-${itemId}`);
+    const selectedLength = select.value;
+    const item = EQUIPMENT_DATA.find(eq => eq.id === itemId);
+    const variant = item.variants.find(v => v.length === selectedLength);
+    
+    const footer = document.getElementById(`footer-${itemId}`);
+    footer.innerHTML = `
+        <div class="card-qty">×${variant.amount} available</div>
+        <div class="card-price">€${variant.price.toFixed(2)}/day</div>
+    `;
+}
+
+// Add to cart with variant
+function addToCartWithVariant(itemId) {
+    // Try to get variant from grid view first, then from modal
+    let select = document.getElementById(`variant-${itemId}`);
+    if (!select) {
+        select = document.getElementById(`modal-variant-${itemId}`);
+    }
+    
+    if (!select) {
+        console.error('No variant selector found for item:', itemId);
+        return;
+    }
+    
+    const selectedLength = select.value;
+    const item = EQUIPMENT_DATA.find(eq => eq.id === itemId);
+    const variant = item.variants.find(v => v.length === selectedLength);
+    
+    const cartKey = `${itemId}-${selectedLength}`;
+    const existingItem = cart.find(cartItem => cartItem.cartKey === cartKey);
+    
+    if (existingItem) {
+        if (existingItem.quantity < variant.amount) {
+            existingItem.quantity++;
+        } else {
+            alert(`Maximum available quantity for ${item.name} (${selectedLength}) is ${variant.amount}`);
+            return;
+        }
+    } else {
+        cart.push({
+            id: item.id,
+            cartKey: cartKey,
+            name: `${item.name} / ${selectedLength}`,
+            description: item.description,
+            category: item.category,
+            amount: variant.amount,
+            price: variant.price,
+            quantity: 1,
+            days: 1,
+            variant: selectedLength
+        });
+    }
+    
+    updateCartCount();
+    renderCart();
 }
 
 // Cart Management
@@ -382,19 +477,62 @@ function openItemModal(itemId) {
     document.getElementById('item-modal-title').textContent = item.name;
     document.getElementById('item-modal-name').textContent = item.name;
     document.getElementById('item-modal-description').textContent = item.description;
-    document.getElementById('item-modal-qty').textContent = `×${item.amount} available`;
-    document.getElementById('item-modal-price').textContent = `€${item.price.toFixed(2)}/day`;
     
     const image = document.getElementById('item-modal-image');
     image.src = `images/${item.id}.jpg`;
     image.alt = item.name;
     image.onerror = function() { this.style.display = 'none'; };
     
-    const addBtn = document.getElementById('item-modal-add-btn');
-    addBtn.onclick = function() {
-        addToCart(itemId);
-        closeItemModal();
-    };
+    // Handle variants or regular items
+    if (item.variants && item.variants.length > 0) {
+        const defaultVariant = item.variants[0];
+        const specsDiv = document.querySelector('.item-modal-specs');
+        specsDiv.innerHTML = `
+            <div class="variant-selector-modal">
+                <label>Select Length:</label>
+                <select id="modal-variant-${item.id}" onchange="updateModalVariant('${item.id}')">
+                    ${item.variants.map(v => `<option value="${v.length}">${v.length}</option>`).join('')}
+                </select>
+            </div>
+            <div class="item-modal-qty" id="modal-qty-${item.id}">×${defaultVariant.amount} available</div>
+            <div class="item-modal-price" id="modal-price-${item.id}">€${defaultVariant.price.toFixed(2)}/day</div>
+        `;
+        
+        const addBtn = document.getElementById('item-modal-add-btn');
+        addBtn.onclick = function() {
+            addToCartWithVariant(itemId);
+            closeItemModal();
+        };
+    } else {
+        const specsDiv = document.querySelector('.item-modal-specs');
+        specsDiv.innerHTML = `
+            <div class="item-modal-qty">×${item.amount} available</div>
+            <div class="item-modal-price">€${item.price.toFixed(2)}/day</div>
+        `;
+        
+        const addBtn = document.getElementById('item-modal-add-btn');
+        addBtn.onclick = function() {
+            addToCart(itemId);
+            closeItemModal();
+        };
+    }
+    
+    document.getElementById('item-modal').classList.add('active');
+}
+
+function updateModalVariant(itemId) {
+    const select = document.getElementById(`modal-variant-${itemId}`);
+    const selectedLength = select.value;
+    const item = EQUIPMENT_DATA.find(eq => eq.id === itemId);
+    const variant = item.variants.find(v => v.length === selectedLength);
+    
+    document.getElementById(`modal-qty-${itemId}`).textContent = `×${variant.amount} available`;
+    document.getElementById(`modal-price-${itemId}`).textContent = `€${variant.price.toFixed(2)}/day`;
+}
+
+function closeItemModal() {
+    document.getElementById('item-modal').classList.remove('active');
+}
     
     document.getElementById('item-modal').classList.add('active');
 }
