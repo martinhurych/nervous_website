@@ -4,69 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - nervousmusictastemaker</title>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="landing-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        .contact-page {
-            min-height: 100vh;
-            background: #0a0a0a;
-            padding-top: 80px;
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 30px;
         }
         
-        .page-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid #222;
-        }
-        
-        .page-header .logo {
-            font-size: 24px;
+        .contact-content h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
             font-weight: 600;
-            color: #fff;
-            text-decoration: none;
         }
         
-        .page-nav {
-            display: flex;
+        .contact-intro {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
-            align-items: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
         }
         
-        .page-nav a {
-            color: #999;
-            text-decoration: none;
-            font-size: 14px;
+        .contact-item h3 {
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: color 0.3s;
+            color: #666;
+            margin-bottom: 10px;
         }
         
-        .page-nav a:hover,
-        .page-nav a.active {
+        .contact-item a,
+        .contact-item p {
+            font-size: 15px;
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-form {
+            background: #fff;
+            padding: 40px;
+            border: 1px solid #000;
+        }
+        
+        .contact-form h3 {
+            font-size: 20px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #000;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: #000;
             color: #fff;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        
+        .btn-submit:hover {
+            background: #333;
         }
     </style>
 </head>
-<body class="contact-page">
-    <header class="page-header">
+<body>
+    <header class="header">
         <a href="index.html" class="logo">nervousmusictastemaker</a>
-        <nav class="page-nav">
-            <a href="catalog.html">Equipment</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html" class="active">Contact</a>
+        <nav class="nav">
+            <a href="catalog.html" class="nav-link">Equipment</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
         </nav>
     </header>
 
-    <div class="contact-section">
-        <div class="contact-content">
+    <div class="contact-content">
             <h2>Contact</h2>
             <p class="contact-intro">Whether you need sound engineering for your next event or want to rent equipment, I'm here to help.</p>
             
@@ -122,12 +182,11 @@
                     <button type="submit" class="btn-submit">Send Message</button>
                 </form>
             </div>
-        </div>
     </div>
 
-    <footer class="landing-footer">
-        <p>© 2026 nervousmusictastemaker • Den Haag, Netherlands</p>
-        <p>Live sound engineering and professional equipment rental for events, studios, and productions</p>
+    <footer class="footer" style="text-align: center; padding: 40px 20px; border-top: 1px solid #e0e0e0; margin-top: 60px;">
+        <span>© 2026 nervousmusictastemaker</span>
+        <span> • Den Haag, Netherlands</span>
     </footer>
 </body>
 </html>
