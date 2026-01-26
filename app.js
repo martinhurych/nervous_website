@@ -117,7 +117,7 @@ function renderEquipment() {
                 const displayPrice = item.variants ? `from €${Math.min(...item.variants.map(v => v.price)).toFixed(2)}` : `€${item.price.toFixed(2)}`;
                 const qtyInputId = `qty-list-${item.id}`;
                 return `
-                    <div class="list-row" onclick="openItemModal('${item.id}')">
+                    <div class="list-row">
                         <div class="list-image">
                             <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                         </div>
@@ -128,9 +128,9 @@ function renderEquipment() {
                         <span class="list-description">${item.description}</span>
                         <span class="list-qty">${displayQty}</span>
                         <span class="list-price">${displayPrice}</span>
-                        <div class="list-add" onclick="event.stopPropagation();">
+                        <div class="list-add">
                             <input type="number" id="${qtyInputId}" value="1" min="1" max="${item.amount}" style="width:50px;">
-                            <button class="card-add-btn" onclick="event.stopPropagation(); addToCartFromList('${item.id}', '${qtyInputId}')">Add to Cart</button>
+                            <button class="card-add-btn" onclick="addToCartFromList('${item.id}', '${qtyInputId}')">Add to Cart</button>
                         </div>
                     </div>
                 `;

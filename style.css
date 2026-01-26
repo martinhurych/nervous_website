@@ -793,9 +793,13 @@ body {
 }
 
 .cart-item-image img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 60px !important;
+    height: 60px !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
 
 .cart-item-details {
