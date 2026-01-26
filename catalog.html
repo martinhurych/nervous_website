@@ -16,17 +16,6 @@
             <a href="contact.html" class="nav-link">Contact</a>
         </nav>
     </header>
-    
-    <div class="toolbar">
-        <button class="cart-btn" id="cart-btn">
-            <span class="cart-icon">🛒</span>
-            <span class="cart-count" id="cart-count">0</span>
-        </button>
-        <div class="view-toggle">
-            <button class="view-btn active" id="grid-btn">Grid</button>
-            <button class="view-btn" id="list-btn">List</button>
-        </div>
-    </div>
 
     <div class="container">
         <aside class="sidebar">
@@ -36,7 +25,19 @@
         </aside>
 
         <main class="main-content">
-            <div class="results-count">Prices excl. VAT • Multi-day rentals: 50% off from 2nd day</div>
+            <div class="results-count">
+                <div class="view-controls">
+                    <button class="cart-btn" id="cart-btn">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="grid-btn">Grid</button>
+                        <button class="view-btn" id="list-btn">List</button>
+                    </div>
+                </div>
+                <div class="pricing-info">Prices excl. VAT • Multi-day rentals: 50% off from 2nd day</div>
+            </div>
             <div class="equipment-container" id="equipment-container"></div>
             <footer class="footer">
                 <span>© 2025 nervousmusictastemaker</span>
