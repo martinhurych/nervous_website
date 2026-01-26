@@ -45,10 +45,6 @@ function filterEquipment() {
 // Render equipment in current view
 function renderEquipment() {
     const container = document.getElementById('equipment-container');
-    const resultsCount = document.getElementById('results-count');
-    
-    // Update results count
-    resultsCount.textContent = `${filteredData.length} items ${currentCategory !== 'All' ? 'in ' + currentCategory : ''}`;
     
     if (currentView === 'grid') {
         container.className = 'grid-view';
