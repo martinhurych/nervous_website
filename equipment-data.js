@@ -71,6 +71,8 @@ const EQUIPMENT_DATA = [
     { 
         id: 'CA-01', 
         name: 'XLR + XLR', 
+        amount: 15,
+        price: 0.30,
         description: 'Microphone Cable / 3-pin', 
         category: 'Cables',
         variants: [
@@ -87,6 +89,8 @@ const EQUIPMENT_DATA = [
     { 
         id: 'CA-09', 
         name: '6.3 mm jack + 6.3 mm jack', 
+        amount: 3,
+        price: 0.20,
         description: 'Both sides: 6.3 mm mono jack', 
         category: 'Cables',
         variants: [
@@ -103,6 +107,8 @@ const EQUIPMENT_DATA = [
     { 
         id: 'PD-05', 
         name: 'EU Power Cable', 
+        amount: 14,
+        price: 0.10,
         description: 'EU Power cable', 
         category: 'Power Distribution',
         variants: [
@@ -114,6 +120,8 @@ const EQUIPMENT_DATA = [
     { 
         id: 'PD-08', 
         name: 'Extension Cable', 
+        amount: 12,
+        price: 0.30,
         description: 'Extension cable', 
         category: 'Power Distribution',
         variants: [
