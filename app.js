@@ -450,6 +450,13 @@ function handleReservationSubmit(e) {
         total: calculateTotal()
     };
     
+    // Generate reservation number based on date and time: YYYYMMDD-HHMMSS
+    function generateReservationNumber() {
+        const now = new Date();
+        const pad = n => n.toString().padStart(2, '0');
+        return `${now.getFullYear()}${pad(now.getMonth()+1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+    }
+    
     // Here you would typically send this to a server
     console.log('Reservation Data:', data);
     
@@ -459,7 +466,7 @@ function handleReservationSubmit(e) {
         <div class="success-message">
             <h3 style="margin-bottom: 10px;">Reservation Request Submitted!</h3>
             <p>Thank you for your reservation request. We will contact you at <strong>${data.customer.email}</strong> shortly to confirm availability and arrange details.</p>
-            <p style="margin-top: 15px;"><strong>Reservation Number:</strong> ${Date.now()}</p>
+            <p style="margin-top: 15px;"><strong>Reservation Number:</strong> ${generateReservationNumber()}</p>
         </div>
         <button class="btn-primary" onclick="closeBookingModal(); cart = []; updateCartCount(); location.reload();">Close</button>
     `;
