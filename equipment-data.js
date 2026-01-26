@@ -73,7 +73,7 @@ const EQUIPMENT_DATA = [
         name: 'XLR + XLR', 
         amount: 15,
         price: 0.30,
-        description: 'Microphone Cable / 3-pin / CA-01, 02, 03, 04', 
+        description: 'Microphone Cable / 3-pin', 
         category: 'Cables',
         variants: [
             { length: '3m', amount: 15, price: 0.30 },
@@ -91,7 +91,7 @@ const EQUIPMENT_DATA = [
         name: '6.3 mm jack + 6.3 mm jack', 
         amount: 3,
         price: 0.20,
-        description: 'Both sides: 6.3 mm mono jack / CA-09, 10', 
+        description: 'Both sides: 6.3 mm mono jack', 
         category: 'Cables',
         variants: [
             { length: '3m', amount: 3, price: 0.20 },
@@ -109,7 +109,7 @@ const EQUIPMENT_DATA = [
         name: 'EU Power Cable', 
         amount: 14,
         price: 0.10,
-        description: 'EU Power cable / PD-05, 06, 07', 
+        description: 'EU Power cable', 
         category: 'Power Distribution',
         variants: [
             { length: '1.5m', amount: 14, price: 0.10 },
@@ -122,7 +122,7 @@ const EQUIPMENT_DATA = [
         name: 'Extension Cable', 
         amount: 12,
         price: 0.30,
-        description: 'Extension cable / PD-08, 09, 10', 
+        description: 'Extension cable', 
         category: 'Power Distribution',
         variants: [
             { length: '5m', amount: 12, price: 0.30 },
