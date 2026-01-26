@@ -113,10 +113,10 @@ const EQUIPMENT_DATA = [
     { id: 'CA-23', name: 'CAT6E - 75m', amount: 1, description: 'Network cable on reel / 75m', price: 5.00, category: 'Cables' },
     
     // Power Distribution
-    { id: 'PD-01', name: '3-Way Power Split', amount: 10, description: '3-Outlet power strip', price: 0.20, category: 'Power Distribution' },
-    { id: 'PD-02', name: '4-Way Power Split', amount: 7, description: '4-Outlet power strip', price: 0.30, category: 'Power Distribution' },
-    { id: 'PD-03', name: '6-Way Power Split', amount: 8, description: '6-Outlet power strip', price: 0.40, category: 'Power Distribution' },
-    { id: 'PD-04', name: 'Varytec Power Twist Power Cable 5m', amount: 10, description: 'Power Cable', price: 1.00, category: 'Power Distribution' },
+    { id: 'PD-01', name: 'Stairville Power Split 3-Way', amount: 10, description: 'Stairville Power Split 3-Way', price: 0.20, category: 'Power Distribution' },
+    { id: 'PD-02', name: 'Stairville 4-Way Power Strip', amount: 7, description: 'Stairville 4-Way Power Strip', price: 0.30, category: 'Power Distribution' },
+    { id: 'PD-03', name: 'Stairville 6-Way Power Split', amount: 8, description: 'Stairville 6-Way Power Split', price: 0.40, category: 'Power Distribution' },
+    { id: 'PD-04', name: 'Varytec Power Twist Power Cable 5m', amount: 10, description: 'Varytec Power Twist Power Cable 5m', price: 1.00, category: 'Power Distribution' },
     { 
         id: 'PD-05', 
         name: 'EU Power Cable', 
@@ -143,16 +143,51 @@ const EQUIPMENT_DATA = [
             { length: '20m', amount: 5, price: 0.80 }
         ]
     },
+    { id: 'PD-11', name: 'Millenium Cable Drum', amount: 1, description: 'Millenium Cable Drum IP44 25m', price: 3.00, category: 'Power Distribution' },
     
-    // Accessories (showing a subset)
-    { id: 'AC-PA-01', name: 'Meyer Sound UPA Mounting Yoke', amount: 4, description: 'Adjustable Flying Frame for UPA', price: 4, category: 'Accessories' },
-    { id: 'AC-SP-01', name: 'Genelec GLM Set', amount: 1, description: 'Calibration System and DSP Control', price: 5, category: 'Accessories' },
-    { id: 'AC-MX-01', name: 'Allen & Heath QU 16 Carry Bag', amount: 1, description: 'Carry Bag for Allen & Heath QU 16', price: 5, category: 'Accessories' },
-    { id: 'AC-01', name: 'Manfrotto MCLAMP', amount: 1, description: 'Smartphone Holder mini tripod', price: 0.50, category: 'Accessories' },
-    { id: 'AC-02', name: 'Millenium 6-Micstand Bag', amount: 2, description: 'Bag for 6 microphone stands', price: 2, category: 'Accessories' },
-    { id: 'AC-03', name: 'Millenium AV110 Cable Drum', amount: 1, description: 'Cable drum with handle', price: 3, category: 'Accessories' },
-    { id: 'AC-04', name: 'Behringer CT100', amount: 2, description: 'Cable tester for XLR and jack cables', price: 2, category: 'Accessories' },
-    { id: 'AC-05', name: 'Sennheiser HD-25', amount: 1, description: 'Professional headphones', price: 5, category: 'Accessories' },
+    // Accessories - PA Section
+    { id: 'AC-PA-01', name: 'Meyer Sound UPA Mounting Yoke', amount: 4, description: 'Meyer Sound UPA Mounting Yoke', price: 4, category: 'Accessories' },
+    { id: 'AC-PA-02', name: 'Meyer Sound UPA Clamp', amount: 3, description: 'Meyer Sound UPA Clamp', price: 3, category: 'Accessories' },
+    { id: 'AC-PA-03', name: 'Meyer Sound UPM Mounting Yoke', amount: 2, description: 'Meyer Sound UPM Mounting Yoke', price: 3, category: 'Accessories' },
+    { id: 'AC-PA-04', name: 'K&M 195/8 Black', amount: 2, description: 'K&M 195/8 Black', price: 2, category: 'Accessories' },
+    { id: 'AC-PA-05', name: 'K&M 66360', amount: 2, description: 'K&M 66360', price: 2, category: 'Accessories' },
+    { id: 'AC-PA-06', name: 'Gravity SF 36 M10 F Reduce Flange', amount: 6, description: 'Gravity SF 36 M10 F Reduce Flange', price: 1, category: 'Accessories' },
+    { id: 'AC-PA-07', name: 'K&M 21316', amount: 4, description: 'K&M 21316', price: 1, category: 'Accessories' },
+    { id: 'AC-PA-08', name: 'Stageworx Round Sling WSL-20', amount: 4, description: 'Stageworx Round Sling WSL-20', price: 1, category: 'Accessories' },
+    { id: 'AC-PA-09', name: 'Stairville Shackle', amount: 6, description: 'Stairville Shackle', price: 0.50, category: 'Accessories' },
+    
+    // Accessories - Studio/Speaker Section
+    { id: 'AC-SP-01', name: 'Genelec GLM Set', amount: 1, description: 'Genelec GLM Set Calibration System and DSP Control', price: 5, category: 'Accessories' },
+    { id: 'AC-SP-02', name: 'Genelec Z8030-408', amount: 2, description: 'Genelec Z8030-408', price: 2, category: 'Accessories' },
+    { id: 'AC-SP-03', name: 'Genelec 8000-422W Wall Mount', amount: 4, description: 'Genelec 8000-422W Wall Mount', price: 2, category: 'Accessories' },
+    { id: 'AC-SP-04', name: 'Fostex EB6301 Wall Mount', amount: 2, description: 'Fostex EB6301 Wall Mount', price: 1, category: 'Accessories' },
+    
+    // Accessories - Mixer Section
+    { id: 'AC-MX-01', name: 'Allen & Heath QU 16 Carry Bag', amount: 1, description: 'Allen & Heath Carry Bag QU 16', price: 5, category: 'Accessories' },
+    { id: 'AC-MX-02', name: 'Flight Case Allen & Heath QU16', amount: 1, description: 'Flight Case Allen & Heath QU16', price: 8, category: 'Accessories' },
+    { id: 'AC-MX-03', name: 'Allen & Heath SQ5 Dust Cover', amount: 1, description: 'Allen & Heath SQ5 Dust Cover', price: 2, category: 'Accessories' },
+    { id: 'AC-MX-04', name: 'Decksaver Allen & Heath QU16', amount: 1, description: 'Decksaver Allen & Heath QU16', price: 3, category: 'Accessories' },
+    { id: 'AC-MX-05', name: 'Allen & Heath LEDLamp X', amount: 2, description: 'Allen & Heath LEDLamp X', price: 1, category: 'Accessories' },
+    { id: 'AC-MX-06', name: 'Thon Rack 3U Eco II Compact 23', amount: 1, description: 'Thon Rack 3U Eco II Compact 23', price: 4, category: 'Accessories' },
+    { id: 'AC-MX-07', name: 'Allen & Heath Rackmount for QU 16', amount: 1, description: 'Allen & Heath Rackmount for QU 16', price: 2, category: 'Accessories' },
+    
+    // Accessories - Microphone Section
+    { id: 'AC-MI-01', name: 'DAP ACA-MIC5 Pro', amount: 2, description: 'DAP ACA-MIC5 Pro', price: 3, category: 'Accessories' },
+    { id: 'AC-MI-02', name: 'K&M 23550 Microphone Stereo Bar', amount: 1, description: 'K&M 23550 Microphone Stereo Bar', price: 2, category: 'Accessories' },
+    { id: 'AC-MI-03', name: 'Usi Windbubble', amount: 2, description: 'Usi Windbubble', price: 2, category: 'Accessories' },
+    { id: 'AC-MI-04', name: 'Rycote Super Shield Kit Medium', amount: 1, description: 'Rycote Super Shield Kit Medium Set', price: 5, category: 'Accessories' },
+    { id: 'AC-MI-05', name: 'Millenium 6-Mic-stand Bag', amount: 2, description: 'Millenium 6-Mic-stand Bag', price: 2, category: 'Accessories' },
+    { id: 'AC-MI-06', name: 'Flyht Pro Gorilla Bag SB-S 6in1 S', amount: 1, description: 'Flyht Pro Gorilla Bag SB-S 6in1 S', price: 3, category: 'Accessories' },
+    { id: 'AC-MI-07', name: 'Digital Sound 8930B', amount: 2, description: 'Digital Sound 8930B', price: 2, category: 'Accessories' },
+    
+    // Accessories - General
+    { id: 'AC-01', name: 'Manfrotto MCLAMP Smartphone Holder', amount: 1, description: 'Manfrotto MCLAMP Smartphone Holder mini tripod', price: 0.50, category: 'Accessories' },
+    { id: 'AC-02', name: 'Manfrotto Smartphone Clamp', amount: 1, description: 'Manfrotto Smartphone Clamp', price: 0.50, category: 'Accessories' },
+    { id: 'AC-03', name: 'Swissonic Quadphone', amount: 1, description: 'Swissonic Quadphone', price: 3, category: 'Accessories' },
+    { id: 'AC-04', name: 'Fog Fury 3000', amount: 1, description: 'Fog Fury 3000', price: 5, category: 'Accessories' },
+    { id: 'AC-05', name: 'Sennheiser HD-25', amount: 1, description: 'Sennheiser HD-25 Professional headphones', price: 5, category: 'Accessories' },
+    { id: 'AC-06', name: 'Behringer CT100', amount: 2, description: 'Behringer CT100 Cable tester for XLR and jack cables', price: 2, category: 'Accessories' },
+
     { id: 'AC-06', name: 'K&M 23550 Stereo Bar', amount: 2, description: 'Microphone stereo bar for XY recording', price: 3, category: 'Accessories' },
     { id: 'AC-07', name: 'DAP ACA-MIC5', amount: 1, description: 'Microphone clamp holder set (5 pcs)', price: 2, category: 'Accessories' },
     { id: 'AC-08', name: 'Rycote Super Shield Kit', amount: 1, description: 'Windshield kit for shotgun microphones', price: 8, category: 'Accessories' },
