@@ -128,10 +128,10 @@ function renderEquipment() {
                         <span class="list-description">${item.description}</span>
                         <span class="list-qty">${displayQty}</span>
                         <span class="list-price">${displayPrice}</span>
-                        <span class="list-add" onclick="event.stopPropagation();">
+                        <div class="list-add" onclick="event.stopPropagation();">
                             <input type="number" id="${qtyInputId}" value="1" min="1" max="${item.amount}" style="width:50px;">
                             <button class="card-add-btn" onclick="event.stopPropagation(); addToCartFromList('${item.id}', '${qtyInputId}')">Add to Cart</button>
-                        </span>
+                        </div>
                     </div>
                 `;
             }).join('')}
