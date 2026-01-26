@@ -246,8 +246,22 @@ function updateCartCount() {
     countElement.classList.toggle('hidden', count === 0);
 }
 
-function calculateTotal() {
-    return cart.reduce((sum, item) => sum + (item.price * item.quantity * item.days), 0);
+function calculateTotal(rentalDays = null) {
+    return cart.reduce((sum, item) => {
+        const days = rentalDays !== null ? rentalDays : item.days;
+        let itemTotal;
+        
+        if (days === 1) {
+            itemTotal = item.price * item.quantity;
+        } else {
+            // First day full price, remaining days 50% off
+            const firstDayPrice = item.price * item.quantity;
+            const additionalDays = (days - 1) * item.price * item.quantity * 0.5;
+            itemTotal = firstDayPrice + additionalDays;
+        }
+        
+        return sum + itemTotal;
+    }, 0);
 }
 
 function renderCart() {
@@ -311,6 +325,10 @@ function openBookingModal() {
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('rental-start').min = today;
     document.getElementById('rental-end').min = today;
+    
+    // Add event listeners to update summary when dates change
+    document.getElementById('rental-start').addEventListener('change', renderBookingSummary);
+    document.getElementById('rental-end').addEventListener('change', renderBookingSummary);
 }
 
 function closeBookingModal() {
@@ -325,19 +343,52 @@ function renderBookingSummary() {
         return;
     }
     
-    const itemsHTML = cart.map(item => `
-        <div class="booking-item">
-            <span>${item.name} (×${item.quantity} for ${item.days} day${item.days > 1 ? 's' : ''})</span>
-            <span>€${(item.price * item.quantity * item.days).toFixed(2)}</span>
-        </div>
-    `).join('');
+    // Calculate rental days from date inputs
+    const startDate = document.getElementById('rental-start').value;
+    const endDate = document.getElementById('rental-end').value;
+    let rentalDays = 1;
     
-    const total = calculateTotal();
+    if (startDate && endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        const diffTime = Math.abs(end - start);
+        rentalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // Include both start and end days
+    }
+    
+    const itemsHTML = cart.map(item => {
+        let itemPrice;
+        if (rentalDays === 1) {
+            itemPrice = item.price * item.quantity;
+        } else {
+            const firstDay = item.price * item.quantity;
+            const additionalDays = (rentalDays - 1) * item.price * item.quantity * 0.5;
+            itemPrice = firstDay + additionalDays;
+        }
+        
+        return `
+            <div class="booking-item">
+                <span>${item.name} (×${item.quantity} for ${rentalDays} day${rentalDays > 1 ? 's' : ''})</span>
+                <span>€${itemPrice.toFixed(2)}</span>
+            </div>
+        `;
+    }).join('');
+    
+    const subtotal = calculateTotal(rentalDays);
+    const vat = subtotal * 0.21;
+    const total = subtotal + vat;
     
     summary.innerHTML = `
         ${itemsHTML}
         <div class="booking-total">
             <span>Total (excl. VAT):</span>
+            <span>€${subtotal.toFixed(2)}</span>
+        </div>
+        <div class="booking-total">
+            <span>VAT (21%):</span>
+            <span>€${vat.toFixed(2)}</span>
+        </div>
+        <div class="booking-total" style="border-top: 2px solid #000; margin-top: 10px; padding-top: 10px; font-weight: 600;">
+            <span>Total (incl. VAT):</span>
             <span>€${total.toFixed(2)}</span>
         </div>
     `;
