@@ -481,7 +481,7 @@ function openItemModal(itemId) {
     document.getElementById('item-modal-id').textContent = item.id;
     document.getElementById('item-modal-title').textContent = item.name;
     document.getElementById('item-modal-name').textContent = item.name;
-    document.getElementById('item-modal-description').textContent = item.description;
+    document.getElementById('item-modal-description').textContent = item.detailedDescription || item.description;
     
     const image = document.getElementById('item-modal-image');
     image.src = `images/${item.id}.jpg`;

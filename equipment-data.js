@@ -2,7 +2,7 @@
 // Images will be loaded from ./images/ folder
 const EQUIPMENT_DATA = [
     // PA Speakers
-    { id: 'PA-01', name: 'Meyer Sound UPA-1P', amount: 4, description: 'Wide Coverage Loudspeaker / 60 Hz - 18 kHz / Max Peak SPL 133 dB', price: 50, category: 'PA Speakers' },
+    { id: 'PA-01', name: 'Meyer Sound UPA-1P', amount: 4, description: 'Wide Coverage Loudspeaker / 60 Hz - 18 kHz / Max Peak SPL 133 dB', price: 50, category: 'PA Speakers', detailedDescription: 'Compact two-way loudspeaker featuring a 12-inch cone LF driver and 3-inch compression driver with 100° x 40° constant-Q horn. Delivers 550W peak power with exceptional fidelity and extended high-frequency performance. Ideal for small to mid-sized venues as main front-of-house speaker, fill speaker in larger systems, theatrical sound reinforcement, houses of worship, concert halls, clubs, portable and installed AV systems, and cinema surround. The constant-Q horn ensures uniform coverage throughout the listening area with predictable array performance. Biamplified with phase-corrected electronics for flat amplitude and phase response, resulting in precise imaging and tonal accuracy.' },
     { id: 'PA-02', name: 'Meyer Sound USW-1P', amount: 2, description: 'Subwoofer / 32 Hz - 200 Hz / Max Peak SPL 135 dB', price: 50, category: 'PA Speakers' },
     { id: 'PA-03', name: 'Meyer Sound 700-HP', amount: 2, description: 'UltraHigh-Power Subwoofer / 28 – 150 Hz / Max Peak SPL 139 dB', price: 80, category: 'PA Speakers' },
     { id: 'PA-04', name: 'Meyer Sound UPM-2P', amount: 4, description: 'Compact Narrow Loudspeaker / 80 Hz – 20 kHz / Max Peak SPL 123 dB', price: 40, category: 'PA Speakers' },
