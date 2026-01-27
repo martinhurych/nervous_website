@@ -83,8 +83,8 @@ const EQUIPMENT_DATA = [
             { length: '20m', amount: 5, price: 0.80 }
         ]
     },
-    { id: 'CA-05', name: 'XLR (male) + 6.3mm stereo jack', amount: 13, description: 'XLR (male) + 6.3mm stereo jack', price: 0.50, category: 'Cables', detailedDescription: 'Balanced audio cable with XLR male to 6.3mm stereo TRS jack for connecting mixer outputs to powered speakers, effects processors, or studio monitors.' },
-    { id: 'CA-06', name: 'XLR (female) + 6.3mm stereo jack', amount: 16, description: 'XLR (female) + 6.3mm stereo jack', price: 0.40, category: 'Cables', detailedDescription: 'Balanced audio cable with XLR female to 6.3mm stereo TRS jack for connecting keyboards, drum machines, or outboard gear to mixer inputs.' },
+    { id: 'CA-05', name: 'XLR (male) + 6.3mm stereo jack', amount: 13, description: 'XLR (male) + 6.3mm stereo jack', price: 0.50, category: 'Cables', detailedDescription: 'Balanced 6m audio cable with XLR male to 6.3mm stereo TRS jack for connecting mixer outputs to powered speakers, effects processors, or studio monitors.' },
+    { id: 'CA-06', name: 'XLR (female) + 6.3mm stereo jack', amount: 16, description: 'XLR (female) + 6.3mm stereo jack', price: 0.40, category: 'Cables', detailedDescription: 'Balanced 6m audio cable with XLR female to 6.3mm stereo TRS jack for connecting keyboards, drum machines, or outboard gear to mixer inputs.' },
     { id: 'CA-07', name: 'XLR (male) + 6.3mm stereo jack Patch', amount: 11, description: 'XLR (male) + 6.3mm stereo jack Patch', price: 0.20, category: 'Cables', detailedDescription: 'Compact 0.9m balanced patch cable with XLR male to 6.3mm stereo TRS jack connectors for connecting mixer buses to outboard processors or converting XLR outputs to TRS inputs.' },
     { id: 'CA-08', name: 'XLR (female) + 6.3mm stereo jack Patch', amount: 9, description: 'XLR (female) + 6.3mm stereo jack Patch', price: 0.20, category: 'Cables', detailedDescription: 'Compact 0.9m balanced patch cable with XLR female to 6.3mm stereo TRS jack connectors for connecting outboard processors back to mixer or converting TRS outputs to XLR inputs.' },
     { 
