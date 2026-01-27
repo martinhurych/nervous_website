@@ -75,6 +75,7 @@ const EQUIPMENT_DATA = [
         price: 0.30,
         description: 'Microphone Cable / 3-pin', 
         category: 'Cables',
+        detailedDescription: 'Professional balanced XLR microphone cables with 3-pin XLR male to female connectors for connecting microphones, speakers, and audio equipment. Available in 3m, 6m, 10m, and 20m lengths.',
         variants: [
             { length: '3m', amount: 15, price: 0.30 },
             { length: '6m', amount: 21, price: 0.40 },
@@ -82,8 +83,8 @@ const EQUIPMENT_DATA = [
             { length: '20m', amount: 5, price: 0.80 }
         ]
     },
-    { id: 'CA-05', name: 'XLR (male) + 6.3mm stereo jack', amount: 13, description: 'XLR (male) + 6.3mm stereo jack', price: 0.50, category: 'Cables' },
-    { id: 'CA-06', name: 'XLR (female) + 6.3mm stereo jack', amount: 16, description: 'XLR (female) + 6.3mm stereo jack', price: 0.40, category: 'Cables' },
+    { id: 'CA-05', name: 'XLR (male) + 6.3mm stereo jack', amount: 13, description: 'XLR (male) + 6.3mm stereo jack', price: 0.50, category: 'Cables', detailedDescription: 'Balanced audio cable with XLR male to 6.3mm stereo TRS jack for connecting mixer outputs to powered speakers, effects processors, or studio monitors.' },
+    { id: 'CA-06', name: 'XLR (female) + 6.3mm stereo jack', amount: 16, description: 'XLR (female) + 6.3mm stereo jack', price: 0.40, category: 'Cables', detailedDescription: 'Balanced audio cable with XLR female to 6.3mm stereo TRS jack for connecting keyboards, drum machines, or outboard gear to mixer inputs.' },
     { id: 'CA-07', name: 'XLR (male) + 6.3mm stereo jack Patch', amount: 11, description: 'XLR (male) + 6.3mm stereo jack Patch', price: 0.20, category: 'Cables', detailedDescription: 'Compact 0.9m balanced patch cable with XLR male to 6.3mm stereo TRS jack connectors for connecting mixer buses to outboard processors or converting XLR outputs to TRS inputs.' },
     { id: 'CA-08', name: 'XLR (female) + 6.3mm stereo jack Patch', amount: 9, description: 'XLR (female) + 6.3mm stereo jack Patch', price: 0.20, category: 'Cables', detailedDescription: 'Compact 0.9m balanced patch cable with XLR female to 6.3mm stereo TRS jack connectors for connecting outboard processors back to mixer or converting TRS outputs to XLR inputs.' },
     { 
