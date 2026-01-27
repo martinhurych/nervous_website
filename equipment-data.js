@@ -17,7 +17,7 @@ const EQUIPMENT_DATA = [
     
     // Mixers
     { id: 'MX-01', name: 'Allen Heath SQ 5', amount: 1, description: 'Digital Mixer / 48-Channel Digital Mixer', price: 70, category: 'Mixers' },
-    { id: 'MX-02', name: 'Allen Heath QU 16', amount: 1, description: 'Digital Mixer / 16 Mono inputs via XLR or jack / 12 Mix outputs', price: 50, category: 'Mixers' },
+    { id: 'MX-02', name: 'Allen Heath QU 16', amount: 1, description: 'Digital Mixer / 16 Mono inputs via XLR or jack / 12 Mix outputs', price: 50, category: 'Mixers', detailedDescription: '16-channel digital mixer with intuitive analog-style workflow and touchscreen control. Perfect for live sound reinforcement, installations, and studio recording. Ideal for bands, theaters, houses of worship, and corporate events transitioning from analog to digital mixing. Features motorized faders, built-in FX engines, and direct multitrack recording via Qu-Drive. Remote control via QU-pad app allows adjustment from anywhere in the venue. 19-inch rack-mountable design suits touring and fixed installations. Excellent for users seeking digital flexibility with familiar analog operation and hands-on control.' },
     { id: 'MX-03', name: 'Allen & Heath AR2412 AudioRack', amount: 1, description: 'Digital Stagebox / 24 XLR mic / 12 XLR line outputs (L/R) / Cat 5', price: 40, category: 'Mixers' },
     { id: 'MX-04', name: 'Allen & Heath AB168', amount: 1, description: 'Digital Stagebox / 16 XLR mic / 8 XLR line outputs / Cat 5', price: 35, category: 'Mixers' },
     { id: 'MX-05', name: 'Yamaha MG12/4', amount: 1, description: '12-Input 4-Bus Mixer', price: 8, category: 'Mixers' },
