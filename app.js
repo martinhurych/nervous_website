@@ -596,7 +596,9 @@ function openItemModal(itemId) {
     // Show both short and detailed description if available
     const descriptionEl = document.getElementById('item-modal-description');
     if (item.detailedDescription) {
-        descriptionEl.innerHTML = `<strong>${item.description}</strong><br><br>${item.detailedDescription}`;
+        // Convert \n\n to <br><br> for paragraph breaks
+        const formattedDescription = item.detailedDescription.replace(/\n\n/g, '<br><br>');
+        descriptionEl.innerHTML = `<strong>${item.description}</strong><br><br>${formattedDescription}`;
     } else {
         descriptionEl.textContent = item.description;
     }
