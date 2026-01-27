@@ -384,6 +384,12 @@ body {
     align-items: center;
 }
 
+.list-row img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
 .list-add {
     display: flex;
     align-items: center;
