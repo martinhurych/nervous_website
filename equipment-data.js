@@ -58,7 +58,7 @@ const EQUIPMENT_DATA = [
     
     // Audio Recorders & Interfaces
     { id: 'RE-01', name: 'Sound Devices MixPre-3 II', amount: 1, description: 'Audio recorder with USB audio interface / stereo mix + 3 single inputs', price: 25, category: 'Recorders & Interfaces' },
-    { id: 'RE-02', name: 'Zoom H2n', amount: 1, description: 'Portable WAV/MP3 Recorder', price: 5, category: 'Recorders & Interfaces' },
+    { id: 'RE-02', name: 'Zoom H2n', amount: 1, description: 'Portable WAV/MP3 Recorder', price: 5, category: 'Recorders & Interfaces', detailedDescription: 'Versatile portable recorder with five built-in microphones and four recording modes including MS stereo, 90° X/Y stereo, and 2-channel/4-channel surround. Perfect for field recording, podcasting, live concert recording, and ambient sound capture. Ideal for musicians, sound designers, journalists, and content creators needing portable multi-mic recording. Records up to 24-bit/96kHz WAV or MP3 directly to SD card. Built-in effects including compression/limiting and MS decoding. USB audio interface functionality enables direct recording to computer. Excellent for location recording, documentary production, nature recording, rehearsal documentation, and mobile journalism. Compact design with over 20 hours battery life suits extended field work and travel recording applications.' },
     { id: 'RE-03', name: 'Motu UltraLite MK3', amount: 1, description: 'USB audio interface / 10 inputs & 14 outputs', price: 15, category: 'Recorders & Interfaces' },
     
     // DI Boxes
