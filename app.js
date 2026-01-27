@@ -589,7 +589,16 @@ function openItemModal(itemId) {
     const item = EQUIPMENT_DATA.find(eq => eq.id === itemId);
     if (!item) return;
     
-    document.getElementById('item-modal-id').textContent = item.id;
+    // Generate IDs for items with variants
+    let displayId = item.id;
+    if (item.variants && item.variants.length > 0) {
+        const baseId = item.id.split('-')[0];
+        const baseNum = parseInt(item.id.split('-')[1]);
+        const variantIds = item.variants.map((v, idx) => `${baseId}-${String(baseNum + idx).padStart(2, '0')}`).join(', ');
+        displayId = variantIds;
+    }
+    
+    document.getElementById('item-modal-id').textContent = displayId;
     document.getElementById('item-modal-title').textContent = item.name;
     document.getElementById('item-modal-name').textContent = item.name;
     
