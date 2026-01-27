@@ -84,8 +84,8 @@ const EQUIPMENT_DATA = [
     },
     { id: 'CA-05', name: 'XLR (male) + 6.3mm stereo jack', amount: 13, description: 'XLR (male) + 6.3mm stereo jack', price: 0.50, category: 'Cables' },
     { id: 'CA-06', name: 'XLR (female) + 6.3mm stereo jack', amount: 16, description: 'XLR (female) + 6.3mm stereo jack', price: 0.40, category: 'Cables' },
-    { id: 'CA-07', name: 'XLR (male) + 6.3mm stereo jack', amount: 11, description: 'XLR (male) + 6.3mm stereo jack', price: 0.20, category: 'Cables' },
-    { id: 'CA-08', name: 'XLR (female) + 6.3mm stereo jack', amount: 9, description: 'XLR (female) + 6.3mm stereo jack', price: 0.20, category: 'Cables' },
+    { id: 'CA-07', name: 'XLR (male) + 6.3mm stereo jack Patch', amount: 11, description: 'XLR (male) + 6.3mm stereo jack Patch', price: 0.20, category: 'Cables', detailedDescription: 'Compact 0.9m balanced patch cable with XLR male to 6.3mm stereo TRS jack connectors for connecting mixer buses to outboard processors or converting XLR outputs to TRS inputs.' },
+    { id: 'CA-08', name: 'XLR (female) + 6.3mm stereo jack Patch', amount: 9, description: 'XLR (female) + 6.3mm stereo jack Patch', price: 0.20, category: 'Cables', detailedDescription: 'Compact 0.9m balanced patch cable with XLR female to 6.3mm stereo TRS jack connectors for connecting outboard processors back to mixer or converting TRS outputs to XLR inputs.' },
     { 
         id: 'CA-09', 
         name: '6.3 mm jack + 6.3 mm jack', 
@@ -93,30 +93,27 @@ const EQUIPMENT_DATA = [
         price: 0.20,
         description: 'Both sides: 6.3 mm mono jack', 
         category: 'Cables',
+        detailedDescription: 'Instrument cable with 6.3mm mono jack connectors on both ends for guitars, basses, keyboards, and effects pedals. Available in 3m and 6m lengths with very good quality construction and flexible black cable.',
         variants: [
             { length: '3m', amount: 3, price: 0.20 },
             { length: '6m', amount: 10, price: 0.30 }
         ]
     },
-    { id: 'CA-11', name: 'Stereo jack 6.3 mm + Stereo jack socket 6.3 mm', amount: 1, description: 'Klotz AS-EX20300 / extension cable 6.3 mm jack / 6m', price: 0.40, category: 'Cables' },
-    { id: 'CA-12', name: '3.5 mm Stereo jack + 2x 6.3 mm mono jacks', amount: 3, description: 'the sssnake YPK2030 / Y - Audio Cable / 3m', price: 0.20, category: 'Cables' },
-    { id: 'CA-13', name: '3.5 mm Stereo jack + 2x XLR (male)', amount: 1, description: 'pro snake TPY 2030 KMM / 2x XLR male to Stereo jack / 3m', price: 0.30, category: 'Cables' },
-    { id: 'CA-14', name: '8 x XLR (male) + Stereo Jack Multicore', amount: 1, description: 'the sssnake MXP 8030 / 3m', price: 1.00, category: 'Cables' },
-    { id: 'CA-15', name: '3.5 mm Stereo jack + 2x RCA (male)', amount: 1, description: '3.5 mm Stereo jack + 2x RCA (male) / 3m', price: 0.20, category: 'Cables' },
-    { id: 'CA-16', name: '3.5 mm Stereo jack + 2x XLR', amount: 10, description: 'pro snake BXJ 102-1, Audio Cable with Transformer', price: 0.30, category: 'Cables' },
-    { id: 'CA-17', name: 'XLR F + XLR F - 0.3m', amount: 2, description: 'pro snake TPA 1003 FF / 0.3m', price: 0.20, category: 'Cables' },
-    { id: 'CA-18', name: 'XLR M + XLR M - 0.3m', amount: 2, description: 'pro snake TPA 1003 MM / 0.3m', price: 0.20, category: 'Cables' },
-    { id: 'CA-19', name: 'Y adapter MFF - 0.3m', amount: 1, description: 'Cordial EY 0,3 MFF elements / 0.3m', price: 0.30, category: 'Cables' },
-    { id: 'CA-20', name: 'Y adapter FMM - 0.3m', amount: 1, description: 'Cordial EY 0,3 FMM elements / 0.3m', price: 0.30, category: 'Cables' },
-    { id: 'CA-21', name: 'XLR Patch - 0.5m', amount: 4, description: 'XLR Patch cable / 0.5m', price: 0.20, category: 'Cables' },
-    { id: 'CA-22', name: 'Multicore Cable - 15m', amount: 1, description: '8-Way Multicore Cable XLR female sockets + XLR male connectors / 15m', price: 5.00, category: 'Cables' },
-    { id: 'CA-23', name: 'CAT6E - 75m', amount: 2, description: 'CAT6 Ethercon Cable on reel / 75m', price: 7.00, category: 'Cables' },
+    { id: 'CA-11', name: 'XLR Patch', amount: 1, description: 'XLR Patch cable / 0.5m', price: 0.40, category: 'Cables', detailedDescription: 'Short 0.5m balanced XLR patch cable with 3-pin XLR male to female connectors for tight patch bay connections, effects routing, and rack equipment wiring.' },
+    { id: 'CA-12', name: 'Y-adapter XLR', amount: 3, description: 'Y-adapter XLR (female) to 2x XLR (male) / 0.3m', price: 0.20, category: 'Cables', detailedDescription: 'Short 0.3m Y-adapter cable with one XLR female input splitting to two XLR male outputs for microphone signal distribution or parallel routing.' },
+    { id: 'CA-13', name: 'Y-adapter XLR', amount: 1, description: 'Y-adapter XLR (male) to 2x XLR (female) / 0.3m', price: 0.30, category: 'Cables', detailedDescription: 'Short 0.3m Y-adapter cable with one XLR male input splitting to two XLR female outputs for microphone signal distribution or parallel routing.' },
+    { id: 'CA-14', name: '3.5mm stereo + 2x XLR', amount: 1, description: 'pro snake BXJ 102-1, Audio Cable with Transformer / 1.5m', price: 1.00, category: 'Cables', detailedDescription: 'Professional 1.5m cable with 3.5mm stereo jack to dual XLR male connectors including integrated transformer for converting consumer-level unbalanced signals to professional balanced outputs.' },
+    { id: 'CA-15', name: 'XLR adapter Female-Female', amount: 1, description: 'pro snake TPA 1003 FF / 0.3m', price: 0.20, category: 'Cables', detailedDescription: 'Short 0.3m XLR female to female adapter cable for extending XLR connections or reversing cable direction.' },
+    { id: 'CA-16', name: 'XLR adapter Male-Male', amount: 10, description: 'pro snake TPA 1003 MM / 0.3m', price: 0.30, category: 'Cables', detailedDescription: 'Short 0.3m XLR male to male adapter cable for extending XLR connections or reversing cable direction.' },
+
+    { id: 'CA-22', name: 'Multicore Cable - 15m', amount: 1, description: '8-Way Multicore Cable XLR female sockets + XLR male connectors / 15m', price: 5.00, category: 'Cables', detailedDescription: 'Professional 15m 8-way multicore cable with XLR female stage box and 8 XLR male fan-out connectors for clean multi-channel signal routing from stage to mixer.' },
+    { id: 'CA-23', name: 'CAT6E - 75m', amount: 2, description: 'CAT6 Ethercon Cable on reel / 75m', price: 7.00, category: 'Cables', detailedDescription: 'Professional 75m CAT6a Ethercon cable on reel for digital audio networking, connecting Allen & Heath digital stageboxes, or Dante/AES67 network audio systems.' },
     
     // Power Distribution
     { id: 'PD-01', name: '3-Way Power Split', amount: 10, description: '3-Outlet power strip', price: 0.20, category: 'Power Distribution' },
     { id: 'PD-02', name: '4-Way Power Split', amount: 7, description: '4-Outlet power strip', price: 0.30, category: 'Power Distribution' },
     { id: 'PD-03', name: '6-Way Power Split', amount: 8, description: '6-Outlet power strip', price: 0.40, category: 'Power Distribution' },
-    { id: 'PD-04', name: 'Varytec Power Twist Power Cable 5,0 m', amount: 10, description: 'Power Cable', price: 1.00, category: 'Power Distribution' },
+    { id: 'PD-04', name: 'Varytec Power Twist Power Cable 5,0 m', amount: 10, description: 'Power Cable', price: 1.00, category: 'Power Distribution', detailedDescription: 'Professional 5m power cable with 3x1.5mm² wires and Power Twist connector for stage lighting, dimmers, and power distribution systems requiring locking connections.' },
     { 
         id: 'PD-05', 
         name: 'EU Power Cable', 
@@ -157,13 +154,13 @@ const EQUIPMENT_DATA = [
     { id: 'AC-PA-09', name: 'Stairville Shackle', amount: 16, description: 'Shackle / 0.75-2.0 t', price: 0.20, category: 'Accessories' },
     
     // Accessories - Studio/Speaker Section
-    { id: 'AC-SP-01', name: 'Genelec GLM Set', amount: 1, description: 'Calibration System and DSP Control', price: 5.00, category: 'Accessories' },
-    { id: 'AC-SP-02', name: 'Genelec Z8030-408', amount: 2, description: 'Tripod Adapter', price: 0.50, category: 'Accessories' },
+    { id: 'AC-SP-01', name: 'Genelec GLM Set', amount: 1, description: 'Calibration System and DSP Control', price: 5.00, category: 'Accessories', detailedDescription: 'Professional acoustic calibration system including GLM 8300A network interface, 8300-601 measurement microphone, and GLM software for automatic room optimization of Genelec Smart Active Monitoring systems.' },
+    { id: 'AC-SP-02', name: 'Genelec Z8030-408', amount: 2, description: 'Tripod Adapter', price: 0.50, category: 'Accessories', detailedDescription: 'Stand adapter for mounting Genelec 8030 series monitors on standard microphone stands with 3/8" thread.' },
     { id: 'AC-SP-03', name: 'Genelec 8000-422W Wall Mount', amount: 2, description: 'Wall Mount for Genelec 8330A', price: 0.50, category: 'Accessories' },
-    { id: 'AC-SP-04', name: 'Fostex EB6301 Wall Mounting', amount: 10, description: 'Wall/Stand Mount for Fostex 6301B', price: 1.00, category: 'Accessories' },
+    { id: 'AC-SP-04', name: 'Fostex EB6301 Wall Mounting', amount: 10, description: 'Wall/Stand Mount for Fostex 6301B', price: 1.00, category: 'Accessories', detailedDescription: 'Mounting bracket for Fostex 6301B speakers enabling wall mounting or microphone stand attachment for flexible multichannel speaker positioning.' },
     
     // Accessories - Mixer Section
-    { id: 'AC-MX-01', name: 'Allen & Heath Carry Bag QU 16', amount: 1, description: 'Carry Bag for Allen & Heath QU 16', price: 5.00, category: 'Accessories' },
+    { id: 'AC-MX-01', name: 'Allen & Heath Carry Bag QU 16', amount: 1, description: 'Carry Bag for Allen & Heath QU 16', price: 5.00, category: 'Accessories', detailedDescription: 'Padded transport bag designed for Allen & Heath QU-16 digital mixer with compartments for cables and accessories.' },
     { id: 'AC-MX-02', name: 'Flightcase Allen & Heath QU16', amount: 1, description: 'flightcase for Allen & Heath QU16', price: 6.00, category: 'Accessories' },
     { id: 'AC-MX-03', name: 'Allen & Heath SQ5 Dust Cover', amount: 1, description: 'Dust and Dirt Cover', price: 1.00, category: 'Accessories' },
     { id: 'AC-MX-04', name: 'Decksaver Allen & Heath QU16', amount: 1, description: 'Dust cover for Allen & Heath QU16', price: 3.00, category: 'Accessories' },
@@ -172,18 +169,18 @@ const EQUIPMENT_DATA = [
     
     // Accessories - Microphone Section
     { id: 'AC-MI-01', name: 'DAP ACA-MIC5 Pro', amount: 1, description: 'microphone flight case with space for 12 microphones and accessories', price: 1.00, category: 'Accessories' },
-    { id: 'AC-MI-02', name: 'K&M 23550 Microphone Stereo Bar', amount: 3, description: 'Stereo Bar', price: 0.30, category: 'Accessories' },
+    { id: 'AC-MI-02', name: 'K&M 23550 Microphone Stereo Bar', amount: 3, description: 'Stereo Bar', price: 0.30, category: 'Accessories', detailedDescription: 'Adjustable stereo bar for mounting two microphones on single stand for X/Y, ORTF, or spaced stereo recording techniques.' },
     { id: 'AC-MI-03', name: 'Uši Windbubble', amount: 2, description: 'Wind protection', price: 0.50, category: 'Accessories' },
-    { id: 'AC-MI-04', name: 'Rycote Super Shield Kit Medium', amount: 1, description: 'Wind shield pod with adjustable shock-mount handle and windjammer', price: 10.00, category: 'Accessories' },
-    { id: 'AC-MI-05', name: 'Millenium 6-Micstand Bag', amount: 2, description: 'Gig Bag For Up To 6 Microphone Stand', price: 1.00, category: 'Accessories' },
-    { id: 'AC-MI-06', name: 'Flyht Pro Gorilla Bag SB-S', amount: 1, description: 'Transport bag for up to six microphone stands', price: 1.00, category: 'Accessories' },
+    { id: 'AC-MI-04', name: 'Rycote Super Shield Kit Large', amount: 1, description: 'Wind shield pod with adjustable shock-mount handle and windjammer', price: 10.00, category: 'Accessories', detailedDescription: 'Professional windscreen system with Lyre shock mount for 250-300mm shotgun microphones, including 450mm windscreen, longhair windjammer, XLR cable, and brush for outdoor recording and film production.' },
+    { id: 'AC-MI-05', name: 'Millenium 6-Micstand Bag', amount: 2, description: 'Gig Bag For Up To 6 Microphone Stand', price: 1.00, category: 'Accessories', detailedDescription: 'Transport bag for up to 6 microphone stands, 100cm deep with 30cm diameter, internal dividers, and water-repellent construction for touring and storage.' },
+    { id: 'AC-MI-06', name: 'Flyht Pro Gorilla Bag SB-S', amount: 1, description: 'Transport bag for up to six microphone stands', price: 1.00, category: 'Accessories', detailedDescription: 'Padded transport bag for up to 6 mic stands with 10mm padding, foldable divider, water-resistant Cordura material, suitable for stands up to 700mm height.' },
     { id: 'AC-MI-07', name: 'Digital Sound 8930B', amount: 1, description: 'Portable Sound Level Calibrator', price: 2.50, category: 'Accessories' },
     
     // Accessories - General
     { id: 'AC-01', name: 'Manfrotto MCLAMP Smartphone Holder', amount: 1, description: 'mini tripod', price: 0.50, category: 'Accessories' },
     { id: 'AC-02', name: 'Manfrotto Smartphone Clamp', amount: 1, description: 'Smartphone Clamp', price: 0.20, category: 'Accessories' },
     { id: 'AC-03', name: 'Swissonic Quadphone', amount: 1, description: '4-Channel Headphone Amplifier', price: 1.00, category: 'Accessories' },
-    { id: 'AC-04', name: 'Fog Fury 3000', amount: 1, description: '1500W DMX Fog Machine', price: 8.00, category: 'Accessories' },
-    { id: 'AC-05', name: 'Sennheiser HD-25', amount: 1, description: 'headphones', price: 5.00, category: 'Accessories' },
-    { id: 'AC-06', name: 'Behringer CT100', amount: 1, description: 'Cable Tester', price: 1.00, category: 'Accessories' },
+    { id: 'AC-04', name: 'ADJ Fog Fury 3000', amount: 1, description: '1500W DMX Fog Machine', price: 8.00, category: 'Accessories', detailedDescription: 'Professional 1500W DMX fog machine with 21000 cu.ft/min output, 5L tank, ETS technology, 3 operational modes (Manual/Timer/DMX), and LED heating indicators for stage productions and events.' },
+    { id: 'AC-05', name: 'Sennheiser HD-25', amount: 1, description: 'Professional DJ headphones', price: 5.00, category: 'Accessories', detailedDescription: 'Professional closed on-ear DJ headphones with 70 Ohm impedance, 16-22000 Hz frequency range, swiveling earcup, replaceable cable, 140g weight, industry-standard for monitoring and DJing.' },
+    { id: 'AC-06', name: 'Behringer CT100', amount: 1, description: 'Cable Tester', price: 1.00, category: 'Accessories', detailedDescription: 'Professional 6-in-1 cable tester for XLR, jack, RCA, and MIDI cables with continuity check, phantom power detection, test tone generator, and LED indicators, battery-powered for portable testing.' },
 ];
