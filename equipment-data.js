@@ -13,7 +13,7 @@ const EQUIPMENT_DATA = [
     // Studio Speakers
     { id: 'SP-01', name: 'Genelec 7350 APM', amount: 1, description: 'Subwoofer / 8" / Peak 104 dB SPL / Power: 150 W / 22 - 120 Hz', price: 40, category: 'Studio Speakers' },
     { id: 'SP-02', name: 'Genelec 8330 APM Pack', amount: 1, description: '2-Way Active Studio Monitors / 45 Hz - 23 kHz / Peak 110 dB', price: 60, category: 'Studio Speakers' },
-    { id: 'SP-03', name: 'Fostex 6301B', amount: 10, description: 'Small active speaker / 84 dB / 10W', price: 5, category: 'Studio Speakers' },
+    { id: 'SP-03', name: 'Fostex 6301B', amount: 10, description: 'Small active speaker / 84 dB / 10W', price: 5, category: 'Studio Speakers', detailedDescription: 'Compact 10cm full-range active speaker designed for multichannel audio systems. Ten speakers available for creating surround sound setups when paired with Genelec 7350 APM subwoofer. Perfect for electronic music performances, multichannel compositions, immersive audio installations, and experimental sound art. Ideal for any setup requiring multiple small speakers with precise placement. Magnetically shielded housing allows safe placement near sensitive equipment. Balanced XLR and unbalanced jack inputs provide flexible connectivity for complex multichannel configurations.' },
     
     // Mixers
     { id: 'MX-01', name: 'Allen Heath SQ 5', amount: 1, description: 'Digital Mixer / 48-Channel Digital Mixer', price: 70, category: 'Mixers' },
