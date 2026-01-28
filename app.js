@@ -702,3 +702,25 @@ function addToCartFromList(itemId, qtyInputId) {
     updateCartCount();
     renderCart();
 }
+
+// Hamburger menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    
+    if (hamburger && nav) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking nav links
+        const navLinks = nav.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+    }
+});

@@ -63,8 +63,15 @@
 </head>
 <body>
     <header class="header">
-        <a href="index.html" class="logo">nervousmusictastemaker</a>
-        <nav class="nav">
+        <div class="header-top">
+            <a href="index.html" class="logo">nervousmusictastemaker</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="nav" id="nav">
             <a href="catalog.html" class="nav-link">Equipment</a>
             <a href="services.html" class="nav-link active">Services</a>
             <a href="contact.html" class="nav-link">Contact</a>
@@ -106,5 +113,27 @@
     <footer class="footer" style="text-align: center; padding: 40px 20px; border-top: 1px solid #e0e0e0; margin-top: 60px;">
         <span>© 2026 nervousmusictastemaker</span>
     </footer>
+    
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+            
+            // Close menu when clicking nav links
+            const navLinks = nav.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 </html>
