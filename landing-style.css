@@ -408,16 +408,26 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .hero-content {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+    
     .logo {
-        font-size: 24px;
+        font-size: 18px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.2;
     }
     
     .tagline {
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .location {
-        font-size: 13px;
+        font-size: 12px;
+        margin-bottom: 30px;
     }
     
     .btn-enter {
