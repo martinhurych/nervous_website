@@ -503,6 +503,7 @@ body {
 .modal-header h2 {
     font-size: 24px;
     font-weight: 600;
+    line-height: 1.2;
 }
 
 .modal-close {
@@ -518,6 +519,7 @@ body {
     align-items: center;
     justify-content: center;
     color: #000;
+    flex-shrink: 0;
 }
 
 .modal-close:hover {
