@@ -1335,6 +1335,13 @@ body {
     gap: 40px;
 }
 
+@media (max-width: 900px) {
+    .item-detail-content {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
+
 .item-detail-image {
     width: 100%;
     aspect-ratio: 3/4;
