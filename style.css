@@ -503,16 +503,18 @@ body {
 .modal-header h2 {
     font-size: 24px;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1;
+    margin: 0;
 }
 
 .modal-close {
     background: none;
     border: none;
-    font-size: 32px;
+    font-size: 28px;
     cursor: pointer;
     line-height: 1;
     padding: 0;
+    margin: 0;
     width: 32px;
     height: 32px;
     display: flex;
