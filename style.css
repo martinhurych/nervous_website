@@ -1315,8 +1315,8 @@ body {
     }
     
     .item-detail-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
     }
     
     .item-detail-image {
