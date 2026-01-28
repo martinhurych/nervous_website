@@ -261,7 +261,7 @@ body {
 
 .pricing-info {
     font-size: 13px;
-    color: #666;
+    color: #000;
     display: flex;
     align-items: center;
 }
@@ -325,7 +325,7 @@ body {
 .card-description {
     font-size: 13px;
     line-height: 1.5;
-    color: #666;
+    color: #000;
     margin-bottom: 15px;
 }
 
@@ -368,7 +368,7 @@ body {
 
 .card-qty {
     font-size: 13px;
-    color: #666;
+    color: #000;
 }
 
 .card-price {
@@ -779,7 +779,6 @@ body {
         left: 0;
         right: 0;
         background: #fff;
-        border-bottom: 1px solid #000;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
@@ -923,15 +922,11 @@ body {
     }
     
     .list-image {
-        width: 100% !important;
-        height: 200px !important;
-        margin-bottom: 10px;
+        display: none !important;
     }
     
     .list-image img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: contain;
+        display: none !important;
     }
     
     .list-add {
