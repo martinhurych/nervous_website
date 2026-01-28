@@ -130,6 +130,7 @@ body {
     cursor: pointer;
     font-family: 'SuisseSign', 'IBM Plex Sans', sans-serif;
     transition: all 0.2s;
+    color: #000;
 }
 
 .view-btn.active {
@@ -959,6 +960,7 @@ body {
         justify-content: flex-start;
         width: 100%;
         flex-wrap: wrap;
+        align-items: center;
     }
     
     .list-add input[type="number"] {
