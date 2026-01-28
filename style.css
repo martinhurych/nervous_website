@@ -409,6 +409,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border-bottom: 1px solid #000;
+    align-items: center;
 }
 
 .list-row {
