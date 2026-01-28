@@ -101,7 +101,6 @@ body {
     display: flex;
     gap: 30px;
     align-items: center;
-    margin-top: 0;
 }
 
 .nav-link {
@@ -748,7 +747,7 @@ body {
     color: #155724;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     body {
         font-size: 14px;
     }
@@ -783,7 +782,6 @@ body {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
-        margin-top: 0;
     }
     
     .nav.active {
@@ -804,6 +802,7 @@ body {
     .cart-btn {
         font-size: 11px;
         padding: 6px 12px;
+        margin: 15px 20px;
     }
     
     .container {
@@ -811,7 +810,7 @@ body {
         flex-direction: column !important;
     }
     
-    .nav.active + .container {
+    .nav.active ~ .container {
         margin-top: 220px !important;
     }
     
