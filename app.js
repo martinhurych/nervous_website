@@ -3,7 +3,18 @@ let currentView = 'grid';
 let currentCategory = 'All';
 let searchQuery = '';
 let filteredData = [...EQUIPMENT_DATA];
+
+// Load cart from localStorage
 let cart = [];
+try {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+} catch (e) {
+    console.error('Failed to load cart from localStorage:', e);
+    cart = [];
+}
 
 // Get all unique categories
 const categories = ['All', ...new Set(EQUIPMENT_DATA.map(item => item.category))];
@@ -79,7 +90,7 @@ function renderEquipment() {
                                 <div class="card-qty">×${defaultVariant.amount} available</div>
                                 <div class="card-price">€${defaultVariant.price.toFixed(2)}/day</div>
                             </div>
-                            <button class="card-add-btn" onclick="event.stopPropagation(); addToCartWithVariant('${item.id}')">Add to Cart</button>
+                            <button class="card-add-btn" onclick="event.stopPropagation(); event.preventDefault(); addToCartWithVariant('${item.id}'); return false;">Add to Cart</button>
                         </div>
                     </a>
                 `;
@@ -97,7 +108,7 @@ function renderEquipment() {
                                 <div class="card-qty">×${item.amount} available</div>
                                 <div class="card-price">€${item.price.toFixed(2)}/day</div>
                             </div>
-                            <button class="card-add-btn" onclick="event.stopPropagation(); addToCart('${item.id}')">Add to Cart</button>
+                            <button class="card-add-btn" onclick="event.stopPropagation(); event.preventDefault(); addToCart('${item.id}'); return false;">Add to Cart</button>
                         </div>
                     </a>
                 `;
@@ -200,6 +211,7 @@ function addToCartWithVariant(itemId) {
     
     updateCartCount();
     renderCart();
+    saveCart();
 }
 
 // Cart Management
@@ -224,12 +236,14 @@ function addToCart(itemId) {
     
     updateCartCount();
     renderCart();
+    saveCart();
 }
 
 function removeFromCart(itemId) {
     cart = cart.filter(item => item.id !== itemId);
     updateCartCount();
     renderCart();
+    saveCart();
 }
 
 function updateCartItem(itemId, field, value) {
@@ -244,6 +258,7 @@ function updateCartItem(itemId, field, value) {
             item.days = Math.max(1, parseInt(value) || 1);
         }
         renderCart();
+        saveCart();
     }
 }
 
@@ -252,6 +267,21 @@ function updateCartCount() {
     const countElement = document.getElementById('cart-count');
     countElement.textContent = count;
     countElement.classList.toggle('hidden', count === 0);
+}
+
+function saveCart() {
+    try {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    } catch (e) {
+        console.error('Failed to save cart to localStorage:', e);
+    }
+}
+
+function clearCart() {
+    cart = [];
+    updateCartCount();
+    renderCart();
+    saveCart();
 }
 
 function calculateTotal(rentalDays = null) {
@@ -500,7 +530,7 @@ function handleReservationSubmit(e) {
             <p>Thank you for your reservation request. We will contact you at <strong>${data.customer.email}</strong> shortly to confirm availability and arrange details.</p>
             <p style="margin-top: 15px;"><strong>Reservation Number:</strong> ${generateReservationNumber()}</p>
         </div>
-        <button class="btn-primary" onclick="closeBookingModal(); cart = []; updateCartCount(); location.reload();">Close</button>
+        <button class="btn-primary" onclick="closeBookingModal(); clearCart(); location.reload();">Close</button>
     `;
     
     // In a real application, you might send an email or API request here
@@ -586,6 +616,84 @@ function setupEventListeners() {
             closeItemModal();
         }
     });
+    
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    
+    if (hamburger && nav) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking nav links
+        const navLinks = nav.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+    }
+    
+    // Intercept clicks on product cards to open modal instead of navigating
+    document.addEventListener('click', function(e) {
+        // Skip if click was on a button or inside variant selector
+        if (e.target.closest('.card-add-btn') || e.target.closest('.variant-selector')) {
+            return;
+        }
+        
+        const card = e.target.closest('.grid-card');
+        if (card && card.hasAttribute('data-product-id')) {
+            e.preventDefault();
+            const productId = card.getAttribute('data-product-id');
+            openItemModal(productId);
+        }
+    });
+    
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function(e) {
+        // Close modal if it's open
+        const modal = document.getElementById('item-modal');
+        if (modal && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+        }
+        
+        // Restore scroll position if available
+        if (e.state && e.state.scrollY !== undefined) {
+            setTimeout(() => {
+                window.scrollTo(0, e.state.scrollY);
+            }, 50);
+        }
+        
+        // If state has productId, open that product
+        if (e.state && e.state.productId) {
+            openItemModal(e.state.productId);
+        }
+    });
+    
+    // Restore scroll position from localStorage after redirect (immediately, before content loads)
+    const savedScrollPosition = localStorage.getItem('catalogScrollPosition');
+    if (savedScrollPosition !== null) {
+        // Restore immediately without timeout
+        window.scrollTo(0, parseInt(savedScrollPosition));
+        localStorage.removeItem('catalogScrollPosition');
+    }
+    
+    // Keyboard navigation for modals
+    document.addEventListener('keydown', function(e) {
+        const modal = document.getElementById('item-modal');
+        const isModalOpen = modal && modal.classList.contains('active');
+        
+        if (!isModalOpen) return;
+        
+        // ESC key - close modal
+        if (e.key === 'Escape') {
+            closeItemModal();
+            return;
+        }
+    });
 }
 
 // Item Detail Modal Functions
@@ -637,7 +745,7 @@ function openItemModal(itemId) {
         specsDiv.innerHTML = `
             <div class="variant-selector-modal">
                 <label>Select Length:</label>
-                <select id="modal-variant-${item.id}" onchange="updateModalVariant('${item.id}')">
+                <select id="modal-variant-${item.id}" onchange="updateModalVariantInfo('${item.id}')">
                     ${item.variants.map(v => `<option value="${v.length}">${v.length}</option>`).join('')}
                 </select>
             </div>
@@ -648,7 +756,7 @@ function openItemModal(itemId) {
         const addBtn = document.getElementById('item-modal-add-btn');
         addBtn.onclick = function() {
             addToCartWithVariant(itemId);
-            closeItemModal();
+            // Don't close modal - let user add more or close manually
         };
     } else {
         const specsDiv = document.querySelector('.item-modal-specs');
@@ -660,7 +768,7 @@ function openItemModal(itemId) {
         const addBtn = document.getElementById('item-modal-add-btn');
         addBtn.onclick = function() {
             addToCart(itemId);
-            closeItemModal();
+            // Don't close modal - let user add more or close manually
         };
     }
     
@@ -678,31 +786,33 @@ function updateModalVariant(itemId) {
 }
 
 function closeItemModal() {
-    document.getElementById('item-modal').classList.remove('active');
+    const modal = document.getElementById('item-modal');
+    modal.classList.remove('active');
     
-    // If we're on a product page, redirect to catalog with scroll position
+    // If we're on a product page, redirect to catalog
     const isProductPage = window.location.pathname.includes('/products/');
     if (isProductPage) {
-        // Redirect to catalog with scroll restoration
         window.location.href = '../catalog.html';
-    } else {
-        // On catalog page, just use history.back()
-        history.back();
     }
+    // On catalog page, just close modal without touching history
+    // User can use browser back button if they want to go back
 }
 
-// Start the app when DOM is loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+// Start the app immediately when script loads
+// Since the script is loaded at the end of body, DOM is already ready
+init();
 
 // Make functions global for onclick handlers
 window.addToCart = addToCart;
+window.addToCartWithVariant = addToCartWithVariant;
+window.addToCartFromList = addToCartFromList;
 window.removeFromCart = removeFromCart;
 window.updateCartItem = updateCartItem;
+window.updateVariantInfo = updateVariantInfo;
+window.updateModalVariantInfo = updateModalVariantInfo;
 window.openItemModal = openItemModal;
+window.closeBookingModal = closeBookingModal;
+window.clearCart = clearCart;
 
 // Add to cart from list view with quantity
 function addToCartFromList(itemId, qtyInputId) {
@@ -724,112 +834,5 @@ function addToCartFromList(itemId, qtyInputId) {
     }
     updateCartCount();
     renderCart();
+    saveCart();
 }
-
-// Hamburger menu toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('nav');
-    
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-        
-        // Close menu when clicking nav links
-        const navLinks = nav.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                nav.classList.remove('active');
-            });
-        });
-    }
-    
-    // Intercept clicks on product cards to open modal instead of navigating
-    document.addEventListener('click', function(e) {
-        const card = e.target.closest('.grid-card');
-        if (card && card.hasAttribute('data-product-id')) {
-            e.preventDefault();
-            const productId = card.getAttribute('data-product-id');
-            openItemModal(productId);
-        }
-    });
-    
-    // Handle browser back/forward buttons
-    window.addEventListener('popstate', function(e) {
-        // Close modal if it's open
-        const modal = document.getElementById('item-modal');
-        if (modal && modal.classList.contains('active')) {
-            modal.classList.remove('active');
-        }
-        
-        // Restore scroll position if available
-        if (e.state && e.state.scrollY !== undefined) {
-            setTimeout(() => {
-                window.scrollTo(0, e.state.scrollY);
-            }, 50);
-        }
-        
-        // If state has productId, open that product
-        if (e.state && e.state.productId) {
-            openItemModal(e.state.productId);
-        }
-    });
-    
-    // Restore scroll position from localStorage after redirect (immediately, before content loads)
-    const savedScrollPosition = localStorage.getItem('catalogScrollPosition');
-    if (savedScrollPosition !== null) {
-        // Restore immediately without timeout
-        window.scrollTo(0, parseInt(savedScrollPosition));
-        localStorage.removeItem('catalogScrollPosition');
-    }
-    
-    // Keyboard navigation for modals
-    document.addEventListener('keydown', function(e) {
-        const modal = document.getElementById('item-modal');
-        const isModalOpen = modal && modal.classList.contains('active');
-        
-        if (!isModalOpen) return;
-        
-        // ESC key - close modal
-        if (e.key === 'Escape') {
-            closeItemModal();
-            return;
-        }
-        
-        /* Arrow keys navigation - DISABLED (commented out)
-        // Arrow keys - navigate between products
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-            e.preventDefault();
-            
-            // Get current product ID from modal
-            const currentId = document.getElementById('item-modal-id').textContent.split(', ')[0]; // Handle variants
-            const currentIndex = EQUIPMENT_DATA.findIndex(item => item.id === currentId);
-            
-            if (currentIndex === -1) return;
-            
-            let nextIndex;
-            if (e.key === 'ArrowRight') {
-                nextIndex = currentIndex + 1;
-                // If at the end, close modal and show catalog
-                if (nextIndex >= EQUIPMENT_DATA.length) {
-                    closeItemModal();
-                    return;
-                }
-            } else {
-                nextIndex = currentIndex - 1;
-                // If at the beginning, close modal and show catalog
-                if (nextIndex < 0) {
-                    closeItemModal();
-                    return;
-                }
-            }
-            
-            const nextProduct = EQUIPMENT_DATA[nextIndex];
-            openItemModal(nextProduct.id);
-        }
-        */
-    });
-});
