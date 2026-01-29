@@ -505,6 +505,15 @@ function handleReservationSubmit(e) {
     submitButton.textContent = 'Sending...';
     submitButton.disabled = true;
     
+    // Get hCaptcha token
+    const hcaptchaResponse = e.target.querySelector('[name="h-captcha-response"]');
+    if (!hcaptchaResponse || !hcaptchaResponse.value) {
+        alert('Please complete the captcha verification');
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
+        return;
+    }
+    
     // Send booking info to Web3Forms
     const formDataToSend = new FormData();
     const reservationNumber = generateReservationNumber();
@@ -512,6 +521,7 @@ function handleReservationSubmit(e) {
     // Web3Forms access key
     formDataToSend.append('access_key', 'b394ce85-0c6f-4d28-b0e1-95f2e33387e2');
     formDataToSend.append('subject', 'New Equipment Reservation - ' + reservationNumber);
+    formDataToSend.append('h-captcha-response', hcaptchaResponse.value);
     formDataToSend.append('reservation_number', reservationNumber);
     formDataToSend.append('name', data.customer.name);
     formDataToSend.append('email', data.customer.email);
