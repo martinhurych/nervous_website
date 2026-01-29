@@ -451,6 +451,8 @@ body {
     border: 1px solid #000;
     border-radius: 0;
     font-family: 'SuisseSign', 'IBM Plex Sans', sans-serif;
+    height: 36px;
+    box-sizing: border-box;
 }
 
 .list-add .card-add-btn {
