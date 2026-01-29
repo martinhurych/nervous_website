@@ -876,7 +876,7 @@ body {
         font-size: 13px;
         padding: 8px;
         margin-bottom: 15px;
-        margin-top: 1px;
+        margin-top: 3px;
     }
     
     .category-title {
@@ -912,7 +912,7 @@ body {
     
     .results-count {
         position: fixed;
-        top: calc(20px + 24px + 20px); /* Main header padding-top + logo height + padding-bottom */
+        top: 60px; /* Exactly at main header bottom */
         left: 0;
         width: 100%;
         flex-direction: column;
