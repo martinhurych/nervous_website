@@ -910,7 +910,7 @@ body {
     
     .results-count {
         position: fixed;
-        top: 64px; /* Exactly below main header (20px padding top + 24px logo + 20px padding bottom) */
+        top: 60px; /* Flush with main header on mobile */
         left: 0;
         width: 100%;
         flex-direction: column;
