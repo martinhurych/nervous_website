@@ -163,7 +163,7 @@ body {
 }
 
 .cart-icon {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .cart-count {
@@ -247,7 +247,7 @@ body {
 
 .results-count {
     position: fixed;
-    top: 71px;
+    top: 61px;
     left: 250px;
     right: 0;
     background: #fff;
