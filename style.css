@@ -247,7 +247,7 @@ body {
 
 .results-count {
     position: fixed;
-    top: 71px;
+    top: 65px;
     left: 250px;
     right: 0;
     background: #fff;
@@ -860,6 +860,10 @@ body {
         margin-top: 220px !important;
     }
     
+    .results-count {
+        top: 49px !important; /* Tablet/mobile header: 15px + 18px logo + 15px + 1px border = 49px */
+    }
+    
     .sidebar {
         position: static !important;
         width: 100% !important;
@@ -912,7 +916,7 @@ body {
     
     .results-count {
         position: fixed;
-        top: 65px; /* Main header: 20px top + 24px logo + 20px bottom + 1px border = 65px */
+        top: 49px !important; /* Mobile header: 15px + 18px logo + 15px + 1px border = 49px */
         left: 0;
         width: 100%;
         flex-direction: column;
