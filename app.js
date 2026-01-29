@@ -25,6 +25,7 @@ function init() {
     renderEquipment();
     setupEventListeners();
     updateCartCount();
+    setupScrollToTop();
 }
 
 // Render category sidebar
@@ -864,4 +865,31 @@ function addToCartFromList(itemId, qtyInputId) {
     updateCartCount();
     renderCart();
     saveCart();
+}
+
+// Scroll to top functionality
+function setupScrollToTop() {
+    // Create scroll to top button
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'scroll-to-top';
+    scrollBtn.innerHTML = '↑';
+    scrollBtn.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(scrollBtn);
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when clicked
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
