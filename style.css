@@ -869,6 +869,7 @@ body {
         padding: 15px !important;
         overflow-x: auto;
         overflow-y: visible;
+        margin-top: 95px !important; /* Space for main header + second header */
     }
     
     .search-box {
@@ -910,7 +911,7 @@ body {
     
     .results-count {
         position: fixed;
-        top: 61px; /* Exactly after main header border */
+        top: 60px; /* Flush against main header */
         left: 0;
         width: 100%;
         flex-direction: column;
@@ -920,7 +921,6 @@ body {
         padding: 8px 15px;
         background: #fff;
         border-bottom: 1px solid #000;
-        border-top: 1px solid #000;
         z-index: 90;
     }
     
