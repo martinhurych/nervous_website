@@ -1,0 +1,17 @@
+{
+  "name": "nervousmusictastemaker",
+  "version": "1.0.0",
+  "description": "Professional audio equipment rental - nervousmusictastemaker.com",
+  "scripts": {
+    "generate-products": "node scripts/generate-product-pages.js",
+    "generate-products:force": "node scripts/generate-product-pages.js --force",
+    "serve": "npx http-server -p 8080 -o",
+    "dev": "npx http-server -p 8080 -o -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/nervousmusictastemaker.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

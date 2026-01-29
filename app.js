@@ -58,7 +58,7 @@ function renderEquipment() {
                 const variantIds = item.variants.map((v, idx) => `${baseId}-${String(baseNum + idx).padStart(2, '0')}`).join(', ');
                 
                 return `
-                    <div class="grid-card" onclick="openItemModal('${item.id}')">
+                    <a href="products/${item.id}.html" class="grid-card" data-product-id="${item.id}">
                         <div class="card-image">
                             <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                         </div>
@@ -78,11 +78,11 @@ function renderEquipment() {
                             </div>
                             <button class="card-add-btn" onclick="event.stopPropagation(); addToCartWithVariant('${item.id}')">Add to Cart</button>
                         </div>
-                    </div>
+                    </a>
                 `;
             } else {
                 return `
-                    <div class="grid-card" onclick="openItemModal('${item.id}')">
+                    <a href="products/${item.id}.html" class="grid-card" data-product-id="${item.id}">
                         <div class="card-image">
                             <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                         </div>
@@ -96,7 +96,7 @@ function renderEquipment() {
                             </div>
                             <button class="card-add-btn" onclick="event.stopPropagation(); addToCart('${item.id}')">Add to Cart</button>
                         </div>
-                    </div>
+                    </a>
                 `;
             }
         }).join('');
@@ -589,6 +589,14 @@ function openItemModal(itemId) {
     const item = EQUIPMENT_DATA.find(eq => eq.id === itemId);
     if (!item) return;
     
+    // Update URL with History API and save scroll position
+    if (window.location.pathname === '/catalog.html' || window.location.pathname.endsWith('/catalog.html')) {
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        // Store in localStorage for better persistence
+        localStorage.setItem('catalogScrollPosition', scrollPosition);
+        history.pushState({ productId: itemId, scrollY: scrollPosition }, '', `/products/${itemId}.html`);
+    }
+    
     // Generate IDs for items with variants
     let displayId = item.id;
     if (item.variants && item.variants.length > 0) {
@@ -613,7 +621,10 @@ function openItemModal(itemId) {
     }
     
     const image = document.getElementById('item-modal-image');
-    image.src = `images/${item.id}.jpg`;
+    // Detect if we're on a product page (in /products/ folder) and adjust image path
+    const isProductPage = window.location.pathname.includes('/products/');
+    const imagePath = isProductPage ? '../images/' : 'images/';
+    image.src = `${imagePath}${item.id}.jpg`;
     image.alt = item.name;
     image.onerror = function() { this.style.display = 'none'; };
     
@@ -666,6 +677,10 @@ function updateModalVariant(itemId) {
 
 function closeItemModal() {
     document.getElementById('item-modal').classList.remove('active');
+    
+    // Always use history.back() to avoid page reload and flickering
+    // This works because openItemModal always pushes a new state
+    history.back();
 }
 
 // Start the app when DOM is loaded
@@ -723,4 +738,90 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    
+    // Intercept clicks on product cards to open modal instead of navigating
+    document.addEventListener('click', function(e) {
+        const card = e.target.closest('.grid-card');
+        if (card && card.hasAttribute('data-product-id')) {
+            e.preventDefault();
+            const productId = card.getAttribute('data-product-id');
+            openItemModal(productId);
+        }
+    });
+    
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function(e) {
+        // Close modal if it's open
+        const modal = document.getElementById('item-modal');
+        if (modal && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+        }
+        
+        // Restore scroll position if available
+        if (e.state && e.state.scrollY !== undefined) {
+            setTimeout(() => {
+                window.scrollTo(0, e.state.scrollY);
+            }, 50);
+        }
+        
+        // If state has productId, open that product
+        if (e.state && e.state.productId) {
+            openItemModal(e.state.productId);
+        }
+    });
+    
+    // Restore scroll position from localStorage after redirect (immediately, before content loads)
+    const savedScrollPosition = localStorage.getItem('catalogScrollPosition');
+    if (savedScrollPosition !== null) {
+        // Restore immediately without timeout
+        window.scrollTo(0, parseInt(savedScrollPosition));
+        localStorage.removeItem('catalogScrollPosition');
+    }
+    
+    // Keyboard navigation for modals
+    document.addEventListener('keydown', function(e) {
+        const modal = document.getElementById('item-modal');
+        const isModalOpen = modal && modal.classList.contains('active');
+        
+        if (!isModalOpen) return;
+        
+        // ESC key - close modal
+        if (e.key === 'Escape') {
+            closeItemModal();
+            return;
+        }
+        
+        /* Arrow keys navigation - DISABLED (commented out)
+        // Arrow keys - navigate between products
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            
+            // Get current product ID from modal
+            const currentId = document.getElementById('item-modal-id').textContent.split(', ')[0]; // Handle variants
+            const currentIndex = EQUIPMENT_DATA.findIndex(item => item.id === currentId);
+            
+            if (currentIndex === -1) return;
+            
+            let nextIndex;
+            if (e.key === 'ArrowRight') {
+                nextIndex = currentIndex + 1;
+                // If at the end, close modal and show catalog
+                if (nextIndex >= EQUIPMENT_DATA.length) {
+                    closeItemModal();
+                    return;
+                }
+            } else {
+                nextIndex = currentIndex - 1;
+                // If at the beginning, close modal and show catalog
+                if (nextIndex < 0) {
+                    closeItemModal();
+                    return;
+                }
+            }
+            
+            const nextProduct = EQUIPMENT_DATA[nextIndex];
+            openItemModal(nextProduct.id);
+        }
+        */
+    });
 });
