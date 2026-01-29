@@ -247,7 +247,7 @@ body {
 
 .results-count {
     position: fixed;
-    top: 61px;
+    top: 71px;
     left: 250px;
     right: 0;
     background: #fff;
@@ -904,19 +904,19 @@ body {
         margin-left: 0 !important;
         width: 100% !important;
         padding: 15px !important;
-        padding-top: 140px !important; /* Extra space for sticky headers on mobile */
+        padding-top: 120px !important; /* Extra space for sticky headers on mobile */
     }
     
     .results-count {
         position: fixed;
-        top: 61px; /* Below main header */
+        top: 64px; /* Exactly below main header (20px padding top + 24px logo + 20px padding bottom) */
         left: 0;
         width: 100%;
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 8px;
         font-size: 13px;
-        padding: 10px 15px;
+        padding: 8px 15px;
         background: #fff;
         border-bottom: 1px solid #000;
         z-index: 90;
