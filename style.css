@@ -163,7 +163,7 @@ body {
 }
 
 .cart-icon {
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .cart-count {
@@ -862,7 +862,6 @@ body {
     
     .results-count {
         top: 49px !important; /* Tablet/mobile header: 15px + 18px logo + 15px + 1px border = 49px */
-        padding: 8px 20px !important;
     }
     
     .pricing-info {
@@ -928,7 +927,7 @@ body {
         align-items: flex-start;
         gap: 8px;
         font-size: 13px;
-        padding: 8px 15px;
+        padding: 6px 15px;
         background: #fff;
         border-bottom: 1px solid #000;
         z-index: 90;
