@@ -217,7 +217,7 @@ body {
 .feature {
     text-align: left;
     padding: 30px;
-    background: #111;
+    background: transparent;
     border: 1px solid #222;
     transition: border-color 0.3s ease;
 }
