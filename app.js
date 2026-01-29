@@ -499,39 +499,58 @@ function handleReservationSubmit(e) {
     // Here you would typically send this to a server
     console.log('Reservation Data:', data);
     
+    // Get submit button and show loading state
+    const submitButton = e.target.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+    
     // Send booking info to Formspree
     const formDataToSend = new FormData();
-    formDataToSend.append('reservation_number', generateReservationNumber());
+    const reservationNumber = generateReservationNumber();
+    formDataToSend.append('reservation_number', reservationNumber);
     formDataToSend.append('name', data.customer.name);
     formDataToSend.append('email', data.customer.email);
-    formDataToSend.append('phone', data.customer.phone);
-    formDataToSend.append('company', data.customer.company);
-    formDataToSend.append('message', data.customer.message);
+    formDataToSend.append('phone', data.customer.phone || 'N/A');
+    formDataToSend.append('company', data.customer.company || 'N/A');
+    formDataToSend.append('message', data.customer.message || 'N/A');
     formDataToSend.append('start_date', data.rental.startDate);
     formDataToSend.append('end_date', data.rental.endDate);
     formDataToSend.append('items', data.items.map(item => `${item.name} (x${item.quantity} for ${item.days} day${item.days > 1 ? 's' : ''})`).join(', '));
-    formDataToSend.append('total', data.total.toFixed(2));
+    formDataToSend.append('total', '€' + data.total.toFixed(2));
 
     fetch('https://formspree.io/f/xgokzwwj', {
         method: 'POST',
         body: formDataToSend,
         headers: { 'Accept': 'application/json' }
-    }).then(response => {
-        // Optionally handle response
-    }).catch(error => {
-        // Optionally handle error
+    })
+    .then(response => {
+        console.log('Formspree response status:', response.status);
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Formspree submission failed with status: ' + response.status);
+        }
+    })
+    .then(responseData => {
+        console.log('Formspree success:', responseData);
+        // Show success message only after successful submission
+        const modalBody = document.querySelector('#booking-modal .modal-body');
+        modalBody.innerHTML = `
+            <div class="success-message">
+                <h3 style="margin-bottom: 10px;">Reservation Request Submitted!</h3>
+                <p>Thank you for your reservation request. We will contact you at <strong>${data.customer.email}</strong> shortly to confirm availability and arrange details.</p>
+                <p style="margin-top: 15px;"><strong>Reservation Number:</strong> ${reservationNumber}</p>
+            </div>
+            <button class="btn-primary" onclick="closeBookingModal(); clearCart(); location.reload();">Close</button>
+        `;
+    })
+    .catch(error => {
+        console.error('Error submitting reservation:', error);
+        alert('There was an error submitting your reservation. Please try again or contact us directly at nervousmusictastemaker@gmail.com');
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
     });
-    
-    // Show success message
-    const modalBody = document.querySelector('#booking-modal .modal-body');
-    modalBody.innerHTML = `
-        <div class="success-message">
-            <h3 style="margin-bottom: 10px;">Reservation Request Submitted!</h3>
-            <p>Thank you for your reservation request. We will contact you at <strong>${data.customer.email}</strong> shortly to confirm availability and arrange details.</p>
-            <p style="margin-top: 15px;"><strong>Reservation Number:</strong> ${generateReservationNumber()}</p>
-        </div>
-        <button class="btn-primary" onclick="closeBookingModal(); clearCart(); location.reload();">Close</button>
-    `;
     
     // In a real application, you might send an email or API request here
     // For example:
