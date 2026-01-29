@@ -505,9 +505,13 @@ function handleReservationSubmit(e) {
     submitButton.textContent = 'Sending...';
     submitButton.disabled = true;
     
-    // Send booking info to Formspree
+    // Send booking info to Web3Forms
     const formDataToSend = new FormData();
     const reservationNumber = generateReservationNumber();
+    
+    // Web3Forms access key
+    formDataToSend.append('access_key', 'b394ce85-0c6f-4d28-b0e1-95f2e33387e2');
+    formDataToSend.append('subject', 'New Equipment Reservation - ' + reservationNumber);
     formDataToSend.append('reservation_number', reservationNumber);
     formDataToSend.append('name', data.customer.name);
     formDataToSend.append('email', data.customer.email);
@@ -519,31 +523,27 @@ function handleReservationSubmit(e) {
     formDataToSend.append('items', data.items.map(item => `${item.name} (x${item.quantity} for ${item.days} day${item.days > 1 ? 's' : ''})`).join(', '));
     formDataToSend.append('total', '€' + data.total.toFixed(2));
 
-    fetch('https://formspree.io/f/xgokzwwj', {
+    fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formDataToSend,
-        headers: { 'Accept': 'application/json' }
+        body: formDataToSend
     })
-    .then(response => {
-        console.log('Formspree response status:', response.status);
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Formspree submission failed with status: ' + response.status);
-        }
-    })
+    .then(response => response.json())
     .then(responseData => {
-        console.log('Formspree success:', responseData);
-        // Show success message only after successful submission
-        const modalBody = document.querySelector('#booking-modal .modal-body');
-        modalBody.innerHTML = `
-            <div class="success-message">
-                <h3 style="margin-bottom: 10px;">Reservation Request Submitted!</h3>
-                <p>Thank you for your reservation request. We will contact you at <strong>${data.customer.email}</strong> shortly to confirm availability and arrange details.</p>
-                <p style="margin-top: 15px;"><strong>Reservation Number:</strong> ${reservationNumber}</p>
-            </div>
-            <button class="btn-primary" onclick="closeBookingModal(); clearCart(); location.reload();">Close</button>
-        `;
+        console.log('Web3Forms response:', responseData);
+        if (responseData.success) {
+            const modalBody = document.querySelector('#booking-modal .modal-body');
+            const customerEmail = data.customer.email;
+            modalBody.innerHTML = `
+                <div class="success-message">
+                    <h3 style="margin-bottom: 10px;">Reservation Request Submitted!</h3>
+                    <p>Thank you for your reservation request. We will contact you at <strong>${customerEmail}</strong> shortly to confirm availability and arrange details.</p>
+                    <p style="margin-top: 15px;"><strong>Reservation Number:</strong> ${reservationNumber}</p>
+                </div>
+                <button class="btn-primary" onclick="closeBookingModal(); clearCart(); location.reload();">Close</button>
+            `;
+        } else {
+            throw new Error(responseData.message || 'Submission failed');
+        }
     })
     .catch(error => {
         console.error('Error submitting reservation:', error);
