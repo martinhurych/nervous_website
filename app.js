@@ -46,6 +46,9 @@ function filterEquipment() {
 function renderEquipment() {
     const container = document.getElementById('equipment-container');
     
+    // Use absolute URLs for images
+    const baseUrl = 'https://nervousmusictastemaker.com';
+    
     if (currentView === 'grid') {
         container.className = 'grid-view';
         container.innerHTML = filteredData.map(item => {
@@ -60,7 +63,7 @@ function renderEquipment() {
                 return `
                     <a href="products/${item.id}.html" class="grid-card" data-product-id="${item.id}">
                         <div class="card-image">
-                            <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                            <img src="${baseUrl}/images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                         </div>
                         <div class="card-content">
                             <div class="card-id">${variantIds}</div>
@@ -84,7 +87,7 @@ function renderEquipment() {
                 return `
                     <a href="products/${item.id}.html" class="grid-card" data-product-id="${item.id}">
                         <div class="card-image">
-                            <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                            <img src="${baseUrl}/images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                         </div>
                         <div class="card-content">
                             <div class="card-id">${item.id}</div>
@@ -119,7 +122,7 @@ function renderEquipment() {
                 return `
                     <div class="list-row">
                         <div class="list-image">
-                            <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                            <img src="${baseUrl}/images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                         </div>
                         <span class="list-id">${item.id}</span>
                         <div class="list-info">
@@ -290,10 +293,11 @@ function renderCart() {
             const additionalDays = (item.days - 1) * item.price * item.quantity * 0.5;
             itemPrice = firstDay + additionalDays;
         }
+        const baseUrl = 'https://nervousmusictastemaker.com';
         return `
             <div class="cart-item">
                 <div class="cart-item-image">
-                    <img src="images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
+                    <img src="${baseUrl}/images/${item.id}.jpg" alt="${item.name}" onerror="this.style.display='none'">
                 </div>
                 <div class="cart-item-details">
                     <div class="cart-item-name">${item.name}</div>
@@ -621,10 +625,8 @@ function openItemModal(itemId) {
     }
     
     const image = document.getElementById('item-modal-image');
-    // Detect if we're on a product page (in /products/ folder) and adjust image path
-    const isProductPage = window.location.pathname.includes('/products/');
-    const imagePath = isProductPage ? '../images/' : 'images/';
-    image.src = `${imagePath}${item.id}.jpg`;
+    const baseUrl = 'https://nervousmusictastemaker.com';
+    image.src = `${baseUrl}/images/${item.id}.jpg`;
     image.alt = item.name;
     image.onerror = function() { this.style.display = 'none'; };
     
@@ -678,9 +680,15 @@ function updateModalVariant(itemId) {
 function closeItemModal() {
     document.getElementById('item-modal').classList.remove('active');
     
-    // Always use history.back() to avoid page reload and flickering
-    // This works because openItemModal always pushes a new state
-    history.back();
+    // If we're on a product page, redirect to catalog with scroll position
+    const isProductPage = window.location.pathname.includes('/products/');
+    if (isProductPage) {
+        // Redirect to catalog with scroll restoration
+        window.location.href = '../catalog.html';
+    } else {
+        // On catalog page, just use history.back()
+        history.back();
+    }
 }
 
 // Start the app when DOM is loaded
