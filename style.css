@@ -912,7 +912,7 @@ body {
     
     .results-count {
         position: fixed;
-        top: 60px; /* Exactly at main header bottom */
+        top: 65px; /* Main header: 20px top + 24px logo + 20px bottom + 1px border = 65px */
         left: 0;
         width: 100%;
         flex-direction: column;
