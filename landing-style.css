@@ -191,7 +191,7 @@ body {
 /* Info Section */
 .info-section {
     padding: 100px 20px;
-    background: #0a0a0a;
+    background: #000;
 }
 
 .info-content {
@@ -260,7 +260,7 @@ body {
 /* Contact Section */
 .contact-section {
     padding: 80px 20px;
-    background: #0a0a0a;
+    background: #000;
 }
 
 .contact-content {
