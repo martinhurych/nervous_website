@@ -245,15 +245,6 @@ function removeFromCart(itemId) {
     saveCart();
 }
 
-function clearCart() {
-    if (cart.length > 0 && confirm('Remove all items from cart?')) {
-        cart = [];
-        updateCartCount();
-        renderCart();
-        saveCart();
-    }
-}
-
 function updateCartItem(itemId, field, value) {
     const item = cart.find(cartItem => cartItem.id === itemId);
     const equipment = EQUIPMENT_DATA.find(eq => eq.id === itemId);
@@ -323,10 +314,9 @@ function renderCart() {
     }
     
     const rentalInfoHtml = `
-        <div style="margin-bottom: 15px; font-size: 13px; color: #000; position: relative;">
-            <div><strong>Prices excl. VAT</strong> • Multi-day rentals: 50% off from 2nd day</div>
-            <div style="margin-top: 5px;"><strong>Rental period:</strong> Set at checkout</div>
-            <button class="cart-item-remove" onclick="clearCart()" style="position: absolute; top: 0; right: 0;" title="Clear all items">&times;</button>
+        <div style="margin-bottom: 15px; font-size: 13px; color: #000;">
+            <div>Prices excl. VAT • Multi-day rentals: 50% off from 2nd day</div>
+            <div style="margin-top: 5px;">Rental period set at checkout</div>
         </div>
     `;
     
