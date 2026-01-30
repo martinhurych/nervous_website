@@ -205,7 +205,6 @@ function addToCartWithVariant(itemId) {
             amount: variant.amount,
             price: variant.price,
             quantity: 1,
-            days: 1,
             variant: selectedLength
         });
     }
@@ -230,8 +229,7 @@ function addToCart(itemId) {
     } else {
         cart.push({
             ...item,
-            quantity: 1,
-            days: 1
+            quantity: 1
         });
     }
     
@@ -255,8 +253,6 @@ function updateCartItem(itemId, field, value) {
         if (field === 'quantity') {
             const qty = Math.max(1, Math.min(parseInt(value) || 1, equipment.amount));
             item.quantity = qty;
-        } else if (field === 'days') {
-            item.days = Math.max(1, parseInt(value) || 1);
         }
         renderCart();
         saveCart();
@@ -316,14 +312,7 @@ function renderCart() {
     }
     
     cartItems.innerHTML = cart.map(item => {
-        let itemPrice;
-        if (item.days === 1) {
-            itemPrice = item.price * item.quantity;
-        } else {
-            const firstDay = item.price * item.quantity;
-            const additionalDays = (item.days - 1) * item.price * item.quantity * 0.5;
-            itemPrice = firstDay + additionalDays;
-        }
+        const itemPrice = item.price * item.quantity;
         const baseUrl = 'https://nervousmusictastemaker.com';
         return `
             <div class="cart-item">
@@ -339,14 +328,12 @@ function renderCart() {
                             <input type="number" value="${item.quantity}" min="1" max="${item.amount}" 
                                    onchange="updateCartItem('${item.id}', 'quantity', this.value)">
                         </div>
-                        <div class="days-control">
-                            <label>Days:</label>
-                            <input type="number" value="${item.days}" min="1" 
-                                   onchange="updateCartItem('${item.id}', 'days', this.value)">
+                        <div class="rental-period-notice">
+                            <label>Rental period:</label>
+                            <span>Set at checkout</span>
                         </div>
-                        <div class="cart-item-price">€${itemPrice.toFixed(2)}</div>
+                        <div class="cart-item-price">€${itemPrice.toFixed(2)}/day</div>
                     </div>
-                    ${item.days > 1 ? '<div style="font-size:12px;color:#666;margin-top:4px;">Multi-day discount: 50% off from 2nd day is automatically applied.</div>' : ''}
                 </div>
                 <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">&times;</button>
             </div>
