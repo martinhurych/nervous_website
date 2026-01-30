@@ -713,15 +713,29 @@ function setupEventListeners() {
     
     // Keyboard navigation for modals
     document.addEventListener('keydown', function(e) {
-        const modal = document.getElementById('item-modal');
-        const isModalOpen = modal && modal.classList.contains('active');
-        
-        if (!isModalOpen) return;
-        
-        // ESC key - close modal
         if (e.key === 'Escape') {
-            closeItemModal();
-            return;
+            // Check which modals are open and close them
+            const itemModal = document.getElementById('item-modal');
+            const cartModal = document.getElementById('cart-modal');
+            const bookingModal = document.getElementById('booking-modal');
+            
+            // Close item detail modal
+            if (itemModal && itemModal.classList.contains('active')) {
+                closeItemModal();
+                return;
+            }
+            
+            // Close booking modal
+            if (bookingModal && bookingModal.classList.contains('active')) {
+                closeBookingModal();
+                return;
+            }
+            
+            // Close cart modal
+            if (cartModal && cartModal.classList.contains('active')) {
+                closeCartModal();
+                return;
+            }
         }
     });
 }
