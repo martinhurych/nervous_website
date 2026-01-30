@@ -27,6 +27,7 @@ async function optimizeImages() {
 
             // Create WebP version
             const webpBuffer = await sharp(inputPath)
+                .rotate() // Auto-rotate based on EXIF orientation
                 .resize({ width: MAX_WIDTH, withoutEnlargement: true })
                 .webp({ quality: WEBP_QUALITY })
                 .toBuffer();
@@ -37,6 +38,7 @@ async function optimizeImages() {
 
             // Create optimized JPG version
             const jpgBuffer = await sharp(inputPath)
+                .rotate() // Auto-rotate based on EXIF orientation
                 .resize({ width: MAX_WIDTH, withoutEnlargement: true })
                 .jpeg({ quality: JPG_QUALITY, progressive: true })
                 .toBuffer();
