@@ -367,9 +367,8 @@ function openBookingModal() {
     document.getElementById('rental-start').min = todayStr;
     document.getElementById('rental-end').min = todayStr;
 
-    // If all items in cart have the same days, pre-fill the date range
+    // Pre-fill the date range
     if (cart.length > 0) {
-        const maxDays = Math.max(...cart.map(item => item.days));
         const startDateInput = document.getElementById('rental-start');
         const endDateInput = document.getElementById('rental-end');
         // Only set if not already set
@@ -378,7 +377,7 @@ function openBookingModal() {
         }
         if (!endDateInput.value || new Date(endDateInput.value) <= new Date(startDateInput.value)) {
             const endDate = new Date(startDateInput.value);
-            endDate.setDate(endDate.getDate() + maxDays);
+            endDate.setDate(endDate.getDate() + 1); // Default 1 day rental
             endDateInput.value = endDate.toISOString().split('T')[0];
         }
     }
