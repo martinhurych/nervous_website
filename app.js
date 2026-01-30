@@ -283,15 +283,17 @@ function clearCart() {
 
 function calculateTotal(rentalDays = null) {
     return cart.reduce((sum, item) => {
-        const days = rentalDays !== null ? rentalDays : item.days;
         let itemTotal;
         
-        if (days === 1) {
+        if (rentalDays === null) {
+            // In cart view - just show base price
+            itemTotal = item.price * item.quantity;
+        } else if (rentalDays === 1) {
             itemTotal = item.price * item.quantity;
         } else {
             // First day full price, remaining days 50% off
             const firstDayPrice = item.price * item.quantity;
-            const additionalDays = (days - 1) * item.price * item.quantity * 0.5;
+            const additionalDays = (rentalDays - 1) * item.price * item.quantity * 0.5;
             itemTotal = firstDayPrice + additionalDays;
         }
         
