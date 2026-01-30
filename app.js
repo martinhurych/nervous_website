@@ -313,7 +313,14 @@ function renderCart() {
         return;
     }
     
-    cartItems.innerHTML = cart.map(item => {
+    const rentalInfoHtml = `
+        <div style="padding: 15px; background: #f5f5f5; border: 1px solid #ddd; margin-bottom: 15px; font-size: 13px; color: #666;">
+            <div><strong>Prices excl. VAT</strong> • Multi-day rentals: 50% off from 2nd day</div>
+            <div style="margin-top: 5px;"><strong>Rental period:</strong> Set at checkout</div>
+        </div>
+    `;
+    
+    cartItems.innerHTML = rentalInfoHtml + cart.map(item => {
         const itemPrice = item.price * item.quantity;
         const baseUrl = 'https://nervousmusictastemaker.com';
         return `
@@ -329,10 +336,6 @@ function renderCart() {
                             <label>Qty:</label>
                             <input type="number" value="${item.quantity}" min="1" max="${item.amount}" 
                                    onchange="updateCartItem('${item.id}', 'quantity', this.value)">
-                        </div>
-                        <div class="rental-period-notice">
-                            <label>Rental period:</label>
-                            <span>Set at checkout</span>
                         </div>
                         <div class="cart-item-price">€${itemPrice.toFixed(2)}/day</div>
                     </div>
