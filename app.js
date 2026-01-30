@@ -458,6 +458,18 @@ function handleReservationSubmit(e) {
     e.preventDefault();
     
     const formData = new FormData(e.target);
+    
+    // Calculate rental days from dates
+    const startDate = formData.get('start-date');
+    const endDate = formData.get('end-date');
+    let rentalDays = 1;
+    if (startDate && endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        const diffTime = end - start;
+        rentalDays = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+    }
+    
     const data = {
         customer: {
             name: formData.get('name'),
@@ -468,18 +480,29 @@ function handleReservationSubmit(e) {
         },
         rental: {
             startDate: formData.get('start-date'),
-            endDate: formData.get('end-date')
+            endDate: formData.get('end-date'),
+            days: rentalDays
         },
         items: cart.map(item => ({
             id: item.id,
             name: item.name,
             quantity: item.quantity,
-            days: item.days,
             price: item.price,
-            total: item.price * item.quantity * item.days
+            total: calculateItemPrice(item, rentalDays)
         })),
-        total: calculateTotal()
+        total: calculateTotal(rentalDays)
     };
+    
+    // Helper function to calculate item price
+    function calculateItemPrice(item, days) {
+        if (days === 1) {
+            return item.price * item.quantity;
+        } else {
+            const firstDay = item.price * item.quantity;
+            const additionalDays = (days - 1) * item.price * item.quantity * 0.5;
+            return firstDay + additionalDays;
+        }
+    }
     
     // Generate reservation number based on date and time: YYYYMMDD-HHMMSS
     function generateReservationNumber() {
@@ -522,7 +545,7 @@ function handleReservationSubmit(e) {
     formDataToSend.append('message', data.customer.message || 'N/A');
     formDataToSend.append('start_date', data.rental.startDate);
     formDataToSend.append('end_date', data.rental.endDate);
-    formDataToSend.append('items', data.items.map(item => `${item.name} (x${item.quantity} for ${item.days} day${item.days > 1 ? 's' : ''})`).join(', '));
+    formDataToSend.append('items', data.items.map(item => `${item.name} (x${item.quantity} for ${data.rental.days} day${data.rental.days > 1 ? 's' : ''})`).join(', '));
     formDataToSend.append('total', '€' + data.total.toFixed(2));
 
     fetch('https://api.web3forms.com/submit', {
