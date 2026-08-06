@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nervousmusictastemaker - Den Haag</title>
+    <link rel="preload" as="image" href="photos/slideshow/IMG_2044.webp" type="image/webp">
+    <link rel="stylesheet" href="landing-style.css?v=3">
+    <script defer data-domain="nervousmusictastemaker.com" src="https://plausible.chararray.cz/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+</head>
+<body>
+    <!-- Fullscreen Slideshow -->
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <picture>
+                <source srcset="photos/slideshow/IMG_2044.webp" type="image/webp">
+                <img src="photos/slideshow/IMG_2044_optimized.jpg" alt="Live event" loading="eager" fetchpriority="high">
+            </picture>
+        </div>
+        <div class="slide fade">
+            <picture>
+                <source srcset="photos/slideshow/IMG_1975.webp" type="image/webp">
+                <img src="photos/slideshow/IMG_1975_optimized.jpg" alt="Equipment" loading="lazy">
+            </picture>
+        </div>
+        <div class="slide fade">
+            <picture>
+                <source srcset="photos/slideshow/IMG_9280.webp" type="image/webp">
+                <img src="photos/slideshow/IMG_9280_optimized.jpg" alt="Audio production" loading="lazy">
+            </picture>
+        </div>
+        <div class="slide fade">
+            <picture>
+                <source srcset="photos/slideshow/IMG_6410.webp" type="image/webp">
+                <img src="photos/slideshow/IMG_6410_optimized.jpg" alt="Professional gear" loading="lazy">
+            </picture>
+        </div>
+        <div class="slide fade">
+            <picture>
+                <source srcset="photos/slideshow/IMG_2062.webp" type="image/webp">
+                <img src="photos/slideshow/IMG_2062_optimized.jpg" alt="Event production" loading="lazy">
+            </picture>
+        </div>
+        
+        <div class="slideshow-overlay">
+            <div class="hero-content">
+                <h1 class="logo">nervousmusictastemaker</h1>
+                <p class="tagline">Live Sound Engineering & Equipment Rental</p>
+                <p class="location">Den Haag, Netherlands</p>
+                <a href="catalog.html" class="btn-enter">View Equipment Catalogue</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-content">
+            <h2>Professional Audio Solutions</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>PA Systems</h3>
+                    <p>Meyer Sound, QSC - Complete sound reinforcement systems for events of all sizes</p>
+                </div>
+                <div class="feature">
+                    <h3>Mixing Consoles</h3>
+                    <p>Allen & Heath digital mixers and stageboxes for professional live sound control</p>
+                </div>
+                <div class="feature">
+                    <h3>Microphones & Accessories</h3>
+                    <p>Shure, Sennheiser, Beyerdynamic - Dynamic and condenser microphones with complete accessories</p>
+                </div>
+                <div class="feature">
+                    <h3>Recording Equipment</h3>
+                    <p>Professional recorders, DI boxes, and high-quality cables for all audio needs</p>
+                </div>
+            </div>
+            <a href="services.html" class="btn-catalog">Explore Services</a>
+        </div>
+    </div>
+
+    <footer class="landing-footer">
+        <p>© 2026 nervousmusictastemaker</p>
+        <p>Live sound engineering and professional equipment rental for events, studios, and productions</p>
+    </footer>
+    
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 4000); // Change image every 4 seconds
+        }
+    </script>
+</body>
+</html>

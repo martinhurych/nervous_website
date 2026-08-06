@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - nervousmusictastemaker</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer data-domain="nervousmusictastemaker.com" src="https://plausible.chararray.cz/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+    <style>
+        .services-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 30px 40px 30px;
+        }
+        
+        .services-content h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .services-intro {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+        
+        .service-item {
+            background: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .service-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .service-item p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 0;
+        }
+        
+        .btn-contact {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #000;
+            transition: all 0.3s;
+        }
+        
+        .btn-contact:hover {
+            background: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <a href="index.html" class="logo">nervousmusictastemaker</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="nav" id="nav">
+            <a href="catalog.html" class="nav-link">Equipment</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <div class="services-content">
+        <h1>Live Sound Engineering & Professional Audio Services</h1>
+        <p class="services-intro">From small intimate gatherings to large venues, comprehensive audio solutions tailored to your specific needs.</p>
+        
+        <div>
+            <div class="service-item">
+                <h3>Live Event Sound Engineering</h3>
+                <p>Professional sound reinforcement for concerts, festivals, corporate events, and private parties. From intimate clubs to large venues, ensuring crystal-clear audio that brings your event to life.</p>
+            </div>
+            <div class="service-item">
+                <h3>Technical Production Management</h3>
+                <p>Complete audio setup and management including PA systems, monitoring, mixing, and technical troubleshooting. Handling all technical aspects so you can focus on your event.</p>
+            </div>
+            <div class="service-item">
+                <h3>Recording & Live Streaming</h3>
+                <p>High-quality audio recording and mixing for live performances, podcasts, conferences, and streaming events. Capture every moment with professional sound quality.</p>
+            </div>
+            <div class="service-item">
+                <h3>Equipment Rental with Operator</h3>
+                <p>Full sound system packages with experienced operation. Available for tours, festivals, theater productions, and special events throughout the Netherlands and beyond.</p>
+            </div>
+            <div class="service-item">
+                <h3>Sound System Design & Consultation</h3>
+                <p>Tailored audio solutions for your specific venue or event needs. Technical planning, equipment selection, and on-site optimization to achieve the best possible sound.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="contact.html" class="btn-contact">Get in Touch</a>
+        </div>
+    </div>
+
+    <footer class="footer" style="text-align: center; padding: 40px 20px; border-top: 1px solid #e0e0e0; margin-top: 60px;">
+        <span>© 2026 nervousmusictastemaker</span>
+    </footer>
+    
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+            
+            // Close menu when clicking nav links
+            const navLinks = nav.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

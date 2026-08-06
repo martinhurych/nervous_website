@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Millenium MS 2004 - nervousmusictastemaker</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Microphone stand with round steel base design for stable positioning without tripod legs spreading on crowded stages. Height adjusts from 88-153 cm via simple t">
+    <link rel="canonical" href="https://nervousmusictastemaker.com/products/ST-MI-01.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://nervousmusictastemaker.com/products/ST-MI-01.html">
+    <meta property="og:title" content="Millenium MS 2004 - nervousmusictastemaker">
+    <meta property="og:description" content="Microphone stand with round steel base design for stable positioning without tripod legs spreading on crowded stages. Height adjusts from 88-153 cm via simple twist mechanism, suitable for standing vocalists and most instrument miking applications. Weighs 3.5 kg with 23 cm diameter base providing so">
+    <meta property="og:image" content="https://nervousmusictastemaker.com/images/ST-MI-01.jpg">
+    <meta property="og:site_name" content="nervousmusictastemaker">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://nervousmusictastemaker.com/products/ST-MI-01.html">
+    <meta name="twitter:title" content="Millenium MS 2004 - nervousmusictastemaker">
+    <meta name="twitter:description" content="Microphone stand with round steel base design for stable positioning without tripod legs spreading on crowded stages. Height adjusts from 88-153 cm via simple twist mechanism, suitable for standing vo">
+    <meta name="twitter:image" content="https://nervousmusictastemaker.com/images/ST-MI-01.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Plausible Analytics -->
+    <script defer data-domain="nervousmusictastemaker.com" src="https://plausible.chararray.cz/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+    
+    <!-- Schema.org Product Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Millenium MS 2004",
+      "description": "Microphone stand with round steel base design for stable positioning without tripod legs spreading on crowded stages. Height adjusts from 88-153 cm via simple twist mechanism, suitable for standing vocalists and most instrument miking applications. Weighs 3.5 kg with 23 cm diameter base providing solid stability.",
+      "image": "https://nervousmusictastemaker.com/images/ST-MI-01.jpg",
+      "category": "Microphone Stands",
+      "brand": {
+        "@type": "Brand",
+        "name": "nervousmusictastemaker"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "1",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2026-12-31",
+        "itemCondition": "https://schema.org/UsedCondition"
+      }
+    }
+    </script>
+</head>
+
+    <header class="header">
+        <div class="header-top">
+            <a href="../index.html" class="logo">nervousmusictastemaker</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="nav" id="nav">
+            <a href="../catalog.html" class="nav-link">Equipment</a>
+            <a href="../services.html" class="nav-link">Services</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <input type="text" class="search-box" id="search" placeholder="Search equipment...">
+            <div class="category-title">Categories</div>
+            <ul class="category-list" id="categories"></ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="results-count">
+                <div class="pricing-info">Prices excl. VAT • Multi-day rentals: 50% off from 2nd day</div>
+                <div class="view-controls">
+                    <button class="cart-btn" id="cart-btn">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="grid-btn">Grid</button>
+                        <button class="view-btn" id="list-btn">List</button>
+                    </div>
+                </div>
+            </div>
+            <div class="equipment-container" id="equipment-container"></div>
+        </main>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Cart</h2>
+                <button class="modal-close" id="close-cart">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items"></div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">€0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total (excl. VAT):</span>
+                        <span id="cart-total">€0.00</span>
+                    </div>
+                </div>
+                <button class="btn-primary" id="proceed-to-booking">Proceed to Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reservation Form Modal -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Reserve Equipment</h2>
+                <button class="modal-close" id="close-booking">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="reservation-form">
+                    <div class="form-group">
+                        <label for="customer-name">Full Name *</label>
+                        <input type="text" id="customer-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email *</label>
+                        <input type="email" id="customer-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-phone">Phone</label>
+                        <input type="tel" id="customer-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-company">Company/Organization</label>
+                        <input type="text" id="customer-company" name="company">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="rental-start">Start Date *</label>
+                            <input type="date" id="rental-start" name="start-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rental-end">End Date *</label>
+                            <input type="date" id="rental-end" name="end-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-message">Additional Notes</label>
+                        <textarea id="customer-message" name="message" rows="4"></textarea>
+                    </div>
+                    <div class="form-summary">
+                        <h3>Rental Summary</h3>
+                        <div id="booking-summary"></div>
+                    </div>
+                    <div class="h-captcha" data-captcha="true"></div>
+                    <button type="submit" class="btn-primary">Submit Reservation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Detail Modal -->
+    <div class="modal" id="item-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="item-modal-title"></h2>
+                <button class="modal-close" id="close-item">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="item-detail-content">
+                    <div class="item-detail-image">
+                        <img id="item-modal-image" src="" alt="">
+                    </div>
+                    <div class="item-detail-info">
+                        <div class="item-modal-id" id="item-modal-id"></div>
+                        <h3 id="item-modal-name"></h3>
+                        <p class="item-modal-description" id="item-modal-description"></p>
+                        <div class="item-modal-specs">
+                            <!-- Specs will be filled dynamically based on whether item has variants -->
+                        </div>
+                        <button class="btn-primary btn-large" id="item-modal-add-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" style="text-align: center; padding: 40px 20px; border-top: 1px solid #e0e0e0; margin-top: 60px;">
+        <span>© 2026 nervousmusictastemaker</span>
+    </footer>
+
+    <script src="../equipment-data.js?v=2"></script>
+    <script src="../app.js?v=2"></script>
+
+    
+    <!-- Auto-open modal when visiting product page directly -->
+    <script>
+        // When page loads, automatically open the modal for this product
+        window.addEventListener('DOMContentLoaded', function() {
+            // Give a moment for the page to fully initialize
+            setTimeout(function() {
+                if (typeof openItemModal === 'function') {
+                    openItemModal('ST-MI-01');
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
