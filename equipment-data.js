@@ -1,4 +1,5 @@
 // Equipment catalogue data
+// v20260806
 // Images will be loaded from ./images/ folder
 const EQUIPMENT_DATA = [
     // PA Systems
