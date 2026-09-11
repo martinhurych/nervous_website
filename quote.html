@@ -260,11 +260,11 @@
         const BASE_FONT = 'Liberation Sans';
         const BASE_SIZE = 8;
 
-        // Logo: if images/logo.png exists, embed it as an image; otherwise
-        // fall back to a bold text placeholder in the same spot.
+        // Logo: if images/quote/logo.png exists, embed it as an image;
+        // otherwise fall back to a bold text placeholder in the same spot.
         async function tryLoadLogo(workbook) {
             try {
-                const res = await fetch('images/logo.png');
+                const res = await fetch('images/quote/logo.png');
                 if (!res.ok) return null;
                 const buffer = await res.arrayBuffer();
                 return workbook.addImage({ buffer, extension: 'png' });
@@ -286,7 +286,9 @@
 
             const logoImageId = await tryLoadLogo(workbook);
             if (logoImageId !== null) {
-                sheet.addImage(logoImageId, { tl: { col: 0, row: 0 }, ext: { width: 260, height: 55 } });
+                // logo.png (825x150) already has the tagline baked into the
+                // image, so it covers rows 1-2 and we skip the text version below.
+                sheet.addImage(logoImageId, { tl: { col: 0, row: 0 }, ext: { width: 300, height: 55 } });
                 sheet.getRow(1).height = 42;
             } else {
                 sheet.mergeCells('A1:F1');
@@ -295,8 +297,10 @@
             }
 
             sheet.mergeCells('A2:F2');
-            sheet.getCell('A2').value = 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker@gmail.com / +420 737 812 793';
-            sheet.getCell('A2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
+            if (logoImageId === null) {
+                sheet.getCell('A2').value = 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker@gmail.com / +420 737 812 793';
+                sheet.getCell('A2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
+            }
 
             sheet.addRow([]); // row 3: spacer
             const headerRow = sheet.addRow(['', 'item', 'amount', 'description', 'rent/unit/day', 'rent/units/day']); // row 4
