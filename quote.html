@@ -257,6 +257,22 @@
             renderQuotePanel();
         }
 
+        const BASE_FONT = 'Liberation Sans';
+        const BASE_SIZE = 8;
+
+        // Logo: if images/logo.png exists, embed it as an image; otherwise
+        // fall back to a bold text placeholder in the same spot.
+        async function tryLoadLogo(workbook) {
+            try {
+                const res = await fetch('images/logo.png');
+                if (!res.ok) return null;
+                const buffer = await res.arrayBuffer();
+                return workbook.addImage({ buffer, extension: 'png' });
+            } catch (e) {
+                return null;
+            }
+        }
+
         async function exportToExcel() {
             const ids = Object.keys(selection);
             if (!ids.length) return;
@@ -264,59 +280,76 @@
             const workbook = new ExcelJS.Workbook();
             const sheet = workbook.addWorksheet('Quote');
             sheet.columns = [
-                { width: 12 }, { width: 34 }, { width: 10 },
-                { width: 46 }, { width: 15 }, { width: 16 }
+                { width: 9 }, { width: 30 }, { width: 9 },
+                { width: 52 }, { width: 14 }, { width: 15 }
             ];
 
-            sheet.mergeCells('A1:F1');
-            sheet.getCell('A1').value = 'NERVOUSMUSICTASTEMAKER';
-            sheet.getCell('A1').font = { size: 20, bold: true };
+            const logoImageId = await tryLoadLogo(workbook);
+            if (logoImageId !== null) {
+                sheet.addImage(logoImageId, { tl: { col: 0, row: 0 }, ext: { width: 260, height: 55 } });
+                sheet.getRow(1).height = 42;
+            } else {
+                sheet.mergeCells('A1:F1');
+                sheet.getCell('A1').value = 'NERVOUSMUSICTASTEMAKER';
+                sheet.getCell('A1').font = { size: 20, bold: true };
+            }
 
             sheet.mergeCells('A2:F2');
             sheet.getCell('A2').value = 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker@gmail.com / +420 737 812 793';
-            sheet.getCell('A2').font = { size: 10, color: { argb: 'FF555555' } };
+            sheet.getCell('A2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
 
             sheet.addRow([]); // row 3: spacer
-            const headerRow = sheet.addRow(['id', 'item', 'amount', 'description', 'rent/unit/day', 'rent/units/day']); // row 4
-            headerRow.eachCell(c => {
-                c.font = { bold: true, size: 11 };
-                c.border = { bottom: { style: 'thin' } };
-            });
+            const headerRow = sheet.addRow(['', 'item', 'amount', 'description', 'rent/unit/day', 'rent/units/day']); // row 4
+            headerRow.eachCell(c => { c.font = { name: BASE_FONT, size: BASE_SIZE, bold: true, italic: true }; });
+
             sheet.addRow([]); // row 5: spacer
 
             const cats = orderedCategories(ids.map(itemById).filter(Boolean));
-            let grandTotal = 0;
+            const lineTotalRows = [];
 
             cats.forEach(cat => {
                 const catItems = ids.map(itemById).filter(i => i && i.category === cat);
                 if (!catItems.length) return;
 
-                const catRow = sheet.addRow([cat]);
-                sheet.mergeCells(`A${catRow.number}:F${catRow.number}`);
-                catRow.font = { italic: true, bold: true, size: 11 };
+                const catRow = sheet.addRow(['', cat]);
+                catRow.getCell(2).font = { name: BASE_FONT, size: BASE_SIZE, italic: true, bold: true };
 
                 catItems.forEach(item => {
                     const qty = selection[item.id];
-                    const lineTotal = (item.price || 0) * qty;
-                    grandTotal += lineTotal;
-                    const row = sheet.addRow([
-                        item.id, item.name, qty, item.description || '',
-                        item.price || 0, lineTotal
-                    ]);
-                    row.getCell(1).font = { color: { argb: 'FF1155CC' }, size: 10 };
+                    const row = sheet.addRow([item.id, item.name, qty, item.description || '', item.price || 0]);
+                    row.getCell(6).value = { formula: `C${row.number}*E${row.number}` };
+                    lineTotalRows.push(row.number);
+
+                    row.eachCell({ includeEmpty: true }, c => { c.font = { name: BASE_FONT, size: BASE_SIZE }; });
                     row.getCell(3).alignment = { horizontal: 'center' };
+                    row.getCell(4).alignment = { horizontal: 'right' };
                     row.getCell(5).numFmt = '"€"#,##0.00';
                     row.getCell(6).numFmt = '"€"#,##0.00';
                 });
                 sheet.addRow([]);
             });
 
-            const totalRow = sheet.addRow(['', '', '', '', 'total', grandTotal]);
-            totalRow.font = { bold: true };
-            totalRow.getCell(5).alignment = { horizontal: 'right' };
-            totalRow.getCell(6).numFmt = '"€"#,##0.00';
-            totalRow.getCell(5).border = { top: { style: 'thin' } };
-            totalRow.getCell(6).border = { top: { style: 'thin' } };
+            sheet.addRow([]); // extra spacer before summary, matching the template
+
+            const firstRow = lineTotalRows[0];
+            const lastRow = lineTotalRows[lineTotalRows.length - 1];
+
+            const rentalRow = sheet.addRow(['', '', '', '', 'rental']);
+            rentalRow.getCell(6).value = { formula: `SUM(F${firstRow}:F${lastRow})` };
+
+            const transportRow = sheet.addRow(['', '', '', '', 'transport', 0]);
+
+            sheet.addRow([]);
+
+            const totalRow = sheet.addRow(['', '', '', '', 'total']);
+            totalRow.getCell(6).value = { formula: `F${rentalRow.number}+F${transportRow.number}` };
+
+            [rentalRow, transportRow, totalRow].forEach(r => {
+                r.getCell(5).font = { name: BASE_FONT, size: BASE_SIZE };
+                r.getCell(5).alignment = { horizontal: 'right' };
+                r.getCell(6).font = { name: BASE_FONT, size: BASE_SIZE };
+                r.getCell(6).numFmt = '"€"#,##0.00';
+            });
 
             const buffer = await workbook.xlsx.writeBuffer();
             const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
