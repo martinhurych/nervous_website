@@ -289,19 +289,20 @@
             if (logoImageId !== null) {
                 // Logo_w.png (3000x652, ratio ~4.6:1) already has the tagline
                 // baked into the image, so it covers rows 1-2 and we skip the
-                // text version below.
-                sheet.addImage(logoImageId, { tl: { col: 0, row: 0 }, ext: { width: 350, height: 76 } });
-                sheet.getRow(1).height = 58;
+                // text version below. Anchored at column B, same left edge as
+                // the "item" header, keeping column A clear for ids only.
+                sheet.addImage(logoImageId, { tl: { col: 1, row: 0.05 }, ext: { width: 220, height: 48 } });
+                sheet.getRow(1).height = 36;
             } else {
-                sheet.mergeCells('A1:G1');
-                sheet.getCell('A1').value = 'NERVOUSMUSICTASTEMAKER';
-                sheet.getCell('A1').font = { size: 20, bold: true };
+                sheet.mergeCells('B1:G1');
+                sheet.getCell('B1').value = 'NERVOUSMUSICTASTEMAKER';
+                sheet.getCell('B1').font = { size: 20, bold: true };
             }
 
-            sheet.mergeCells('A2:G2');
+            sheet.mergeCells('B2:G2');
             if (logoImageId === null) {
-                sheet.getCell('A2').value = 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker@gmail.com / +420 737 812 793';
-                sheet.getCell('A2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
+                sheet.getCell('B2').value = 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker@gmail.com / +420 737 812 793';
+                sheet.getCell('B2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
             }
 
             sheet.addRow([]); // row 3: spacer
