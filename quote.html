@@ -260,11 +260,11 @@
         const BASE_FONT = 'Liberation Sans';
         const BASE_SIZE = 8;
 
-        // Logo: if images/quote/logo.png exists, embed it as an image;
+        // Logo: if images/quote/Logo_w.png exists, embed it as an image;
         // otherwise fall back to a bold text placeholder in the same spot.
         async function tryLoadLogo(workbook) {
             try {
-                const res = await fetch('images/quote/logo.png');
+                const res = await fetch('images/quote/Logo_w.png');
                 if (!res.ok) return null;
                 const buffer = await res.arrayBuffer();
                 return workbook.addImage({ buffer, extension: 'png' });
@@ -287,10 +287,11 @@
 
             const logoImageId = await tryLoadLogo(workbook);
             if (logoImageId !== null) {
-                // logo.png (825x150) already has the tagline baked into the
-                // image, so it covers rows 1-2 and we skip the text version below.
-                sheet.addImage(logoImageId, { tl: { col: 0, row: 0 }, ext: { width: 300, height: 55 } });
-                sheet.getRow(1).height = 42;
+                // Logo_w.png (3000x652, ratio ~4.6:1) already has the tagline
+                // baked into the image, so it covers rows 1-2 and we skip the
+                // text version below.
+                sheet.addImage(logoImageId, { tl: { col: 0, row: 0 }, ext: { width: 350, height: 76 } });
+                sheet.getRow(1).height = 58;
             } else {
                 sheet.mergeCells('A1:G1');
                 sheet.getCell('A1').value = 'NERVOUSMUSICTASTEMAKER';
@@ -305,7 +306,10 @@
 
             sheet.addRow([]); // row 3: spacer
             const headerRow = sheet.addRow(['', 'item', 'amount', 'description', 'rent/unit/day', 'day(s)', 'rent/units/day']); // row 4
-            headerRow.eachCell(c => { c.font = { name: BASE_FONT, size: BASE_SIZE, bold: true, italic: true }; });
+            headerRow.eachCell({ includeEmpty: true }, c => {
+                c.font = { name: BASE_FONT, size: BASE_SIZE, bold: true, italic: true };
+                c.border = { bottom: { style: 'thin' } };
+            });
 
             sheet.addRow([]); // row 5: spacer
 
@@ -328,6 +332,7 @@
                     lineTotalRows.push(row.number);
 
                     row.eachCell({ includeEmpty: true }, c => { c.font = { name: BASE_FONT, size: BASE_SIZE }; });
+                    row.getCell(1).font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF1155CC' } };
                     row.getCell(3).alignment = { horizontal: 'center' };
                     row.getCell(4).alignment = { horizontal: 'right' };
                     row.getCell(5).numFmt = '"€"#,##0.00';
