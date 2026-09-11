@@ -314,7 +314,7 @@
             sheet.getCell('B2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
 
             sheet.addRow([]); // row 3: spacer
-            const headerRow = sheet.addRow(['', 'item', 'amount', 'description', 'rent/unit/day', 'day(s)', 'rent/units/day(s)']); // row 4
+            const headerRow = sheet.addRow(['', 'item', 'amount', 'description', 'rent/unit(s)/day(s)', 'day(s)', 'rent/units/day(s)']); // row 4
             headerRow.eachCell({ includeEmpty: true }, c => {
                 c.font = { name: BASE_FONT, size: BASE_SIZE, bold: true, italic: true };
                 c.border = { bottom: { style: 'thin' } };
