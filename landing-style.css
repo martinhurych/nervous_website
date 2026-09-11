@@ -104,6 +104,13 @@ body {
     color: #fff;
 }
 
+.logo-img {
+    height: clamp(28px, 6vw, 48px);
+    width: auto;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
 .tagline {
     font-size: clamp(14px, 4vw, 24px);
     font-weight: 300;

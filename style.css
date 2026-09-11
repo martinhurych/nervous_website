@@ -69,6 +69,12 @@ body {
     opacity: 0.6;
 }
 
+.logo-img {
+    height: 22px;
+    width: auto;
+    display: block;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -820,7 +826,11 @@ body {
     .logo {
         font-size: 18px !important;
     }
-    
+
+    .logo-img {
+        height: 16px;
+    }
+
     .nav {
         position: fixed;
         top: 60px;
