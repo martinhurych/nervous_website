@@ -310,11 +310,9 @@
             }
 
             sheet.mergeCells('B2:G2');
-            sheet.getCell('B2').value = {
-                text: 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker.com',
-                hyperlink: 'https://nervousmusictastemaker.com'
-            };
-            // explicit font keeps it plain (no blue/underline) despite being a live link
+            // Plain text, not a hyperlink: Google Sheets forces its own
+            // blue/underline styling on any linked cell regardless of font.
+            sheet.getCell('B2').value = 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker.com';
             sheet.getCell('B2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
 
             sheet.addRow([]); // row 3: spacer
