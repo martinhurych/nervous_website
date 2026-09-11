@@ -331,7 +331,6 @@
                     lineTotalRows.push(row.number);
 
                     row.eachCell({ includeEmpty: true }, c => { c.font = { name: BASE_FONT, size: BASE_SIZE }; });
-                    row.getCell(1).font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF1155CC' } };
                     row.getCell(3).alignment = { horizontal: 'center' };
                     row.getCell(4).alignment = { horizontal: 'right' };
                     row.getCell(5).numFmt = '"€"#,##0.00';
