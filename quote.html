@@ -279,11 +279,14 @@
 
             const workbook = new ExcelJS.Workbook();
             const sheet = workbook.addWorksheet('Quote');
+            // A fixed scale % prints reliably everywhere; "fit to width" via
+            // fitToWidth/fitToHeight is written correctly but LibreOffice
+            // Calc doesn't always honor it on import (fitToHeight=0 in
+            // particular tends to get silently dropped, reverting to 100%).
             sheet.pageSetup = {
                 orientation: 'landscape',
-                fitToPage: true,
-                fitToWidth: 1,
-                fitToHeight: 0, // as many pages tall as needed, but always 1 page wide
+                paperSize: 9, // A4
+                scale: 85,
                 margins: { left: 0.4, right: 0.4, top: 0.5, bottom: 0.5, header: 0.2, footer: 0.2 }
             };
             // A=id B=item C=amount D=description E=rent/unit/day F=day(s) G=rent/units/day (line total)
