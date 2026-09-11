@@ -279,6 +279,13 @@
 
             const workbook = new ExcelJS.Workbook();
             const sheet = workbook.addWorksheet('Quote');
+            sheet.pageSetup = {
+                orientation: 'landscape',
+                fitToPage: true,
+                fitToWidth: 1,
+                fitToHeight: 0, // as many pages tall as needed, but always 1 page wide
+                margins: { left: 0.4, right: 0.4, top: 0.5, bottom: 0.5, header: 0.2, footer: 0.2 }
+            };
             // A=id B=item C=amount D=description E=rent/unit/day F=day(s) G=rent/units/day (line total)
             sheet.columns = [
                 { width: 9 }, { width: 30 }, { width: 9 },
