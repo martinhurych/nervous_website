@@ -310,7 +310,11 @@
             }
 
             sheet.mergeCells('B2:G2');
-            sheet.getCell('B2').value = 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker.com';
+            sheet.getCell('B2').value = {
+                text: 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker.com',
+                hyperlink: 'https://nervousmusictastemaker.com'
+            };
+            // explicit font keeps it plain (no blue/underline) despite being a live link
             sheet.getCell('B2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
 
             sheet.addRow([]); // row 3: spacer
