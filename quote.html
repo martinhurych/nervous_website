@@ -279,9 +279,10 @@
 
             const workbook = new ExcelJS.Workbook();
             const sheet = workbook.addWorksheet('Quote');
+            // A=id B=item C=amount D=description E=rent/unit/day F=day(s) G=rent/units/day (line total)
             sheet.columns = [
                 { width: 9 }, { width: 30 }, { width: 9 },
-                { width: 52 }, { width: 14 }, { width: 15 }
+                { width: 52 }, { width: 14 }, { width: 9 }, { width: 15 }
             ];
 
             const logoImageId = await tryLoadLogo(workbook);
@@ -291,19 +292,19 @@
                 sheet.addImage(logoImageId, { tl: { col: 0, row: 0 }, ext: { width: 300, height: 55 } });
                 sheet.getRow(1).height = 42;
             } else {
-                sheet.mergeCells('A1:F1');
+                sheet.mergeCells('A1:G1');
                 sheet.getCell('A1').value = 'NERVOUSMUSICTASTEMAKER';
                 sheet.getCell('A1').font = { size: 20, bold: true };
             }
 
-            sheet.mergeCells('A2:F2');
+            sheet.mergeCells('A2:G2');
             if (logoImageId === null) {
                 sheet.getCell('A2').value = 'SOUND ENGINEERING / EQUIPMENT RENTAL / nervousmusictastemaker@gmail.com / +420 737 812 793';
                 sheet.getCell('A2').font = { name: BASE_FONT, size: BASE_SIZE, color: { argb: 'FF555555' } };
             }
 
             sheet.addRow([]); // row 3: spacer
-            const headerRow = sheet.addRow(['', 'item', 'amount', 'description', 'rent/unit/day', 'rent/units/day']); // row 4
+            const headerRow = sheet.addRow(['', 'item', 'amount', 'description', 'rent/unit/day', 'day(s)', 'rent/units/day']); // row 4
             headerRow.eachCell(c => { c.font = { name: BASE_FONT, size: BASE_SIZE, bold: true, italic: true }; });
 
             sheet.addRow([]); // row 5: spacer
@@ -320,15 +321,19 @@
 
                 catItems.forEach(item => {
                     const qty = selection[item.id];
-                    const row = sheet.addRow([item.id, item.name, qty, item.description || '', item.price || 0]);
-                    row.getCell(6).value = { formula: `C${row.number}*E${row.number}` };
+                    // day 1 at full rate, each day after that at half rate:
+                    // line total = amount * unit price * (days + 1) / 2
+                    const row = sheet.addRow([item.id, item.name, qty, item.description || '', item.price || 0, 1]);
+                    row.getCell(7).value = { formula: `IF(F${row.number}=0,0,C${row.number}*E${row.number}*(F${row.number}+1)/2)` };
                     lineTotalRows.push(row.number);
 
                     row.eachCell({ includeEmpty: true }, c => { c.font = { name: BASE_FONT, size: BASE_SIZE }; });
                     row.getCell(3).alignment = { horizontal: 'center' };
                     row.getCell(4).alignment = { horizontal: 'right' };
                     row.getCell(5).numFmt = '"€"#,##0.00';
-                    row.getCell(6).numFmt = '"€"#,##0.00';
+                    row.getCell(6).alignment = { horizontal: 'center' };
+                    row.getCell(6).numFmt = '0';
+                    row.getCell(7).numFmt = '"€"#,##0.00';
                 });
                 sheet.addRow([]);
             });
@@ -339,20 +344,20 @@
             const lastRow = lineTotalRows[lineTotalRows.length - 1];
 
             const rentalRow = sheet.addRow(['', '', '', '', 'rental']);
-            rentalRow.getCell(6).value = { formula: `SUM(F${firstRow}:F${lastRow})` };
+            rentalRow.getCell(7).value = { formula: `SUM(G${firstRow}:G${lastRow})` };
 
-            const transportRow = sheet.addRow(['', '', '', '', 'transport', 0]);
+            const transportRow = sheet.addRow(['', '', '', '', 'transport', '', 0]);
 
             sheet.addRow([]);
 
             const totalRow = sheet.addRow(['', '', '', '', 'total']);
-            totalRow.getCell(6).value = { formula: `F${rentalRow.number}+F${transportRow.number}` };
+            totalRow.getCell(7).value = { formula: `G${rentalRow.number}+G${transportRow.number}` };
 
             [rentalRow, transportRow, totalRow].forEach(r => {
                 r.getCell(5).font = { name: BASE_FONT, size: BASE_SIZE };
                 r.getCell(5).alignment = { horizontal: 'right' };
-                r.getCell(6).font = { name: BASE_FONT, size: BASE_SIZE };
-                r.getCell(6).numFmt = '"€"#,##0.00';
+                r.getCell(7).font = { name: BASE_FONT, size: BASE_SIZE };
+                r.getCell(7).numFmt = '"€"#,##0.00';
             });
 
             const buffer = await workbook.xlsx.writeBuffer();
