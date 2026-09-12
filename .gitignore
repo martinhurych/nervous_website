@@ -1,0 +1,11 @@
+node_modules/
+package-lock.json
+nervousmusictastemaker-with-images.jsx
+nervousmusictastemaker-optimized.jsx
+gear/
+photos/*.jpg
+photos/*.JPG
+photos/*.jpeg
+photos/slideshow/*.JPG
+photos/slideshow/*.jpg
+photos/slideshow/*.jpeg

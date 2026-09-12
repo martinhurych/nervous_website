@@ -1,0 +1,64 @@
+# Quick Setup Guide for GitHub
+
+## What's in the ZIP file:
+- ✅ 107 equipment images (all correctly named: PA-01.jpg, PA-02.jpg, etc.)
+- ✅ Complete website (HTML, CSS, JavaScript)
+- ✅ All your equipment data with prices
+- ✅ README with full instructions
+
+## Upload to GitHub (2 methods):
+
+### Method 1: Web Upload (Easiest)
+1. Download and unzip `nervous_website.zip`
+2. Go to: https://github.com/martinhurych/nervous_website
+3. Click "Add file" → "Upload files"
+4. Drag ALL the unzipped files/folders into the upload area
+5. Click "Commit changes"
+
+### Method 2: Git Command Line
+```bash
+# Download and unzip the file, then:
+cd nervous_website
+git init
+git remote add origin https://github.com/martinhurych/nervous_website.git
+git add .
+git commit -m "Initial commit - Equipment rental website"
+git push -u origin main
+```
+
+## Enable GitHub Pages:
+1. Go to: https://github.com/martinhurych/nervous_website/settings/pages
+2. Under "Source": select "main" branch and "/ (root)"
+3. Click "Save"
+4. Wait 1-2 minutes
+
+## Your website will be live at:
+**https://martinhurych.github.io/nervous_website/**
+
+## File Structure:
+```
+nervous_website/
+├── index.html          (main page)
+├── style.css           (styling)
+├── app.js             (functionality)
+├── equipment-data.js  (your equipment list)
+├── README.md          (documentation)
+└── images/            (107 product photos)
+    ├── PA-01.jpg
+    ├── PA-02.jpg
+    ├── ...
+    └── AC-06.jpg
+```
+
+## To Update Equipment Later:
+1. Edit `equipment-data.js` in GitHub
+2. Add new images to `images/` folder
+3. Commit changes
+4. Website updates automatically!
+
+## Need Help?
+- Check the README.md in the ZIP file
+- Or reach out for support
+
+---
+© 2025 Nervous Music Tastemaker
