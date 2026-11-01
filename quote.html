@@ -50,6 +50,8 @@
         .item-info { flex: 1; min-width: 0; }
         .item-name { font-size: 14px; font-weight: 500; }
         .item-desc { font-size: 12px; color: #666; }
+        .item-avail { font-size: 12px; color: #666; width: 80px; text-align: right; flex-shrink: 0; }
+        .item-avail.over { color: #c00; font-weight: 600; }
         .item-price { font-size: 13px; width: 90px; text-align: right; flex-shrink: 0; }
         .qty-control { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
         .qty-btn {
@@ -202,6 +204,7 @@
                     <div class="item-name">${i.name}</div>
                     <div class="item-desc">${i.description || ''}</div>
                 </div>
+                <span class="item-avail${qty > (i.amount || 0) ? ' over' : ''}">×${i.amount || 0} available</span>
                 <span class="item-price">${formatEUR(i.price || 0)}/day</span>
                 <div class="qty-control">
                     <button class="qty-btn" data-action="dec" data-id="${i.id}">−</button>
