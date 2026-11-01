@@ -81,6 +81,8 @@
         }
         .quote-item .qi-name { flex: 1; min-width: 0; }
         .quote-item .qi-id { font-size: 10px; color: #000; display: block; }
+        .quote-item .qi-avail { font-size: 11px; color: #888; display: block; }
+        .quote-item .qi-avail.over { color: #c00; font-weight: 600; }
         .quote-item .qi-sub { font-size: 12px; color: #666; white-space: nowrap; }
         .quote-item .qi-remove {
             border: none; background: none; cursor: pointer;
@@ -246,6 +248,7 @@
                     <div class="qi-name">
                         <span class="qi-id">${item.id}</span>
                         ${item.name} ×${qty}
+                        <span class="qi-avail${qty > (item.amount || 0) ? ' over' : ''}">${qty} of ${item.amount || 0} available</span>
                     </div>
                     <span class="qi-sub">${formatEUR(lineTotal)}</span>
                     <button class="qi-remove" data-id="${id}" title="Remove">×</button>
