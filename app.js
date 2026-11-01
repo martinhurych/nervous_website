@@ -315,8 +315,7 @@ function renderCart() {
     
     const rentalInfoHtml = `
         <div style="margin-bottom: 15px; font-size: 13px; color: #000;">
-            <div>Prices excl. VAT • Multi-day rentals: 50% off from 2nd day</div>
-            <div style="margin-top: 5px;">Rental period set at checkout</div>
+            <div>Rental period set at checkout</div>
         </div>
     `;
     
